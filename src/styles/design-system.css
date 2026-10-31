@@ -1,0 +1,29 @@
+:root {
+  /* Brand Colors */
+  --gs-primary: #FF5A00;
+  --gs-secondary: #FF7A2F;
+  --gs-brand-dark: #D94700;
+
+  /* Background */
+  --gs-bg: #FFFFFF;
+  --gs-surface: #F7F7F5;
+  --gs-surface-light: #EEEEEC;
+
+  /* Typography */
+  --gs-heading: #101010;
+  --gs-text: #737373;
+
+  /* Borders */
+  --gs-border: #E8E8E8;
+
+  /* Layout */
+  --gs-container: 1280px;
+
+  /* Radius */
+  --gs-radius-sm: 8px;
+  --gs-radius-md: 14px;
+  --gs-radius-lg: 22px;
+
+  /* Transition */
+  --gs-transition: 0.3s ease;
+}

@@ -1,0 +1,745 @@
+
+/* =========================================
+   GAMMASOFT ABOUT SECTION
+========================================= */
+
+.gs-about {
+  position: relative;
+  width: 100%;
+  padding: 120px 0;
+  background: #101010;
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.gs-about-container {
+  width: min(calc(100% - 80px), 1280px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   BACKGROUND EFFECTS
+========================================= */
+
+.gs-about-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px
+    );
+  background-size: 75px 75px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+}
+
+.gs-about-glow {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+}
+
+.gs-about-glow-one {
+  width: 450px;
+  height: 450px;
+  top: 10%;
+  left: -250px;
+  background: rgba(255, 90, 0, 0.10);
+}
+
+.gs-about-glow-two {
+  width: 450px;
+  height: 450px;
+  top: 45%;
+  right: -250px;
+  background: rgba(255, 90, 0, 0.08);
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.gs-about-heading {
+  max-width: 850px;
+  margin-bottom: 85px;
+}
+
+.gs-about-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #FF8548;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
+}
+
+.gs-about-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF5A00;
+  box-shadow: 0 0 15px #FF5A00;
+  animation: gs-about-pulse 2s infinite;
+}
+
+.gs-about-line {
+  width: 55px;
+  height: 1px;
+  background: #FF5A00;
+}
+
+@keyframes gs-about-pulse {
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 25px #FF5A00;
+  }
+}
+
+.gs-about-title {
+  font-size: clamp(45px, 6vw, 76px);
+  line-height: 1.12;
+  font-weight: 750;
+  letter-spacing: -3px;
+  color: #fff;
+}
+
+.gs-about-title span,
+.gs-about-overview-left h3 span,
+.gs-values-heading h3 span,
+.gs-about-cta h3 span {
+  background: linear-gradient(
+    100deg,
+    #FF5A00,
+    #FF9B61,
+    #FF5A00
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gs-gradient-flow 5s linear infinite;
+}
+
+@keyframes gs-gradient-flow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.gs-about-subtitle {
+  max-width: 600px;
+  margin-top: 25px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #999;
+}
+
+/* =========================================
+   COMPANY OVERVIEW
+========================================= */
+
+.gs-about-overview {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 100px;
+}
+
+.gs-about-overview-left {
+  max-width: 650px;
+}
+
+.gs-about-small-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #FF8548;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+.gs-about-overview-left h3 {
+  font-size: clamp(30px, 3.5vw, 45px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  margin-bottom: 25px;
+}
+
+.gs-about-overview-left p {
+  color: #A5A5A5;
+  font-size: 14px;
+  line-height: 1.95;
+  margin-bottom: 18px;
+}
+
+.gs-about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #FF8548;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 18px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.gs-about-link:hover {
+  color: #fff;
+  gap: 19px;
+}
+
+/* =========================================
+   VISUAL PANEL
+========================================= */
+
+.gs-about-visual {
+  position: relative;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255,90,0,0.12),
+      transparent 55%
+    ),
+    linear-gradient(145deg, #202020, #141414);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 0.4s ease;
+}
+
+.gs-about-visual:hover {
+  border-color: rgba(255,90,0,0.45);
+}
+
+.gs-about-visual-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255,90,0,0.20);
+  filter: blur(80px);
+  animation: gs-visual-glow 5s ease-in-out infinite alternate;
+}
+
+@keyframes gs-visual-glow {
+  from {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.gs-about-visual-orbit {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid rgba(255,90,0,0.20);
+  border-radius: 50%;
+}
+
+.gs-about-visual-orbit.orbit-a {
+  animation: gs-about-orbit 20s linear infinite;
+}
+
+.gs-about-visual-orbit.orbit-b {
+  width: 410px;
+  height: 410px;
+  border-color: rgba(255,255,255,0.07);
+  animation: gs-about-orbit 28s linear infinite reverse;
+}
+
+@keyframes gs-about-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gs-about-visual-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: gs-about-float 5s ease-in-out infinite;
+}
+
+@keyframes gs-about-float {
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.gs-about-visual-icon {
+  width: 170px;
+  height: 170px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,0.45),
+    0 0 50px rgba(255,90,0,0.16);
+  transform: rotate(-5deg);
+  transition: 0.5s ease;
+}
+
+.gs-about-visual:hover .gs-about-visual-icon {
+  transform: rotate(0deg) scale(1.07);
+  box-shadow: 0 20px 70px rgba(255,90,0,0.25);
+}
+
+.gs-about-visual-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gs-about-visual-name {
+  margin-top: 32px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.gs-about-visual-tagline {
+  margin-top: 10px;
+  color: #FF8548;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+.gs-about-visual-divider {
+  width: 45px;
+  height: 2px;
+  background: #FF5A00;
+  margin: 20px 0;
+}
+
+.gs-about-visual-year {
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 4px;
+}
+
+.gs-about-decoration {
+  position: absolute;
+  color: #FF7029;
+  text-shadow: 0 0 20px rgba(255,90,0,0.8);
+  animation: gs-decoration-float 4s ease-in-out infinite;
+}
+
+.gs-about-decoration.decoration-a {
+  top: 15%;
+  right: 15%;
+  font-size: 45px;
+}
+
+.gs-about-decoration.decoration-b {
+  bottom: 20%;
+  left: 12%;
+  font-size: 30px;
+  animation-delay: 1s;
+}
+
+@keyframes gs-decoration-float {
+  50% {
+    transform: translateY(-15px) rotate(20deg);
+  }
+}
+
+.gs-about-floating-badge {
+  position: absolute;
+  bottom: 30px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 17px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  background: rgba(20,20,20,0.8);
+  backdrop-filter: blur(15px);
+  font-size: 10px;
+  color: #ddd;
+}
+
+.gs-about-badge-dot {
+  width: 7px;
+  height: 7px;
+  background: #FF5A00;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #FF5A00;
+}
+
+/* =========================================
+   COMPANY HIGHLIGHTS
+========================================= */
+
+.gs-about-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 35px 20px;
+  margin-bottom: 120px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.025);
+  backdrop-filter: blur(15px);
+}
+
+.gs-about-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.gs-about-highlight:last-child {
+  border-right: none;
+}
+
+.gs-highlight-number {
+  color: #FF7029;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  transition: 0.3s ease;
+}
+
+.gs-about-highlight:hover .gs-highlight-number {
+  transform: translateY(-5px);
+  text-shadow: 0 0 25px rgba(255,90,0,0.5);
+}
+
+.gs-highlight-label {
+  color: #999;
+  font-size: 11px;
+}
+
+/* =========================================
+   COMPANY VALUES
+========================================= */
+
+.gs-about-values {
+  margin-bottom: 110px;
+}
+
+.gs-values-heading {
+  margin-bottom: 40px;
+}
+
+.gs-values-heading h3 {
+  font-size: clamp(30px, 4vw, 43px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.gs-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gs-value-card {
+  position: relative;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  background: #181818;
+  transition: 0.4s ease;
+}
+
+.gs-value-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255,90,0,0.4);
+  background: #202020;
+}
+
+.gs-value-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: #FF7029;
+  background: rgba(255,90,0,0.1);
+  border-radius: 13px;
+  margin-bottom: 22px;
+}
+
+.gs-value-number {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #555;
+  font-size: 12px;
+}
+
+.gs-value-card h4 {
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.gs-value-card p {
+  color: #999;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* =========================================
+   BOTTOM CTA
+========================================= */
+
+.gs-about-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 55px 60px;
+  border: 1px solid rgba(255,90,0,0.22);
+  border-radius: 24px;
+  background:
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(255,90,0,0.13),
+      transparent 35%
+    ),
+    linear-gradient(110deg, #202020, #151515);
+  overflow: hidden;
+}
+
+.gs-about-cta-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: 15%;
+  top: -120px;
+  background: rgba(255,90,0,0.2);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.gs-about-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.gs-about-cta-content > span {
+  color: #FF8548;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.gs-about-cta h3 {
+  margin-top: 18px;
+  font-size: clamp(30px, 4vw, 45px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.gs-about-cta-button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 55px;
+  padding: 0 28px;
+  border-radius: 50px;
+  color: #fff;
+  background: linear-gradient(135deg, #FF7029, #F04B00);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: 0.35s ease;
+}
+
+.gs-about-cta-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255,90,0,0.3);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1000px) {
+  .gs-about-overview {
+    gap: 35px;
+  }
+
+  .gs-about-visual {
+    min-height: 400px;
+  }
+
+  .gs-about-visual-icon {
+    width: 135px;
+    height: 135px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gs-about {
+    padding: 85px 0;
+  }
+
+  .gs-about-container {
+    width: calc(100% - 40px);
+  }
+
+  .gs-about-heading {
+    margin-bottom: 55px;
+  }
+
+  .gs-about-title {
+    font-size: clamp(40px, 8vw, 58px);
+    letter-spacing: -2px;
+  }
+
+  .gs-about-overview {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    margin-bottom: 70px;
+  }
+
+  .gs-about-visual {
+    min-height: 390px;
+  }
+
+  .gs-about-highlights {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+    padding: 30px 15px;
+    margin-bottom: 85px;
+  }
+
+  .gs-about-highlight:nth-child(2) {
+    border-right: none;
+  }
+
+  .gs-highlight-number {
+    font-size: 30px;
+  }
+
+  .gs-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-about-cta {
+    padding: 40px 30px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 420px) {
+  .gs-about-container {
+    width: calc(100% - 32px);
+  }
+
+  .gs-about-title {
+    font-size: 39px;
+  }
+
+  .gs-about-subtitle {
+    font-size: 14px;
+  }
+
+  .gs-about-visual {
+    min-height: 330px;
+  }
+
+  .gs-about-visual-icon {
+    width: 115px;
+    height: 115px;
+  }
+
+  .gs-about-visual-orbit {
+    width: 260px;
+    height: 260px;
+  }
+
+  .gs-about-visual-orbit.orbit-b {
+    width: 310px;
+    height: 310px;
+  }
+
+  .gs-about-visual-name {
+    font-size: 14px;
+  }
+
+  .gs-about-floating-badge {
+    bottom: 15px;
+    right: 12px;
+    font-size: 9px;
+  }
+
+  .gs-about-highlights {
+    padding: 25px 8px;
+  }
+
+  .gs-highlight-number {
+    font-size: 26px;
+  }
+
+  .gs-highlight-label {
+    font-size: 9px;
+  }
+
+  .gs-about-cta {
+    padding: 35px 23px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-about *,
+  .gs-about *::before,
+  .gs-about *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
