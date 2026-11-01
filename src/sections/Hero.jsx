@@ -1,31 +1,16 @@
-
 import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
 import "./Hero.css";
 
 const Hero = () => {
   return (
     <section className="gs-hero" id="home">
-
-      {/* Background Effects */}
+      {/* Lightweight Background */}
       <div className="gs-hero-grid"></div>
       <div className="gs-hero-glow"></div>
-      <div className="gs-hero-noise"></div>
-
-      {/* Floating Particles */}
-      <div className="gs-particles">
-        {Array.from({ length: 12 }).map((_, index) => (
-          <span
-            key={index}
-            className={`gs-particle particle-${index + 1}`}
-          />
-        ))}
-      </div>
 
       <div className="gs-hero-container">
-
         {/* LEFT CONTENT */}
         <div className="gs-hero-content">
-
           <div className="gs-hero-label">
             <span className="gs-label-dot"></span>
             THE NEXT INNOVATION
@@ -47,7 +32,6 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="gs-hero-actions">
-
             <a href="#services" className="gs-hero-primary">
               Explore Solutions
               <ArrowRight size={18} />
@@ -57,7 +41,6 @@ const Hero = () => {
               Get a Quote
               <ArrowUpRight size={17} />
             </a>
-
           </div>
 
           {/* Trust Indicator */}
@@ -71,47 +54,47 @@ const Hero = () => {
               <span>Building smarter digital experiences</span>
             </div>
           </div>
-
         </div>
 
         {/* RIGHT VISUAL */}
         <div className="gs-hero-visual">
+          <div className="gs-visual-card">
+            <div className="gs-visual-top-line">
+              <span></span>
+              <span>GAMMASOFT / INNOVATION</span>
+            </div>
 
-          <div className="gs-visual-orbit orbit-one"></div>
-          <div className="gs-visual-orbit orbit-two"></div>
+            <div className="gs-logo-stage">
+              <div className="gs-logo-back-glow"></div>
 
-          <div className="gs-visual-star star-one">✦</div>
-          <div className="gs-visual-star star-two">✧</div>
-
-          <div className="gs-logo-stage">
-
-            <div className="gs-logo-back-glow"></div>
-
-            <div className="gs-logo-3d">
               <img
                 src="/images/gammasoft-symbol.png"
-                alt="GammaSoft 3D brand symbol"
+                alt="GammaSoft brand symbol"
                 className="gs-floating-logo"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
 
+            <div className="gs-visual-bottom">
+              <div className="gs-visual-caption">
+                <span className="gs-caption-line"></span>
+                <span>INNOVATION IN MOTION</span>
+              </div>
+
+              <span className="gs-visual-index">01 / 01</span>
+            </div>
           </div>
 
-          <div className="gs-visual-caption">
-            <span></span>
-            INNOVATION IN MOTION
-          </div>
-
+          <div className="gs-visual-accent"></div>
         </div>
-
       </div>
 
-      {/* Bottom Scroll Indicator */}
+      {/* Scroll Indicator */}
       <a href="#about" className="gs-scroll-indicator">
         <span></span>
         SCROLL TO EXPLORE
       </a>
-
     </section>
   );
 };

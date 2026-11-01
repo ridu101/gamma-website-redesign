@@ -1,4 +1,3 @@
-
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./About.css";
@@ -13,12 +12,7 @@ const About = () => {
 
   return (
     <section className="gs-about gs-about-preview" id="about">
-      <div className="gs-about-grid" />
-      <div className="gs-about-glow gs-about-glow-one" />
-      <div className="gs-about-glow gs-about-glow-two" />
-
       <div className="gs-about-container">
-
         <div className="gs-about-heading">
           <div className="gs-about-eyebrow">
             <span className="gs-about-dot" />
@@ -39,7 +33,6 @@ const About = () => {
         </div>
 
         <div className="gs-about-overview">
-
           <div className="gs-about-overview-left">
             <span className="gs-about-small-label">
               <Sparkles size={15} />
@@ -77,8 +70,6 @@ const About = () => {
 
           <div className="gs-about-visual">
             <div className="gs-about-visual-glow" />
-            <div className="gs-about-visual-orbit orbit-a" />
-            <div className="gs-about-visual-orbit orbit-b" />
 
             <div className="gs-about-visual-content">
               <div className="gs-about-visual-icon">
@@ -121,23 +112,17 @@ const About = () => {
         <div className="gs-about-highlights">
           <div className="gs-about-highlight">
             <span className="gs-highlight-number">2022</span>
-            <span className="gs-highlight-label">
-              Year Established
-            </span>
+            <span className="gs-highlight-label">Year Established</span>
           </div>
 
           <div className="gs-about-highlight">
             <span className="gs-highlight-number">04</span>
-            <span className="gs-highlight-label">
-              Core Service Areas
-            </span>
+            <span className="gs-highlight-label">Core Service Areas</span>
           </div>
 
           <div className="gs-about-highlight">
             <span className="gs-highlight-number">360°</span>
-            <span className="gs-highlight-label">
-              Digital Solutions
-            </span>
+            <span className="gs-highlight-label">Digital Solutions</span>
           </div>
 
           <div className="gs-about-highlight">
@@ -158,7 +143,6 @@ const About = () => {
             <ArrowUpRight size={19} />
           </button>
         </div>
-
       </div>
     </section>
   );
