@@ -1,3 +1,4 @@
+
 import {
   Monitor,
   GraduationCap,
@@ -34,7 +35,6 @@ export const projects = [
     tag: "Business Management",
     color: "orange",
   },
-
   {
     id: 2,
     number: "02",
@@ -59,7 +59,6 @@ export const projects = [
     tag: "Education",
     color: "purple",
   },
-
   {
     id: 3,
     number: "03",
@@ -84,7 +83,6 @@ export const projects = [
     tag: "Communication",
     color: "blue",
   },
-
   {
     id: 4,
     number: "04",
@@ -109,7 +107,6 @@ export const projects = [
     tag: "Consultancy",
     color: "green",
   },
-
   {
     id: 5,
     number: "05",
@@ -134,7 +131,6 @@ export const projects = [
     tag: "CATV",
     color: "purple",
   },
-
   {
     id: 6,
     number: "06",
@@ -159,7 +155,6 @@ export const projects = [
     tag: "Subscriber Management",
     color: "blue",
   },
-
   {
     id: 7,
     number: "07",
@@ -184,7 +179,6 @@ export const projects = [
     tag: "Networking",
     color: "green",
   },
-
   {
     id: 8,
     number: "08",

@@ -1,120 +1,206 @@
+
 /* =========================================
-   GAMMASOFT - PROJECTS SECTION
+   GAMMASOFT — FUTURISTIC PROJECTS SECTION
 ========================================= */
 
 .gs-projects {
+  --gs-accent: #ff6b1a;
+  --gs-accent-dark: #ff5a00;
+  --gs-accent-soft: rgba(255, 107, 26, 0.12);
+  --gs-border: rgba(255, 255, 255, 0.09);
+
   position: relative;
+  isolation: isolate;
   width: 100%;
   padding: 120px 5%;
   overflow: hidden;
   background: #101010;
-  color: #ffffff;
-  isolation: isolate;
+  color: #fff;
+}
+
+.gs-projects *,
+.gs-projects *::before,
+.gs-projects *::after {
+  box-sizing: border-box;
 }
 
 .gs-projects-container {
   position: relative;
   z-index: 2;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
 }
 
+/* =========================================
+   BACKGROUND EFFECTS
+========================================= */
+
+.gs-projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.16;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+  background-size: 65px 65px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 20%,
+    #000 80%,
+    transparent
+  );
+}
+
 .gs-projects-glow {
   position: absolute;
+  z-index: -1;
   width: 600px;
   height: 600px;
   top: 5%;
   right: -250px;
-  background: rgba(255, 90, 0, 0.09);
-  filter: blur(130px);
   border-radius: 50%;
+  background: var(--gs-accent-soft);
+  filter: blur(140px);
   pointer-events: none;
+  animation: gsGlowFloat 9s ease-in-out infinite alternate;
 }
 
-/* Heading */
+@keyframes gsGlowFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-70px, 70px, 0) scale(1.2);
+  }
+}
+
+/* =========================================
+   SECTION HEADING — CENTERED
+========================================= */
 
 .gs-projects-heading {
-  max-width: 750px;
-  margin-bottom: 55px;
+  max-width: 850px;
+  margin: 0 auto 65px;
+  text-align: center;
+  animation: gsFadeUp 0.8s ease both;
 }
 
 .gs-section-label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 9px;
-  padding: 9px 15px;
-  border: 1px solid rgba(255, 90, 0, 0.3);
+  padding: 9px 16px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 107, 26, 0.3);
   border-radius: 30px;
-  color: #ff7a35;
-  background: rgba(255, 90, 0, 0.07);
+  background: var(--gs-accent-soft);
+  color: var(--gs-accent);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  margin-bottom: 25px;
+}
+
+.gs-section-label svg {
+  animation: gsIconPulse 2.5s ease-in-out infinite;
 }
 
 .gs-projects-heading h2 {
+  margin: 0 0 20px;
+  color: #fff;
   font-size: clamp(38px, 5.5vw, 68px);
   line-height: 1.08;
   letter-spacing: -2.5px;
   font-weight: 800;
-  margin: 0 0 22px;
 }
 
 .gs-projects-heading h2 span {
   display: block;
-  color: #ff6b1a;
+  background: linear-gradient(
+    90deg,
+    #ff5a00,
+    #ff9a52,
+    #ff5a00
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gsTextShine 5s linear infinite;
 }
 
 .gs-projects-heading > p {
-  max-width: 620px;
+  max-width: 650px;
+  margin: 0 auto;
   color: #99999f;
-  font-size: 16px;
-  line-height: 1.8;
-  margin: 0;
+  font-size: 15px;
+  line-height: 1.9;
 }
 
-/* Statistics */
+/* =========================================
+   STATISTICS
+========================================= */
 
 .gs-projects-stats {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 70px;
-  padding: 28px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-  margin-bottom: 40px;
+  gap: clamp(35px, 7vw, 100px);
+  padding: 30px 15px;
+  margin-bottom: 45px;
+  border-top: 1px solid var(--gs-border);
+  border-bottom: 1px solid var(--gs-border);
+  animation: gsFadeUp 0.8s 0.15s ease both;
+}
+
+.gs-project-stat {
+  text-align: center;
 }
 
 .gs-project-stat span {
   display: block;
-  font-size: 30px;
+  margin-bottom: 6px;
+  color: var(--gs-accent);
+  font-size: 32px;
   font-weight: 800;
-  color: #ff6b1a;
-  margin-bottom: 5px;
+  text-shadow: 0 0 25px rgba(255, 107, 26, 0.2);
 }
 
 .gs-project-stat p {
-  font-size: 12px;
-  color: #85858c;
   margin: 0;
+  color: #85858c;
+  font-size: 12px;
 }
 
-/* Filters */
+/* =========================================
+   CATEGORY FILTERS
+========================================= */
 
 .gs-project-filters {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 35px;
+  gap: 11px;
+  margin-bottom: 42px;
+  animation: gsFadeUp 0.8s 0.2s ease both;
 }
 
 .gs-project-filter {
-  padding: 11px 17px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  padding: 11px 19px;
+  border: 1px solid var(--gs-border);
   border-radius: 30px;
-  background: #181818;
+  background: rgba(255, 255, 255, 0.025);
   color: #a5a5aa;
   font-size: 12px;
   font-weight: 600;
@@ -122,77 +208,158 @@
   transition: 0.3s ease;
 }
 
-.gs-project-filter:hover,
-.gs-project-filter.active {
-  background: #ff5a00;
-  border-color: #ff5a00;
-  color: #ffffff;
+.gs-project-filter:hover {
+  color: #fff;
+  border-color: var(--gs-accent);
+  transform: translateY(-3px);
 }
 
-/* Grid */
+.gs-project-filter.active {
+  color: #fff;
+  background: var(--gs-accent-dark);
+  border-color: var(--gs-accent-dark);
+  box-shadow: 0 5px 22px rgba(255, 90, 0, 0.2);
+}
+
+.gs-project-filter:focus-visible,
+.gs-project-details-btn:focus-visible,
+.gs-project-modal-close:focus-visible {
+  outline: 2px solid var(--gs-accent);
+  outline-offset: 4px;
+}
+
+/* =========================================
+   PROJECT GRID
+========================================= */
 
 .gs-project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 22px;
+  align-items: stretch;
 }
 
-/* Cards */
+/* =========================================
+   PROJECT CARDS
+========================================= */
 
 .gs-project-card {
   position: relative;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   min-height: 355px;
-  padding: 27px;
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+
+  border: 1px solid var(--gs-border);
+  border-radius: 18px;
+
   background: linear-gradient(
     145deg,
-    #1b1b1d 0%,
+    #1d1d20 0%,
     #141416 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  overflow: hidden;
-  transition: transform 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease;
+
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+
+  animation: gsCardReveal 0.75s both;
 }
+
+/* Staggered card loading */
+
+.gs-project-card:nth-child(1) { animation-delay: 0.05s; }
+.gs-project-card:nth-child(2) { animation-delay: 0.12s; }
+.gs-project-card:nth-child(3) { animation-delay: 0.19s; }
+.gs-project-card:nth-child(4) { animation-delay: 0.26s; }
+.gs-project-card:nth-child(5) { animation-delay: 0.33s; }
+.gs-project-card:nth-child(6) { animation-delay: 0.40s; }
+.gs-project-card:nth-child(7) { animation-delay: 0.47s; }
+.gs-project-card:nth-child(8) { animation-delay: 0.54s; }
+
+/* Animated border glow */
 
 .gs-project-card::before {
   content: "";
   position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: rgba(255, 90, 0, 0.09);
-  filter: blur(65px);
+  z-index: -1;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(255, 107, 26, 0.65),
+    transparent 80%
+  );
+
   opacity: 0;
-  transition: 0.4s ease;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* Moving light sweep */
+
+.gs-project-card::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -80%;
+  width: 55%;
+  height: 300%;
+  transform: rotate(25deg);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.045),
+    transparent
+  );
+
+  transition: left 0.8s ease;
   pointer-events: none;
 }
 
 .gs-project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 90, 0, 0.5);
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25);
+  transform: translateY(-10px) scale(1.012);
+  border-color: rgba(255, 107, 26, 0.45);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(255, 107, 26, 0.07);
 }
 
 .gs-project-card:hover::before {
   opacity: 1;
 }
 
+.gs-project-card:hover::after {
+  left: 140%;
+}
+
+/* Card top */
+
 .gs-project-card-top {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 35px;
+  margin-bottom: 36px;
 }
 
 .gs-project-number {
-  font-size: 12px;
   color: #65656c;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -200,117 +367,131 @@
 .gs-project-icon {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  width: 55px;
-  height: 55px;
   display: grid;
+  width: 56px;
+  height: 56px;
   place-items: center;
-  border-radius: 15px;
-  background: rgba(255, 90, 0, 0.12);
-  color: #ff6b1a;
-  transition: 0.3s ease;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 107, 26, 0.13);
+  border-radius: 16px;
+  background: var(--gs-accent-soft);
+  color: var(--gs-accent);
+
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .gs-project-card:hover .gs-project-icon {
-  transform: translateX(-50%) rotate(-8deg) scale(1.08);
-  background: #ff5a00;
-  color: #ffffff;
+  transform: translateX(-50%) translateY(-5px) rotate(-8deg) scale(1.1);
+  background: var(--gs-accent-dark);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(255, 90, 0, 0.25);
 }
 
 .gs-project-arrow {
-  width: 34px;
-  height: 34px;
   display: grid;
+  width: 35px;
+  height: 35px;
   place-items: center;
+  border: 1px solid var(--gs-border);
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #999;
-  transition: 0.3s ease;
+  transition: 0.35s ease;
 }
 
 .gs-project-card:hover .gs-project-arrow {
-  background: #ff5a00;
-  color: white;
-  border-color: #ff5a00;
+  color: #fff;
+  background: var(--gs-accent-dark);
+  border-color: var(--gs-accent-dark);
+  transform: rotate(45deg);
 }
 
 /* Card content */
 
 .gs-project-card-content {
   position: relative;
+  z-index: 1;
   flex: 1;
 }
 
 .gs-project-tag {
   display: inline-block;
-  color: #ff813e;
+  margin-bottom: 13px;
+  color: var(--gs-accent);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.1px;
   text-transform: uppercase;
-  margin-bottom: 13px;
 }
 
 .gs-project-card-content h3 {
+  margin: 0 0 9px;
+  color: #f5f5f5;
   font-size: 22px;
   line-height: 1.3;
   font-weight: 750;
-  margin: 0 0 9px;
-  color: #f5f5f5;
+  transition: color 0.3s ease;
+}
+
+.gs-project-card:hover .gs-project-card-content h3 {
+  color: var(--gs-accent);
 }
 
 .gs-project-card-content h4 {
+  margin: 0 0 14px;
   color: #a4a4aa;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.5;
-  margin: 0 0 14px;
 }
 
 .gs-project-card-content p {
+  margin: 0;
+  color: #898990;
   font-size: 13px;
   line-height: 1.8;
-  color: #898990;
-  margin: 0;
 }
 
 /* Card bottom */
 
 .gs-project-card-bottom {
   position: relative;
+  z-index: 1;
   margin-top: 25px;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--gs-border);
 }
 
 .gs-project-details-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: none;
   padding: 0;
+  border: none;
   background: transparent;
-  color: #ffffff;
+  color: #fff;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .gs-project-details-btn svg {
-  color: #ff6b1a;
+  color: var(--gs-accent);
   transition: transform 0.3s ease;
 }
 
 .gs-project-details-btn:hover {
-  color: #ff813e;
+  color: var(--gs-accent);
 }
 
 .gs-project-details-btn:hover svg {
-  transform: translateX(5px);
+  transform: translateX(6px);
 }
 
-/* Category color variations */
+/* Category variations */
 
 .gs-project-card.purple .gs-project-icon {
   background: rgba(155, 100, 255, 0.13);
@@ -327,61 +508,132 @@
   color: #61d9a0;
 }
 
-/* Empty state */
+/* =========================================
+   VIEW ALL PROJECTS
+========================================= */
+
+.gs-project-view-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.gs-project-view-all a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 25px;
+  border: 1px solid rgba(255, 107, 26, 0.35);
+  border-radius: 9px;
+  background: rgba(255, 107, 26, 0.04);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.35s ease;
+}
+
+.gs-project-view-all a svg {
+  color: var(--gs-accent);
+  transition: transform 0.3s ease;
+}
+
+.gs-project-view-all a:hover {
+  background: var(--gs-accent-dark);
+  border-color: var(--gs-accent-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 90, 0, 0.2);
+}
+
+.gs-project-view-all a:hover svg {
+  color: #fff;
+  transform: translate(3px, -3px);
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
 
 .gs-project-empty {
-  padding: 60px 20px;
+  grid-column: 1 / -1;
+  padding: 65px 20px;
   text-align: center;
   color: #999;
 }
 
 .gs-project-empty svg {
-  color: #ff6b1a;
   margin-bottom: 15px;
+  color: var(--gs-accent);
 }
 
 .gs-project-empty h3 {
-  color: white;
   margin: 0 0 8px;
+  color: #fff;
 }
 
 .gs-project-empty p {
   margin: 0;
 }
 
-/* CTA */
+/* =========================================
+   PROJECT CTA
+========================================= */
 
 .gs-project-cta {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 25px;
-  padding: 38px 42px;
-  margin-top: 75px;
-  border: 1px solid rgba(255, 90, 0, 0.25);
+  overflow: hidden;
+  padding: 40px 42px;
+  margin-top: 80px;
+  border: 1px solid rgba(255, 107, 26, 0.25);
   border-radius: 18px;
+
   background: linear-gradient(
     110deg,
     rgba(255, 90, 0, 0.12),
     rgba(255, 255, 255, 0.025)
   );
+
+  animation: gsFadeUp 0.8s 0.3s ease both;
+}
+
+.gs-project-cta::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: 10%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 107, 26, 0.1);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.gs-project-cta > div,
+.gs-project-cta > a {
+  position: relative;
+  z-index: 1;
 }
 
 .gs-project-cta > div > span {
+  color: var(--gs-accent);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #ff8243;
 }
 
 .gs-project-cta h3 {
-  font-size: clamp(20px, 3vw, 30px);
   margin: 12px 0 0;
-  color: white;
+  color: #fff;
+  font-size: clamp(20px, 3vw, 30px);
 }
 
 .gs-project-cta h3 strong {
-  color: #ff6b1a;
+  color: var(--gs-accent);
 }
 
 .gs-project-cta > a {
@@ -391,18 +643,19 @@
   gap: 12px;
   padding: 15px 22px;
   border-radius: 9px;
-  background: #ff5a00;
-  color: white;
+  background: var(--gs-accent-dark);
+  color: #fff;
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
-  transition: 0.3s ease;
+  transition: 0.35s ease;
 }
 
 .gs-project-cta > a:hover {
-  background: #ff7a35;
-  transform: translateY(-3px);
+  background: var(--gs-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 90, 0, 0.25);
 }
 
 /* =========================================
@@ -413,87 +666,112 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
+
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.82);
-  backdrop-filter: blur(12px);
-  animation: gsModalFade 0.25s ease;
+
+  /* Navbar থেকে উপরের gap */
+  padding: 100px 25px 30px;
+
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.84);
+  backdrop-filter: blur(14px);
+
+  animation: gsModalFade 0.25s ease both;
 }
 
 .gs-project-modal {
   position: relative;
+  flex-shrink: 0;
+
   width: 100%;
   max-width: 700px;
-  max-height: 88vh;
+  max-height: calc(100vh - 130px);
+
   overflow-y: auto;
+  overscroll-behavior: contain;
+
   padding: 42px;
-  background: #19191c;
-  border: 1px solid rgba(255, 90, 0, 0.25);
+
+  border: 1px solid rgba(255, 107, 26, 0.25);
   border-radius: 20px;
+  background: #19191c;
+
   box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
-  animation: gsModalUp 0.3s ease;
+
+  animation: gsModalUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--gs-accent-dark) #19191c;
 }
+
+/* Modal close button */
 
 .gs-project-modal-close {
   position: absolute;
   top: 20px;
   right: 20px;
+
+  display: grid;
   width: 38px;
   height: 38px;
-  display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border: 1px solid var(--gs-border);
   border-radius: 50%;
   background: #252528;
-  color: #ffffff;
+  color: #fff;
+
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .gs-project-modal-close:hover {
-  background: #ff5a00;
-  border-color: #ff5a00;
+  transform: rotate(90deg);
+  background: var(--gs-accent-dark);
+  border-color: var(--gs-accent-dark);
 }
 
+/* Modal content */
+
 .gs-project-modal-label {
-  color: #ff8143;
+  margin-bottom: 25px;
+  color: var(--gs-accent);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  margin-bottom: 25px;
 }
 
 .gs-project-modal-icon {
+  display: grid;
   width: 60px;
   height: 60px;
-  display: grid;
   place-items: center;
-  border-radius: 16px;
-  background: rgba(255, 90, 0, 0.12);
-  color: #ff7530;
   margin-bottom: 22px;
+  border-radius: 16px;
+  background: var(--gs-accent-soft);
+  color: var(--gs-accent);
 }
 
 .gs-project-modal h2 {
-  font-size: clamp(27px, 4vw, 38px);
-  color: white;
   margin: 5px 0 10px;
+  color: #fff;
+  font-size: clamp(27px, 4vw, 38px);
 }
 
 .gs-project-modal h4 {
-  font-size: 14px;
-  color: #a4a4aa;
   margin: 0 0 20px;
+  color: #a4a4aa;
+  font-size: 14px;
 }
 
 .gs-project-modal-description {
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--gs-border);
   color: #a5a5aa;
   font-size: 14px;
   line-height: 1.9;
-  padding-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .gs-project-modal-features {
@@ -501,9 +779,9 @@
 }
 
 .gs-project-modal-features h3 {
-  color: white;
-  font-size: 17px;
   margin-bottom: 18px;
+  color: #fff;
+  font-size: 17px;
 }
 
 .gs-project-feature-list {
@@ -523,40 +801,40 @@
 
 .gs-project-feature-list svg {
   flex-shrink: 0;
-  color: #ff6b1a;
   margin-top: 1px;
+  color: var(--gs-accent);
 }
 
 .gs-project-suitable {
-  margin-top: 30px;
   padding: 20px;
+  margin-top: 30px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
 }
 
 .gs-project-suitable span {
-  color: #ff8143;
+  color: var(--gs-accent);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.3px;
 }
 
 .gs-project-suitable p {
+  margin: 10px 0 0;
   color: #b4b4ba;
   font-size: 13px;
   line-height: 1.8;
-  margin: 10px 0 0;
 }
 
 .gs-project-modal-cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 25px;
   padding: 14px 20px;
+  margin-top: 25px;
   border-radius: 8px;
-  background: #ff5a00;
-  color: white;
+  background: var(--gs-accent-dark);
+  color: #fff;
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
@@ -564,16 +842,57 @@
 }
 
 .gs-project-modal-cta:hover {
-  background: #ff7a35;
+  background: var(--gs-accent);
+  transform: translateY(-3px);
 }
 
-/* Animations */
+/* =========================================
+   KEYFRAME ANIMATIONS
+========================================= */
+
+@keyframes gsFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gsCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gsIconPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes gsTextShine {
+  to {
+    background-position: 200% center;
+  }
+}
 
 @keyframes gsModalFade {
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
@@ -582,12 +901,11 @@
 @keyframes gsModalUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(25px) scale(0.97);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -596,18 +914,26 @@
 ========================================= */
 
 @media (max-width: 1050px) {
+  .gs-projects {
+    padding: 100px 5%;
+  }
+
   .gs-project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .gs-projects {
-    padding: 100px 5%;
+  .gs-project-cta {
+    padding: 32px;
   }
 }
 
 @media (max-width: 650px) {
   .gs-projects {
     padding: 80px 5%;
+  }
+
+  .gs-projects-heading {
+    margin-bottom: 45px;
   }
 
   .gs-projects-heading h2 {
@@ -620,7 +946,8 @@
 
   .gs-projects-stats {
     gap: 25px;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding: 25px 5px;
   }
 
   .gs-project-stat span {
@@ -631,22 +958,44 @@
     font-size: 10px;
   }
 
+  .gs-project-filters {
+    gap: 8px;
+  }
+
+  .gs-project-filter {
+    padding: 9px 13px;
+    font-size: 11px;
+  }
+
   .gs-project-grid {
     grid-template-columns: 1fr;
+    gap: 17px;
   }
 
   .gs-project-card {
     min-height: 330px;
+    padding: 24px;
+  }
+
+  .gs-project-card:hover {
+    transform: translateY(-5px);
   }
 
   .gs-project-cta {
     flex-direction: column;
     align-items: flex-start;
     padding: 28px 23px;
-    margin-top: 50px;
+    margin-top: 55px;
+  }
+
+  /* Modal mobile spacing */
+
+  .gs-project-modal-overlay {
+    padding: 85px 12px 20px;
   }
 
   .gs-project-modal {
+    max-height: calc(100vh - 105px);
     padding: 30px 22px;
   }
 
@@ -654,17 +1003,23 @@
     grid-template-columns: 1fr;
   }
 
-  .gs-project-modal-overlay {
-    padding: 12px;
+  .gs-project-modal-close {
+    top: 14px;
+    right: 14px;
   }
 }
 
+/* =========================================
+   ACCESSIBILITY — REDUCED MOTION
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .gs-project-card,
-  .gs-project-filter,
-  .gs-project-modal,
-  .gs-project-modal-overlay {
-    animation: none;
-    transition: none;
+  .gs-projects *,
+  .gs-projects *::before,
+  .gs-projects *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

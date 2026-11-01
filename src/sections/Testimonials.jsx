@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 
 import {
   ArrowLeft,
@@ -15,10 +16,23 @@ import {
 
 import "./Testimonials.css";
 
+const AUTOPLAY_INTERVAL = 5000;
+
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const totalTestimonials = testimonials.length;
+
+  // Automatic slider
+  useEffect(() => {
+    if (totalTestimonials <= 1) return;
+
+    const autoplay = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % totalTestimonials);
+    }, AUTOPLAY_INTERVAL);
+
+    return () => clearInterval(autoplay);
+  }, [totalTestimonials, activeIndex]);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % totalTestimonials);
@@ -31,10 +45,12 @@ const Testimonials = () => {
   };
 
   const getVisibleTestimonials = () => {
-    return [0, 1, 2].map((offset) => {
-      const index = (activeIndex + offset) % totalTestimonials;
-      return testimonials[index];
-    });
+    return [0, 1, 2]
+      .map((offset) => {
+        const index = (activeIndex + offset) % totalTestimonials;
+        return testimonials[index];
+      })
+      .filter(Boolean);
   };
 
   if (!totalTestimonials) {
@@ -51,9 +67,7 @@ const Testimonials = () => {
         {/* Section Heading */}
 
         <div className="gs-testimonials-header">
-
           <div className="gs-testimonials-heading">
-
             <div className="gs-section-label">
               <Sparkles size={15} />
               <span>{testimonialSection.eyebrow}</span>
@@ -65,16 +79,17 @@ const Testimonials = () => {
             </h2>
 
             <p>{testimonialSection.description}</p>
-
           </div>
 
-          <div className="gs-testimonials-navigation">
+          {/* Slider Navigation */}
 
+          <div className="gs-testimonials-navigation">
             <button
               type="button"
               onClick={previousSlide}
               aria-label="Previous testimonials"
               className="gs-testimonial-nav-btn"
+              disabled={totalTestimonials <= 1}
             >
               <ArrowLeft size={19} />
             </button>
@@ -84,29 +99,24 @@ const Testimonials = () => {
               onClick={nextSlide}
               aria-label="Next testimonials"
               className="gs-testimonial-nav-btn next"
+              disabled={totalTestimonials <= 1}
             >
               <ArrowRight size={19} />
             </button>
-
           </div>
-
         </div>
 
         {/* Testimonial Cards */}
 
         <div className="gs-testimonials-grid">
-
           {getVisibleTestimonials().map((testimonial, index) => (
-
             <article
-              className={`gs-testimonial-card ${testimonial.color} ${
+              className={`gs-testimonial-card ${testimonial.color || ""} ${
                 index === 1 ? "featured" : ""
               }`}
-              key={testimonial.id}
+              key={`${testimonial.id}-${activeIndex}`}
             >
-
               <div className="gs-testimonial-card-top">
-
                 <div className="gs-testimonial-quote-icon">
                   <Quote size={25} />
                 </div>
@@ -114,16 +124,15 @@ const Testimonials = () => {
                 <div className="gs-testimonial-stars">
                   {Array.from(
                     { length: testimonial.rating },
-                    (_, index) => (
+                    (_, starIndex) => (
                       <Star
-                        key={index}
+                        key={starIndex}
                         size={15}
                         fill="currentColor"
                       />
                     )
                   )}
                 </div>
-
               </div>
 
               <span className="gs-testimonial-category">
@@ -137,7 +146,6 @@ const Testimonials = () => {
               <div className="gs-testimonial-divider"></div>
 
               <div className="gs-testimonial-author">
-
                 <div className="gs-testimonial-avatar">
                   {testimonial.initials}
                 </div>
@@ -147,7 +155,6 @@ const Testimonials = () => {
                   <p>{testimonial.designation}</p>
                   <span>{testimonial.company}</span>
                 </div>
-
               </div>
 
               {testimonial.isDemo && (
@@ -155,17 +162,13 @@ const Testimonials = () => {
                   DEMO CONTENT
                 </span>
               )}
-
             </article>
-
           ))}
-
         </div>
 
         {/* Pagination */}
 
         <div className="gs-testimonials-pagination">
-
           <div className="gs-testimonial-dots">
             {testimonials.map((testimonial, index) => (
               <button
@@ -187,20 +190,21 @@ const Testimonials = () => {
             <span>
               {String(activeIndex + 1).padStart(2, "0")}
             </span>
+
             <div className="gs-testimonial-counter-line"></div>
+
             <span>
               {String(totalTestimonials).padStart(2, "0")}
             </span>
           </div>
-
         </div>
 
         {/* Bottom CTA */}
 
         <div className="gs-testimonial-bottom">
-
           <div>
             <span>YOUR EXPERIENCE MATTERS</span>
+
             <h3>
               Let's create something
               <strong> remarkable together.</strong>
@@ -211,7 +215,6 @@ const Testimonials = () => {
             Let's Talk
             <ArrowRight size={18} />
           </a>
-
         </div>
 
       </div>

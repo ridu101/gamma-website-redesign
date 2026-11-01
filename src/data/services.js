@@ -1,42 +1,302 @@
-
 import {
-  Code2,
-  Palette,
-  Smartphone,
+  Cable,
   Megaphone,
+  ShoppingCart,
+  Palette,
+  Headset,
+  Smartphone,
+  Search,
+  Code2,
+  Globe,
 } from "lucide-react";
 
 export const services = [
   {
+    slug: "catv-solutions",
     number: "01",
-    title: "Software Development",
+    title: "CATV Solutions",
+    shortTitle: "CATV",
+    icon: Cable,
+    tagline: "Reliable technology for modern cable networks.",
     description:
-      "We build robust, scalable and user-friendly software solutions designed to simplify business operations and accelerate growth.",
-    icon: Code2,
-    tags: ["Web Applications", "Enterprise Solutions"],
+      "Build, manage and expand your cable television infrastructure with dependable CATV solutions. GammaSoft supports cable operators with practical technology, network assistance and solutions designed for reliable service delivery.",
+    overview:
+      "From network planning to technical support, our CATV solutions help cable operators improve service quality, manage infrastructure and serve subscribers more efficiently. We focus on stable connectivity, organized operations and dependable technical assistance.",
+    features: [
+      "CATV network planning and consultation",
+      "Cable network infrastructure support",
+      "Network troubleshooting and maintenance",
+      "Subscriber management support",
+      "Technical assistance for cable operators",
+      "Network performance improvement",
+    ],
+    benefits: [
+      "Improve network reliability",
+      "Reduce service interruptions",
+      "Streamline cable operations",
+      "Get dependable technical support",
+    ],
+    process: [
+      "Requirement Analysis",
+      "Network Assessment",
+      "Solution Planning",
+      "Implementation & Support",
+    ],
   },
   {
+    slug: "digital-marketing",
     number: "02",
-    title: "Graphics Design",
-    description:
-      "We transform creative ideas into captivating visual experiences that strengthen brand identity and connect with audiences.",
-    icon: Palette,
-    tags: ["Brand Identity", "Creative Design"],
-  },
-  {
-    number: "03",
-    title: "Mobile Application",
-    description:
-      "We develop intuitive and high-performance mobile applications that deliver seamless experiences across modern devices.",
-    icon: Smartphone,
-    tags: ["Android Apps", "Mobile Solutions"],
-  },
-  {
-    number: "04",
     title: "Digital Marketing",
-    description:
-      "We create result-driven digital marketing strategies to increase online visibility, engage customers and grow businesses.",
+    shortTitle: "Marketing",
     icon: Megaphone,
-    tags: ["Digital Strategy", "Business Growth"],
+    tagline: "Turn digital attention into business growth.",
+    description:
+      "Unlock your brand’s potential with data-driven campaigns, keyword optimization and targeted content. We help businesses in Bangladesh reach the right audience, strengthen their online presence and create measurable digital growth.",
+    overview:
+      "Our digital marketing approach combines audience research, content strategy, social media campaigns and search visibility. We develop practical marketing strategies around your business goals, helping you connect with customers and build a stronger digital brand.",
+    features: [
+      "Digital marketing strategy and planning",
+      "Social media marketing and management",
+      "Campaign planning and optimization",
+      "Content strategy and development",
+      "Audience research and targeting",
+      "Performance tracking and reporting",
+    ],
+    benefits: [
+      "Build stronger brand awareness",
+      "Reach relevant audiences",
+      "Generate quality leads",
+      "Measure campaign performance",
+    ],
+    process: [
+      "Business & Audience Research",
+      "Strategy Development",
+      "Campaign Execution",
+      "Analysis & Optimization",
+    ],
+  },
+  {
+    slug: "e-commerce-solutions",
+    number: "03",
+    title: "E-Commerce Solutions",
+    shortTitle: "E-Commerce",
+    icon: ShoppingCart,
+    tagline: "A smarter way to sell and grow online.",
+    description:
+      "Launch and grow your online business with secure, scalable and user-friendly e-commerce solutions. We build shopping experiences that make product discovery, ordering and business management easier.",
+    overview:
+      "Whether you are starting a new online store or improving an existing one, our e-commerce solutions are designed around your products, customers and operations. From storefront design to order management and payment integration, we help bring your business online.",
+    features: [
+      "Custom online store development",
+      "Product and inventory management",
+      "Shopping cart and checkout system",
+      "Payment gateway integration",
+      "Order and customer management",
+      "Responsive storefront design",
+    ],
+    benefits: [
+      "Sell products online 24/7",
+      "Simplify order management",
+      "Improve customer experience",
+      "Scale as your business grows",
+    ],
+    process: [
+      "Business Requirement Analysis",
+      "Store Design & Development",
+      "Integration & Testing",
+      "Launch & Ongoing Support",
+    ],
+  },
+  {
+    slug: "graphics-motion",
+    number: "04",
+    title: "Graphics & Motion",
+    shortTitle: "Graphics",
+    icon: Palette,
+    tagline: "Visual stories that make your brand memorable.",
+    description:
+      "Create a distinctive brand identity through thoughtful graphic design and engaging motion content. We combine creativity and visual communication to help your business stand out across digital platforms.",
+    overview:
+      "Strong visuals help people recognize, understand and remember your brand. Our creative team develops visual assets for businesses, campaigns and digital experiences, keeping your brand identity consistent and professional.",
+    features: [
+      "Logo and brand identity design",
+      "Social media creative design",
+      "Marketing banners and promotional artwork",
+      "Motion graphics and animations",
+      "Presentation and corporate design",
+      "Digital advertising creatives",
+    ],
+    benefits: [
+      "Create a consistent brand identity",
+      "Communicate ideas visually",
+      "Improve audience engagement",
+      "Stand out in competitive markets",
+    ],
+    process: [
+      "Creative Brief",
+      "Concept & Direction",
+      "Design & Motion Production",
+      "Review & Final Delivery",
+    ],
+  },
+  {
+    slug: "it-services",
+    number: "05",
+    title: "IT Services",
+    shortTitle: "IT Services",
+    icon: Headset,
+    tagline: "Technology support that keeps business moving.",
+    description:
+      "Keep your business technology reliable, secure and productive with professional IT services. We help organizations manage technical challenges, maintain their systems and make better use of technology.",
+    overview:
+      "Our IT services are designed to support day-to-day business operations. From technical consultation and system setup to troubleshooting and maintenance, we help reduce technology-related disruption and keep your infrastructure running smoothly.",
+    features: [
+      "IT consultation and technical support",
+      "Computer and device troubleshooting",
+      "Network setup and maintenance",
+      "System installation and configuration",
+      "IT infrastructure assessment",
+      "Preventive maintenance support",
+    ],
+    benefits: [
+      "Reduce technical downtime",
+      "Improve operational efficiency",
+      "Maintain reliable IT infrastructure",
+      "Get practical technical guidance",
+    ],
+    process: [
+      "Technical Assessment",
+      "Issue Identification",
+      "Solution & Configuration",
+      "Maintenance & Support",
+    ],
+  },
+  {
+    slug: "mobile-apps-development",
+    number: "06",
+    title: "Mobile Apps Development",
+    shortTitle: "Mobile Apps",
+    icon: Smartphone,
+    tagline: "Powerful mobile experiences for your customers.",
+    description:
+      "Bring your ideas to mobile with intuitive, reliable and scalable applications. We develop mobile app experiences that help businesses connect with customers, simplify workflows and deliver services on the go.",
+    overview:
+      "From concept to launch, we focus on usability, performance and functionality. Our mobile app development process considers your business requirements, target users and long-term product goals to create an application that can grow with your business.",
+    features: [
+      "Custom mobile application development",
+      "User-friendly interface design",
+      "API and backend integration",
+      "Business and customer applications",
+      "Application testing and optimization",
+      "Maintenance and feature enhancements",
+    ],
+    benefits: [
+      "Reach customers on mobile devices",
+      "Improve customer engagement",
+      "Simplify business workflows",
+      "Build a scalable mobile product",
+    ],
+    process: [
+      "Idea & Requirement Discovery",
+      "UI/UX Design",
+      "Development & Integration",
+      "Testing & Deployment",
+    ],
+  },
+  {
+    slug: "search-engine-optimization",
+    number: "07",
+    title: "Search Engine Optimization",
+    shortTitle: "SEO",
+    icon: Search,
+    tagline: "Get discovered by the people searching for you.",
+    description:
+      "Improve your website’s search visibility with a structured SEO strategy. We focus on keyword research, technical improvements, useful content and on-page optimization to help your business reach relevant audiences.",
+    overview:
+      "Search engine optimization is a long-term investment in your online visibility. We analyze your website, identify opportunities and build an optimization strategy around your industry, audience and business objectives.",
+    features: [
+      "SEO audit and website analysis",
+      "Keyword research and mapping",
+      "On-page SEO optimization",
+      "Technical SEO recommendations",
+      "Content optimization",
+      "SEO performance monitoring",
+    ],
+    benefits: [
+      "Improve organic search visibility",
+      "Attract relevant website visitors",
+      "Build long-term online presence",
+      "Make content easier to discover",
+    ],
+    process: [
+      "Website SEO Audit",
+      "Keyword & Competitor Research",
+      "Optimization & Implementation",
+      "Monitoring & Improvement",
+    ],
+  },
+  {
+    slug: "software-development",
+    number: "08",
+    title: "Software Development",
+    shortTitle: "Software",
+    icon: Code2,
+    tagline: "Custom software built around your business.",
+    description:
+      "Transform complex business requirements into practical software solutions. We develop custom applications that streamline operations, organize information and support better business decisions.",
+    overview:
+      "Every business has different workflows and challenges. Our software development process starts by understanding those requirements and translating them into reliable, maintainable applications. We focus on usability, performance and long-term flexibility.",
+    features: [
+      "Custom business software development",
+      "ERP and management systems",
+      "POS and inventory solutions",
+      "Database design and integration",
+      "API and third-party integrations",
+      "Software maintenance and upgrades",
+    ],
+    benefits: [
+      "Automate repetitive business tasks",
+      "Organize data and workflows",
+      "Improve operational visibility",
+      "Adapt software to your requirements",
+    ],
+    process: [
+      "Requirement Analysis",
+      "Architecture & UI Planning",
+      "Development & Quality Testing",
+      "Deployment & Maintenance",
+    ],
+  },
+  {
+    slug: "web-application",
+    number: "09",
+    title: "Web Application",
+    shortTitle: "Web Apps",
+    icon: Globe,
+    tagline: "Modern web platforms designed to perform.",
+    description:
+      "Create responsive, secure and scalable web applications that work across devices. From business portals to custom online platforms, we build digital experiences that help your organization work smarter.",
+    overview:
+      "A web application should do more than look attractive. It should solve real problems, provide a smooth user experience and remain dependable as your business grows. We combine thoughtful interface design with practical application development.",
+    features: [
+      "Custom web application development",
+      "Business portals and dashboards",
+      "Responsive UI/UX implementation",
+      "Database and API integration",
+      "Authentication and user management",
+      "Testing, deployment and maintenance",
+    ],
+    benefits: [
+      "Access applications from anywhere",
+      "Improve business workflows",
+      "Deliver better user experiences",
+      "Scale features as requirements evolve",
+    ],
+    process: [
+      "Discovery & Planning",
+      "Interface & Architecture Design",
+      "Development & Testing",
+      "Deployment & Continuous Support",
+    ],
   },
 ];

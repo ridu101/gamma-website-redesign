@@ -1,50 +1,26 @@
 
-import { useState } from "react";
-import {
-  ArrowUpRight,
-  ArrowRight,
-  Sparkles,
-  Layers3,
-} from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Layers3, Sparkles } from "lucide-react";
 
-import {
-  products,
-  productCategories,
-} from "../data/products";
-
+import { products } from "../data/products";
 import "./Products.css";
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] =
-    useState("All Solutions");
-
-  const filteredProducts =
-    activeCategory === "All Solutions"
-      ? products
-      : products.filter(
-          (product) => product.category === activeCategory
-        );
+  const previewProducts = products.slice(0, 3);
 
   return (
-    <section className="gs-products" id="products">
-
-      {/* Background Effects */}
+    <section className="gs-home-products" id="products">
       <div className="products-glow products-glow-one" />
-      <div className="products-glow products-glow-two" />
       <div className="products-grid-bg" />
 
-      <div className="products-container">
-
-        {/* Section Heading */}
-        <div className="products-heading">
-
+      <div className="home-products-container">
+        <div className="home-products-heading">
           <div className="products-eyebrow">
             <Sparkles size={15} />
             <span>OUR DIGITAL ECOSYSTEM</span>
           </div>
 
-          <div className="products-heading-content">
-
+          <div className="home-products-heading-row">
             <div>
               <h2>
                 Smart Solutions.
@@ -53,132 +29,83 @@ const Products = () => {
               </h2>
 
               <p>
-                Discover our innovative software solutions
-                designed to simplify operations, accelerate
-                growth and transform the way businesses work.
+                Discover innovative software solutions built
+                to simplify operations, accelerate growth and
+                transform your business.
               </p>
             </div>
 
-            <div className="products-heading-badge">
-              <Layers3 size={22} />
-              <div>
-                <strong>09</strong>
-                <span>Digital Solutions</span>
-              </div>
-            </div>
-
+            
           </div>
         </div>
 
-        {/* Category Filter */}
-        <div className="products-filter">
-
-          <div className="filter-label">
-            EXPLORE BY CATEGORY
-          </div>
-
-          <div className="filter-buttons">
-            {productCategories.map((category) => (
-              <button
-                key={category}
-                className={
-                  activeCategory === category
-                    ? "filter-btn active"
-                    : "filter-btn"
-                }
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-        </div>
-
-        {/* Product Grid */}
-        <div className="products-grid">
-
-          {filteredProducts.map((product, index) => {
-
+        <div className="home-products-grid">
+          {previewProducts.map((product) => {
             const ProductIcon = product.icon;
 
             return (
               <article
-                className={`product-card ${
+                className={`home-product-card ${
                   product.featured ? "featured" : ""
                 }`}
                 key={product.id}
-                style={{
-                  animationDelay: `${index * 0.07}s`,
-                }}
               >
+                <div className="home-product-image">
+                  <img
+                    src={product.image}
+                    alt={product.imageAlt || product.name}
+                    loading="lazy"
+                  />
 
-                <div className="product-card-top">
+                  <div className="home-product-image-overlay" />
 
-                  <div className="product-icon">
-                    <ProductIcon size={25} strokeWidth={1.7} />
-                  </div>
-
-                  <span className="product-number">
+                  <span className="home-product-number">
                     {product.number}
                   </span>
 
+                  {product.featured && (
+                    <span className="home-product-featured">
+                      <Sparkles size={10} />
+                      FEATURED
+                    </span>
+                  )}
+
+                  <div className="home-product-icon">
+                    <ProductIcon size={20} />
+                  </div>
                 </div>
 
-                <div className="product-card-content">
-
-                  <span className="product-tag">
-                    {product.tag}
-                  </span>
-
+                <div className="home-product-content">
+                  <span>{product.tag}</span>
                   <h3>{product.name}</h3>
-
                   <p>{product.description}</p>
-
                 </div>
 
-                <div className="product-card-bottom">
-
+                <div className="home-product-footer">
                   <span>Explore Solution</span>
-
-                  <a
-                    href="#contact"
-                    aria-label={`Learn more about ${product.name}`}
+                  <Link
+                    to="/products"
+                    aria-label={`Explore ${product.name}`}
                   >
-                    <ArrowUpRight size={19} />
-                  </a>
-
+                    <ArrowUpRight size={18} />
+                  </Link>
                 </div>
-
-                <div className="product-card-glow" />
-
               </article>
             );
           })}
-
         </div>
 
-        {/* Bottom CTA */}
-        <div className="products-bottom">
+        <div className="home-products-bottom">
+          <p>
+            Explore our complete collection of business
+            software and digital platforms.
+          </p>
 
-          <div>
-            <span className="bottom-eyebrow">
-              HAVE A UNIQUE IDEA?
-            </span>
-
-            <h3>
-              Let's build something
-              <span> extraordinary.</span>
-            </h3>
-          </div>
-
-          <a href="#contact" className="products-cta">
-            Discuss Your Project
-            <ArrowRight size={18} />
-          </a>
-
+          <Link to="/products" className="home-products-cta">
+            Explore All Products
+            <ArrowUpRight size={18} />
+          </Link>
         </div>
-
       </div>
     </section>
   );

@@ -1,45 +1,24 @@
 
-import {
-  ArrowUpRight,
-  Sparkles,
-  Target,
-  ShieldCheck,
-  Lightbulb,
-} from "lucide-react";
-
+import { ArrowUpRight, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "./About.css";
 
-const values = [
-  {
-    icon: Lightbulb,
-    title: "Innovation First",
-    description:
-      "Embracing new technologies and creative ideas to deliver smarter digital solutions.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Quality & Trust",
-    description:
-      "Building reliable products through professional expertise and a commitment to quality.",
-  },
-  {
-    icon: Target,
-    title: "Client Focus",
-    description:
-      "Understanding every client's unique needs and creating solutions around their goals.",
-  },
-];
-
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleExplore = () => {
+    window.scrollTo(0, 0);
+    navigate("/about");
+  };
+
   return (
-    <section className="gs-about" id="about">
-      {/* Background Effects */}
+    <section className="gs-about gs-about-preview" id="about">
       <div className="gs-about-grid" />
       <div className="gs-about-glow gs-about-glow-one" />
       <div className="gs-about-glow gs-about-glow-two" />
 
       <div className="gs-about-container">
-        {/* Section Heading */}
+
         <div className="gs-about-heading">
           <div className="gs-about-eyebrow">
             <span className="gs-about-dot" />
@@ -59,8 +38,8 @@ const About = () => {
           </p>
         </div>
 
-        {/* Company Overview */}
         <div className="gs-about-overview">
+
           <div className="gs-about-overview-left">
             <span className="gs-about-small-label">
               <Sparkles size={15} />
@@ -80,33 +59,24 @@ const About = () => {
             </p>
 
             <p>
-              We are a technology-driven software company
-              specializing in software development, graphics
-              design, mobile application development and
-              digital marketing. Our team of skilled professionals
-              combines technical expertise with creativity to
-              deliver high-quality solutions tailored to the
-              unique needs of our clients.
+              We specialize in software development, graphics design,
+              mobile application development and digital marketing.
+              Our team combines technical expertise with creativity
+              to deliver solutions tailored to our clients' needs.
             </p>
 
-            <p>
-              From building robust web applications and
-              enterprise platforms to creating engaging visual
-              identities and effective marketing strategies,
-              we help businesses navigate the evolving digital
-              landscape with confidence.
-            </p>
-
-            <a href="#services" className="gs-about-link">
-              Explore Our Expertise
+            <button
+              type="button"
+              onClick={handleExplore}
+              className="gs-about-link"
+            >
+              More About GammaSoft
               <ArrowUpRight size={18} />
-            </a>
+            </button>
           </div>
 
-          {/* Visual Panel */}
           <div className="gs-about-visual">
             <div className="gs-about-visual-glow" />
-
             <div className="gs-about-visual-orbit orbit-a" />
             <div className="gs-about-visual-orbit orbit-b" />
 
@@ -148,7 +118,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Company Highlights */}
         <div className="gs-about-highlights">
           <div className="gs-about-highlight">
             <span className="gs-highlight-number">2022</span>
@@ -179,60 +148,17 @@ const About = () => {
           </div>
         </div>
 
-        {/* Company Values */}
-        <div className="gs-about-values">
-          <div className="gs-values-heading">
-            <span className="gs-about-small-label">
-              WHAT DRIVES US
-            </span>
-
-            <h3>
-              Our Commitment to <span>Excellence.</span>
-            </h3>
-          </div>
-
-          <div className="gs-values-grid">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-
-              return (
-                <div className="gs-value-card" key={value.title}>
-                  <div className="gs-value-icon">
-                    <Icon size={24} />
-                  </div>
-
-                  <span className="gs-value-number">
-                    0{index + 1}
-                  </span>
-
-                  <h4>{value.title}</h4>
-
-                  <p>{value.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="gs-about-cta">
-          <div className="gs-about-cta-glow" />
-
-          <div className="gs-about-cta-content">
-            <span>LET'S CREATE SOMETHING GREAT</span>
-
-            <h3>
-              Have an idea?
-              <br />
-              <span>Let's make it happen.</span>
-            </h3>
-          </div>
-
-          <a href="#contact" className="gs-about-cta-button">
-            Let's Talk
+        <div className="gs-about-preview-action">
+          <button
+            type="button"
+            onClick={handleExplore}
+            className="gs-about-more-button"
+          >
+            Explore Our Company
             <ArrowUpRight size={19} />
-          </a>
+          </button>
         </div>
+
       </div>
     </section>
   );

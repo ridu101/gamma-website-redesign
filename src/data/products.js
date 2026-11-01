@@ -22,6 +22,10 @@ export const products = [
     tag: "Retail & Restaurant",
     number: "01",
     featured: true,
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=85",
+    imageAlt: "Modern retail point of sale system",
+    link: "#contact",
   },
   {
     id: 2,
@@ -32,6 +36,10 @@ export const products = [
     icon: Monitor,
     tag: "Enterprise",
     number: "02",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&q=85",
+    imageAlt: "Enterprise business analytics dashboard",
+    link: "#contact",
   },
   {
     id: 3,
@@ -42,6 +50,10 @@ export const products = [
     icon: Users,
     tag: "CRM Platform",
     number: "03",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=85",
+    imageAlt: "Team collaborating on customer management",
+    link: "#contact",
   },
   {
     id: 4,
@@ -52,6 +64,10 @@ export const products = [
     icon: Package,
     tag: "Inventory",
     number: "04",
+    image:
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=85",
+    imageAlt: "Warehouse inventory and stock management",
+    link: "#contact",
   },
   {
     id: 5,
@@ -63,6 +79,10 @@ export const products = [
     tag: "E-Commerce",
     number: "05",
     featured: true,
+    image:
+      "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1000&q=85",
+    imageAlt: "E-commerce shopping experience",
+    link: "#contact",
   },
   {
     id: 6,
@@ -73,6 +93,10 @@ export const products = [
     icon: UserCog,
     tag: "Human Resources",
     number: "06",
+    image:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1000&q=85",
+    imageAlt: "Human resources team collaboration",
+    link: "#contact",
   },
   {
     id: 7,
@@ -83,6 +107,10 @@ export const products = [
     icon: BarChart3,
     tag: "Business Intelligence",
     number: "07",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=85",
+    imageAlt: "Business intelligence data visualization",
+    link: "#contact",
   },
   {
     id: 8,
@@ -93,6 +121,10 @@ export const products = [
     icon: GraduationCap,
     tag: "Education",
     number: "08",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1000&q=85",
+    imageAlt: "Modern digital education environment",
+    link: "#contact",
   },
   {
     id: 9,
@@ -103,6 +135,10 @@ export const products = [
     icon: Code2,
     tag: "Tailored Software",
     number: "09",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&q=85",
+    imageAlt: "Custom software development workspace",
+    link: "#contact",
   },
 ];
 
