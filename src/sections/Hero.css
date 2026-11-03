@@ -5,6 +5,7 @@
 
 .gs-hero {
   position: relative;
+  box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
@@ -12,7 +13,7 @@
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  padding: 140px 0 100px;
+  padding: 110px 0 55px;
   background: #101010;
   color: #ffffff;
 }
@@ -367,7 +368,6 @@
   width: 82%;
   height: 82%;
   object-fit: contain;
-  filter: drop-shadow(0 22px 25px rgba(0, 0, 0, 0.55));
 
   transform: translateY(0) rotateX(0deg) rotateY(0deg);
 
@@ -443,10 +443,6 @@
 
   .gs-visual-card:hover .gs-floating-logo {
     transform: translateY(-5px) rotateX(4deg) rotateY(-5deg);
-
-    filter:
-      drop-shadow(0 30px 30px rgba(0, 0, 0, 0.6))
-      drop-shadow(0 0 16px rgba(255, 90, 0, 0.2));
   }
 
   .gs-visual-card:hover .gs-logo-back-glow {
@@ -518,8 +514,9 @@
 
 @media (max-width: 700px) {
   .gs-hero {
+    box-sizing: border-box;
     min-height: auto;
-    padding: 120px 0 75px;
+    padding: 105px 0 35px;
   }
 
   .gs-hero-container {
@@ -603,7 +600,8 @@
 
 @media (max-width: 380px) {
   .gs-hero {
-    padding-top: 110px;
+    padding-top: 95px;
+    padding-bottom: 30px;
   }
 
   .gs-hero-container {
@@ -649,4 +647,155 @@
   .gs-hero *::after {
     transition: none !important;
   }
+}
+
+/* =========================================
+   GAMMASOFT HERO — LIGHT THEME
+   Only theme colors change
+========================================= */
+
+[data-theme="light"] .gs-hero {
+  background: #f7f8fa;
+  color: #171717;
+}
+
+/* BACKGROUND GRID */
+
+[data-theme="light"] .gs-hero-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+}
+
+/* BACKGROUND GLOW */
+
+[data-theme="light"] .gs-hero-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 90, 0, 0.12) 0%,
+    rgba(255, 90, 0, 0.045) 40%,
+    transparent 70%
+  );
+}
+
+/* LABEL */
+
+[data-theme="light"] .gs-hero-label {
+  color: #e85a13;
+}
+
+/* HEADING */
+
+[data-theme="light"] .gs-hero-title {
+  color: #171717;
+}
+
+/* DESCRIPTION */
+
+[data-theme="light"] .gs-hero-description {
+  color: #626873;
+}
+
+/* SECONDARY BUTTON */
+
+[data-theme="light"] .gs-hero-secondary {
+  color: #252525;
+  border-color: rgba(0, 0, 0, 0.16);
+  background: rgba(0, 0, 0, 0.035);
+}
+
+[data-theme="light"] .gs-hero-secondary:hover {
+  color: #e85a13;
+  border-color: #ff5a00;
+  background: rgba(255, 90, 0, 0.06);
+}
+
+/* TRUST INDICATOR */
+
+[data-theme="light"] .gs-hero-trust {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .gs-trust-content strong {
+  color: #202020;
+}
+
+[data-theme="light"] .gs-trust-content span {
+  color: #737982;
+}
+
+/* VISUAL CARD */
+
+[data-theme="light"] .gs-visual-card {
+  border-color: rgba(0, 0, 0, 0.09);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(245, 246, 248, 0.85) 65%
+    ),
+    #ffffff;
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* CARD TOP */
+
+[data-theme="light"] .gs-visual-top-line {
+  color: #777d85;
+}
+
+/* LOGO GLOW */
+
+[data-theme="light"] .gs-logo-back-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 90, 0, 0.15),
+    rgba(255, 90, 0, 0.045) 45%,
+    transparent 72%
+  );
+}
+
+/* LOGO */
+
+
+
+/* CARD BOTTOM */
+
+[data-theme="light"] .gs-visual-caption {
+  color: #737982;
+}
+
+[data-theme="light"] .gs-visual-index {
+  color: #858b93;
+}
+
+/* VISUAL ACCENT */
+
+[data-theme="light"] .gs-visual-accent {
+  border-color: rgba(255, 90, 0, 0.55);
+}
+
+/* DESKTOP HOVER */
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="light"] .gs-visual-card:hover {
+    border-color: rgba(255, 90, 0, 0.38);
+  }
+
+  
+
+  [data-theme="light"] .gs-visual-card:hover .gs-visual-accent {
+    border-color: #ff7029;
+  }
+}
+
+/* SCROLL INDICATOR */
+
+[data-theme="light"] .gs-scroll-indicator {
+  color: #777d85;
 }

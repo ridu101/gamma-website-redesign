@@ -2,8 +2,16 @@
 import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  FileText,
+  MessageCircle,
+} from "lucide-react";
 
+import ThemeToggle from "./ThemeToggle";
+import { CONTACT_CONFIG } from "../../config/contactConfig";
 import "./Navbar.css";
 
 const navLinks = [
@@ -12,7 +20,7 @@ const navLinks = [
   { name: "Services", href: "#services", path: "/services" },
   { name: "Products", href: "#products", path: "/products" },
   { name: "Projects", href: "#projects", path: "/projects" },
-  { name: "Testimonials", href: "#testimonials" },
+  { name: "News", href: "#news", path: "/news" },
 ];
 
 const Navbar = () => {
@@ -50,10 +58,25 @@ const Navbar = () => {
     navigate(path);
   };
 
+  // WhatsApp navigation
+  const handleWhatsApp = () => {
+    const number = CONTACT_CONFIG.whatsappNumber.replace(/\D/g, "");
+
+    if (!number || number.includes("XXXXXXXX")) {
+      alert("WhatsApp number is not configured yet.");
+      return;
+    }
+
+    window.open(
+      `https://wa.me/${number}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   useEffect(() => {
     setMenuOpen(false);
 
-    // Dedicated pages: About, Services, Products, Projects
     if (location.pathname !== "/") {
       const currentPage = navLinks.find(
         (link) => link.path === location.pathname
@@ -71,9 +94,7 @@ const Navbar = () => {
       return;
     }
 
-    // Homepage section detection
     const sections = navLinks
-      .filter((link) => !link.path)
       .map((link) => ({
         href: link.href,
         element: document.querySelector(link.href),
@@ -94,7 +115,6 @@ const Navbar = () => {
         }
       });
 
-      // Last section active at page bottom
       const isAtBottom =
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 5;
@@ -158,19 +178,20 @@ const Navbar = () => {
       <nav className="navbar-container">
 
         {/* BRAND LOGO */}
-        <HashLink
-          smooth
-          to="/#home"
-          onClick={() => closeMenu("#home")}
-          className="navbar-brand"
-        >
+        <HashLink to="/" className="navbar-brand">
           <img
             src="/images/gammasoft-symbol.png"
             alt="GammaSoft logo"
           />
 
-          <span>
-            GAMMA<span className="brand-accent">SOFT</span>
+          <span className="brand-text">
+            <span className="brand-name">
+              GAMMA<span className="brand-accent">SOFT</span>
+            </span>
+
+            <small className="brand-tagline">
+              The Next Innovation...
+            </small>
           </span>
         </HashLink>
 
@@ -179,16 +200,67 @@ const Navbar = () => {
           {renderNavLinks()}
         </div>
 
-        {/* DESKTOP CTA */}
-        <HashLink
-          smooth
-          to="/#contact"
-          onClick={() => closeMenu("#contact")}
-          className="navbar-cta"
-        >
-          Let's Talk
-          <ArrowUpRight size={17} />
-        </HashLink>
+        {/* DESKTOP THEME SWITCH */}
+        <div className="navbar-theme-toggle">
+          <ThemeToggle />
+        </div>
+
+        {/* DESKTOP LET'S TALK DROPDOWN */}
+        <div className="navbar-cta-wrapper">
+          <button
+            type="button"
+            className="navbar-cta"
+            aria-haspopup="true"
+          >
+            Let's Talk
+            <ArrowUpRight size={17} />
+          </button>
+
+          <div className="navbar-cta-dropdown">
+
+            {/* GET A QUOTE */}
+            <Link
+              to="/get-quote"
+              className="navbar-dropdown-action quote-action"
+            >
+              <span className="dropdown-action-icon">
+                <FileText size={19} />
+              </span>
+
+              <span className="dropdown-action-content">
+                <strong>Get a Quote</strong>
+                <small>Tell us about your project</small>
+              </span>
+
+              <ArrowUpRight
+                size={16}
+                className="dropdown-action-arrow"
+              />
+            </Link>
+
+            {/* WHATSAPP */}
+            <button
+              type="button"
+              onClick={handleWhatsApp}
+              className="navbar-dropdown-action whatsapp-action"
+            >
+              <span className="dropdown-action-icon">
+                <MessageCircle size={19} />
+              </span>
+
+              <span className="dropdown-action-content">
+                <strong>Chat on WhatsApp</strong>
+                <small>Let's discuss your idea</small>
+              </span>
+
+              <ArrowUpRight
+                size={16}
+                className="dropdown-action-arrow"
+              />
+            </button>
+
+          </div>
+        </div>
 
         {/* MOBILE MENU BUTTON */}
         <button
@@ -207,15 +279,35 @@ const Navbar = () => {
       <div className={`mobile-navigation ${menuOpen ? "open" : ""}`}>
         {renderNavLinks()}
 
-        <HashLink
-          smooth
-          to="/#contact"
-          onClick={() => closeMenu("#contact")}
+        {/* MOBILE GET A QUOTE */}
+        <Link
+          to="/get-quote"
+          onClick={() => closeMenu()}
           className="mobile-cta"
         >
-          Let's Talk
+          Get a Quote
           <ArrowUpRight size={17} />
-        </HashLink>
+        </Link>
+
+        {/* MOBILE WHATSAPP */}
+        <button
+          type="button"
+          onClick={() => {
+            closeMenu();
+            handleWhatsApp();
+          }}
+          className="mobile-cta mobile-whatsapp-cta"
+        >
+          <MessageCircle size={17} />
+          Chat on WhatsApp
+          <ArrowUpRight size={17} />
+        </button>
+
+        {/* MOBILE THEME SWITCH */}
+        <div className="mobile-theme-toggle">
+          <span>Appearance</span>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

@@ -43,17 +43,7 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Trust Indicator */}
-          <div className="gs-hero-trust">
-            <div className="gs-trust-icon">
-              <Sparkles size={19} />
-            </div>
-
-            <div className="gs-trust-content">
-              <strong>Technology Meets Innovation</strong>
-              <span>Building smarter digital experiences</span>
-            </div>
-          </div>
+         
         </div>
 
         {/* RIGHT VISUAL */}

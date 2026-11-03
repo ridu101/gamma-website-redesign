@@ -47,7 +47,7 @@
 }
 
 /* =========================================
-   CENTERED SECTION HEADING
+   SECTION HEADING
 ========================================= */
 
 .gs-testimonials-header {
@@ -64,6 +64,10 @@
   max-width: 850px;
   margin: 0 auto;
   text-align: center;
+
+  /* Heading entrance animation */
+  animation: gsTestimonialHeadingReveal 0.9s
+    cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .gs-testimonials-heading .gs-section-label {
@@ -80,6 +84,8 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   margin-bottom: 25px;
+
+  animation: gsTestimonialLabelReveal 0.7s 0.15s ease both;
 }
 
 .gs-testimonials-heading .gs-section-label svg {
@@ -93,6 +99,8 @@
   font-weight: 800;
   margin: 0 0 22px;
   color: #ffffff;
+
+  animation: gsTestimonialTitleReveal 0.8s 0.2s ease both;
 }
 
 .gs-testimonials-heading h2 span {
@@ -117,6 +125,8 @@
   color: #99999f;
   font-size: 15px;
   line-height: 1.8;
+
+  animation: gsTestimonialDescriptionReveal 0.8s 0.35s ease both;
 }
 
 /* =========================================
@@ -187,13 +197,7 @@
   padding: 28px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
-
-  background: linear-gradient(
-    145deg,
-    #1c1c1e,
-    #151517
-  );
-
+  background: linear-gradient(145deg, #1c1c1e, #151517);
   overflow: hidden;
   isolation: isolate;
 
@@ -273,11 +277,7 @@
 
 .gs-testimonial-card.featured {
   border-color: rgba(255, 90, 0, 0.35);
-  background: linear-gradient(
-    145deg,
-    #211b18,
-    #171617
-  );
+  background: linear-gradient(145deg, #211b18, #171617);
 }
 
 /* =========================================
@@ -506,13 +506,11 @@
   margin-top: 75px;
   border: 1px solid rgba(255, 90, 0, 0.25);
   border-radius: 18px;
-
   background: linear-gradient(
     110deg,
     rgba(255, 90, 0, 0.12),
     rgba(255, 255, 255, 0.025)
   );
-
   animation: gsTestimonialFadeUp 0.8s 0.3s ease both;
 }
 
@@ -558,6 +556,56 @@
 /* =========================================
    ANIMATIONS
 ========================================= */
+
+@keyframes gsTestimonialHeadingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes gsTestimonialLabelReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gsTestimonialTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gsTestimonialDescriptionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @keyframes gsTestimonialCardReveal {
   from {
@@ -666,6 +714,16 @@
   .gs-testimonials-pagination {
     margin-top: 25px;
   }
+
+  .gs-testimonials {
+    padding-bottom: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gs-testimonials {
+    padding-bottom: 25px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -701,4 +759,154 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+[data-theme="light"] .gs-testimonials {
+  background: #F5F7FA;
+  color: #20242B;
+}
+
+/* Background Glow */
+
+[data-theme="light"] .gs-testimonials-glow {
+  background: rgba(255, 90, 0, 0.08);
+}
+
+[data-theme="light"] .gs-testimonials-glow-two {
+  background: rgba(255, 90, 0, 0.045);
+}
+
+/* Section Heading */
+
+[data-theme="light"] .gs-testimonials-heading h2 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-testimonials-heading > p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-testimonials-heading .gs-section-label {
+  background: rgba(255, 90, 0, 0.06);
+  border-color: rgba(255, 90, 0, 0.22);
+}
+
+/* Slider Navigation */
+
+[data-theme="light"] .gs-testimonial-nav-btn {
+  background: #FFFFFF;
+  border-color: rgba(30, 41, 59, 0.14);
+  color: #343D4B;
+}
+
+[data-theme="light"] .gs-testimonial-nav-btn:hover:not(:disabled) {
+  background: #FF5A00;
+  border-color: #FF5A00;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .gs-testimonial-nav-btn.next {
+  background: #FF5A00;
+  border-color: #FF5A00;
+  color: #FFFFFF;
+}
+
+/* Testimonial Cards */
+
+[data-theme="light"] .gs-testimonial-card {
+  background: linear-gradient(145deg, #FFFFFF, #F0F3F7);
+  border-color: rgba(30, 41, 59, 0.10);
+}
+
+[data-theme="light"] .gs-testimonial-card:hover {
+  border-color: rgba(255, 90, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(30, 41, 59, 0.10);
+}
+
+[data-theme="light"] .gs-testimonial-card.featured {
+  background: linear-gradient(145deg, #FFF8F3, #FFFFFF);
+  border-color: rgba(255, 90, 0, 0.28);
+}
+
+/* Card Moving Light Effect */
+
+[data-theme="light"] .gs-testimonial-card::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(30, 41, 59, 0.035),
+    transparent
+  );
+}
+
+/* Card Content */
+
+[data-theme="light"] .gs-testimonial-message {
+  color: #596579;
+}
+
+[data-theme="light"] .gs-testimonial-divider {
+  background: rgba(30, 41, 59, 0.12);
+}
+
+/* Author Information */
+
+[data-theme="light"] .gs-testimonial-author-info h3 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-testimonial-author-info p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-testimonial-author-info span {
+  color: #8A93A1;
+}
+
+/* Demo Label */
+
+[data-theme="light"] .gs-testimonial-demo {
+  background: rgba(30, 41, 59, 0.07);
+  color: #596579;
+}
+
+/* Pagination */
+
+[data-theme="light"] .gs-testimonial-dot {
+  background: #CBD2DC;
+}
+
+[data-theme="light"] .gs-testimonial-dot:hover {
+  background: #FF8143;
+}
+
+[data-theme="light"] .gs-testimonial-dot.active {
+  background: #FF5A00;
+}
+
+[data-theme="light"] .gs-testimonial-counter {
+  color: #8A93A1;
+}
+
+[data-theme="light"] .gs-testimonial-counter-line {
+  background: #CBD2DC;
+}
+
+/* Bottom CTA */
+
+[data-theme="light"] .gs-testimonial-bottom {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 90, 0, 0.08),
+    rgba(255, 255, 255, 0.85)
+  );
+  border-color: rgba(255, 90, 0, 0.22);
+}
+
+[data-theme="light"] .gs-testimonial-bottom h3 {
+  color: #20242B;
 }

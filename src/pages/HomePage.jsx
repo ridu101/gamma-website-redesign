@@ -1,5 +1,6 @@
 
 import Hero from "../sections/Hero";
+import TrustedBy from "../components/common/TrustedBy";
 import About from "../sections/About";
 import Services from "../sections/Services";
 import Products from "../sections/Products";
@@ -13,6 +14,7 @@ const HomePage = () => {
     <>
       <main>
         <Hero />
+        <TrustedBy />
         <About />
         <Services />
         <Products />

@@ -1,4 +1,3 @@
-
 import {
   ArrowUpRight,
   MapPin,
@@ -6,21 +5,12 @@ import {
   Mail,
   Clock,
   MoveUpRight,
+  ChevronDown,
 } from "lucide-react";
 
+import { Link } from "react-router-dom";
+import { services } from "../data/services";
 import "./Footer.css";
-
-const quickLinks = [
-  "CATV Solutions",
-  "Digital Marketing",
-  "E-Commerce Solutions",
-  "Graphics & Motion",
-  "IT Services",
-  "Mobile Apps Development",
-  "Search Engine Optimization",
-  "Software Development",
-  "Web Application",
-];
 
 const recentNews = [
   {
@@ -97,7 +87,7 @@ const Footer = () => {
         <div className="gs-footer-top">
           {/* Brand */}
           <div className="gs-footer-brand">
-            <a href="#home" className="gs-footer-logo">
+            <Link to="/" className="gs-footer-logo">
               <img
                 src="/images/gammasoft-symbol.png"
                 alt="GammaSoft logo"
@@ -106,7 +96,7 @@ const Footer = () => {
               <span>
                 GAMMA<span>SOFT</span>
               </span>
-            </a>
+            </Link>
 
             <p>
               Gamma Soft Ltd. is committed to delivering innovative
@@ -129,19 +119,27 @@ const Footer = () => {
                 </a>
               ))}
             </div>
+
+            {/* Company Profile Button */}
+            <Link to="/company-profile" className="gs-footer-company-profile">
+              Company Profile
+              <ArrowUpRight size={17} />
+            </Link>
           </div>
 
-          {/* Quick Links */}
+          {/* Dynamic Quick Links */}
           <div className="gs-footer-column">
             <h3>Quick Links</h3>
 
             <ul className="gs-footer-links">
-              {quickLinks.map((link) => (
-                <li key={link}>
-                  <a href="#contact">
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to={`/services?service=${encodeURIComponent(service.slug)}`}
+                  >
                     <MoveUpRight size={12} />
-                    {link}
-                  </a>
+                    {service.shortTitle || service.title}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -153,11 +151,10 @@ const Footer = () => {
 
             <div className="gs-footer-news-list">
               {recentNews.map((news) => (
-                <a
-                  href="#"
+                <Link
+                  to="/news"
                   className="gs-footer-news-item"
                   key={news.title}
-                  onClick={(e) => e.preventDefault()}
                 >
                   <span className="gs-footer-news-date">
                     {news.date}
@@ -166,7 +163,7 @@ const Footer = () => {
                   <strong>{news.title}</strong>
 
                   <ArrowUpRight size={14} />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -244,10 +241,19 @@ const Footer = () => {
             Motahar Lodge (7A), 04 Purana Paltan, Dhaka-1000
           </p>
 
-          <a href="#home">
-            Back to top
-            <ArrowUpRight size={15} />
-          </a>
+          <button
+  type="button"
+  className="gs-footer-back-to-top"
+  onClick={() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }}
+>
+  Back to top
+  <MoveUpRight size={15} />
+</button>
         </div>
       </div>
     </footer>

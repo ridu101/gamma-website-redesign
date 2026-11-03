@@ -1228,3 +1228,260 @@
     margin-top: 30px;
   }
 }
+/* =========================================
+   HOMEPAGE SERVICES SECTION SPACING FIX
+========================================= */
+
+/* Homepage only — dedicated Services page unaffected */
+.gs-services:not(.gs-services-page) {
+  padding-top: 45px;
+}
+
+@media (max-width: 760px) {
+  .gs-services:not(.gs-services-page) {
+    padding-top: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gs-services:not(.gs-services-page) {
+    padding-top: 30px;
+  }
+}
+/* =========================================
+   HOMEPAGE SERVICES → PRODUCTS GAP FIX
+   Homepage Only
+========================================= */
+
+.gs-services:not(.gs-services-page) {
+  padding-bottom: 45px;
+}
+
+/* Tablet */
+@media (max-width: 760px) {
+  .gs-services:not(.gs-services-page) {
+    padding-bottom: 35px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .gs-services:not(.gs-services-page) {
+    padding-bottom: 25px;
+  }
+}
+/* =========================================
+   GAMMASOFT SERVICES — LIGHT THEME
+   Theme Toggle Only
+========================================= */
+
+[data-theme="light"] .gs-services {
+  --gs-bg: #f7f8fa;
+  --gs-card: #ffffff;
+  --gs-card-light: #f0f1f4;
+  --gs-border: rgba(20, 20, 25, 0.10);
+  --gs-muted: #686873;
+
+  background: var(--gs-bg);
+  color: #17171b;
+}
+
+[data-theme="light"] .gs-grid-background {
+  background-image:
+    linear-gradient(rgba(20, 20, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 20, 25, 0.045) 1px, transparent 1px);
+}
+
+[data-theme="light"] .gs-services-back {
+  background: rgba(255, 255, 255, 0.8);
+  color: #55555f;
+}
+
+[data-theme="light"] .gs-services-back:hover {
+  color: #17171b;
+}
+
+[data-theme="light"] .gs-services-heading h2 {
+  color: #17171b;
+}
+
+[data-theme="light"] .gs-services-heading > p {
+  color: #686873;
+}
+
+/* Sidebar */
+
+[data-theme="light"] .gs-service-sidebar {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 20px 60px rgba(20, 20, 25, 0.07);
+}
+
+[data-theme="light"] .gs-service-sidebar:hover {
+  box-shadow: 0 22px 65px rgba(20, 20, 25, 0.10);
+}
+
+[data-theme="light"] .gs-sidebar-heading h3 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-sidebar-heading p {
+  color: #777780;
+}
+
+[data-theme="light"] .gs-sidebar-item {
+  background: #f0f1f4;
+  color: #555560;
+}
+
+[data-theme="light"] .gs-sidebar-item:hover {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-sidebar-item.active {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-sidebar-icon {
+  border-color: rgba(20, 20, 25, 0.08);
+  background: rgba(20, 20, 25, 0.045);
+  color: #686873;
+}
+
+[data-theme="light"] .gs-sidebar-text small {
+  color: #85858e;
+}
+
+[data-theme="light"] .gs-sidebar-footer > span {
+  color: #777780;
+}
+
+[data-theme="light"] .gs-sidebar-footer button:hover {
+  color: #d94c00;
+}
+
+/* Service Details */
+
+[data-theme="light"] .gs-service-details {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="light"] .gs-detail-title h3 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-detail-tagline {
+  color: #484851;
+}
+
+[data-theme="light"] .gs-detail-description {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-detail-number {
+  color: #777780;
+}
+
+/* Detail Sections */
+
+[data-theme="light"] .gs-section-heading h4 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-section-heading > p {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-overview > p {
+  color: #555560;
+}
+
+/* Feature / Benefit / Process Cards */
+
+[data-theme="light"] .gs-feature-card,
+[data-theme="light"] .gs-benefit-card,
+[data-theme="light"] .gs-process-card {
+  background: #ffffff;
+}
+
+[data-theme="light"] .gs-feature-card:hover,
+[data-theme="light"] .gs-benefit-card:hover,
+[data-theme="light"] .gs-process-card:hover {
+  background: #fff7f2;
+  box-shadow: 0 14px 30px rgba(20, 20, 25, 0.08);
+}
+
+[data-theme="light"] .gs-feature-card small,
+[data-theme="light"] .gs-process-card small {
+  color: #85858e;
+}
+
+[data-theme="light"] .gs-feature-card p,
+[data-theme="light"] .gs-benefit-card p,
+[data-theme="light"] .gs-process-card p {
+  color: #484851;
+}
+
+[data-theme="light"] .gs-benefits {
+  background: #f4f5f7;
+}
+
+[data-theme="light"] .gs-benefit-card {
+  background: #ffffff;
+}
+
+/* Bottom CTA */
+
+[data-theme="light"] .gs-detail-bottom {
+  background: #f4f5f7;
+}
+
+[data-theme="light"] .gs-detail-bottom h4 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-detail-bottom p {
+  color: #686873;
+}
+
+/* Closing CTA */
+
+[data-theme="light"] .gs-services-footer {
+  background: linear-gradient(115deg, #ffffff, #f1f2f5);
+  box-shadow: 0 10px 35px rgba(20, 20, 25, 0.035);
+}
+
+[data-theme="light"] .gs-services-footer:hover {
+  box-shadow: 0 15px 45px rgba(20, 20, 25, 0.08);
+}
+
+[data-theme="light"] .gs-services-footer h3 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-services-footer h3 small {
+  color: #686873;
+}
+
+/* Homepage Services Preview */
+
+[data-theme="light"] .gs-home-service-card {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 25px rgba(20, 20, 25, 0.035);
+}
+
+[data-theme="light"] .gs-home-service-card:hover {
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(20, 20, 25, 0.09);
+}
+
+[data-theme="light"] .gs-home-service-card h3 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-home-service-card > p {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-home-service-link:hover {
+  color: #d94c00;
+}

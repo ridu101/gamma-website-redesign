@@ -1,0 +1,426 @@
+
+/* =====================================
+   THEME SWITCH
+===================================== */
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px 5px 5px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.theme-switch:hover {
+  border-color: rgba(255, 90, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+.theme-switch:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.theme-switch-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: 43px;
+  height: 25px;
+  padding: 3px;
+
+  border-radius: 30px;
+  background: #38383e;
+
+  transition: background 0.3s ease;
+}
+
+.theme-switch-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 19px;
+  height: 19px;
+
+  border-radius: 50%;
+  background: #ff6a1a;
+  color: #ffffff;
+
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.theme-switch.light .theme-switch-track {
+  background: #ffe1c9;
+}
+
+.theme-switch.light .theme-switch-thumb {
+  background: #ff7a24;
+  color: #ffffff;
+  transform: translateX(18px);
+}
+
+.theme-switch-label {
+  min-width: 33px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Light theme switch */
+
+[data-theme="light"] .theme-switch {
+  color: #252525;
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .theme-switch-track {
+  background: #dedfe4;
+}
+
+[data-theme="light"] .theme-switch.light .theme-switch-track {
+  background: #ffe1c9;
+}
+
+
+/* =====================================
+   THEME LOADER BACKDROP
+===================================== */
+
+/* =====================================
+   FIXED CENTER THEME LOADER
+===================================== */
+
+.theme-loader-backdrop {
+  position: fixed !important;
+
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+
+  z-index: 2147483647 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(5, 7, 12, 0.72);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  animation: themeBackdropIn 0.3s ease;
+}
+
+.theme-loader-modal {
+  position: relative;
+  flex: 0 1 390px;
+
+  width: 100%;
+  max-width: 390px;
+
+  margin: auto !important;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 38px 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+
+  background: linear-gradient(145deg, #222226, #121215);
+  color: #ffffff;
+
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.4);
+
+  animation: themeLoaderIn 0.4s ease;
+}
+
+@media (max-width: 480px) {
+  .theme-loader-modal {
+    max-width: 340px;
+    padding: 32px 22px;
+    border-radius: 19px;
+  }
+}
+
+@keyframes themeBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =====================================
+   THEME LOADER MODAL
+===================================== */
+
+.theme-loader-modal {
+  width: 100%;
+  max-width: 390px;
+
+  padding: 38px 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+
+  background: linear-gradient(145deg, #222226, #121215);
+  color: #ffffff;
+
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.4);
+
+  animation: themeLoaderIn 0.4s ease;
+}
+
+@keyframes themeLoaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* Theme icon */
+
+.theme-loader-icon {
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 20px;
+
+  color: #ff8a45;
+  background: rgba(255, 90, 0, 0.13);
+
+  animation: themeIconPulse 1.2s ease-in-out infinite;
+}
+
+.theme-loader-icon.light {
+  color: #ff9b42;
+  background: rgba(255, 154, 66, 0.14);
+}
+
+.theme-loader-icon.dark {
+  color: #b8c5ff;
+  background: rgba(120, 140, 255, 0.13);
+}
+
+@keyframes themeIconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 120, 40, 0.1);
+  }
+
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 12px rgba(255, 120, 40, 0.04);
+  }
+}
+
+
+/* Loader text */
+
+.theme-loader-modal h2 {
+  margin: 0 0 9px;
+
+  color: #ffffff;
+
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+.theme-loader-modal p {
+  margin: 0;
+
+  color: #a5a5ad;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+/* =====================================
+   ANIMATED PROGRESS BAR
+===================================== */
+
+.theme-loader {
+  width: 100%;
+  height: 5px;
+
+  margin-top: 28px;
+
+  overflow: hidden;
+  border-radius: 20px;
+
+  background: #38383e;
+}
+
+.theme-loader span {
+  display: block;
+
+  width: 40%;
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    90deg,
+    #ff5a00,
+    #ffad70,
+    #ff5a00
+  );
+
+  animation: themeProgress 1s ease-in-out infinite;
+}
+
+@keyframes themeProgress {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(270%);
+  }
+}
+
+
+/* Loader status */
+
+.theme-loader-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 19px;
+
+  color: #85858e;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.theme-loader-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: #ff762e;
+
+  animation: statusBlink 0.8s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+  0%, 100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* =====================================
+   LIGHT THEME LOADER
+===================================== */
+
+[data-theme="light"] .theme-loader-modal {
+  background: linear-gradient(145deg, #ffffff, #f5f6f8);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #20242b;
+}
+
+[data-theme="light"] .theme-loader-modal h2 {
+  color: #20242b;
+}
+
+[data-theme="light"] .theme-loader-modal p {
+  color: #687386;
+}
+
+[data-theme="light"] .theme-loader {
+  background: #e5e7eb;
+}
+
+[data-theme="light"] .theme-loader-status {
+  color: #687386;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 480px) {
+  .theme-loader-modal {
+    max-width: 340px;
+    padding: 32px 22px;
+    border-radius: 19px;
+  }
+
+  .theme-loader-modal h2 {
+    font-size: 19px;
+  }
+}
+
+/* =====================================
+   MOBILE THEME SWITCH — ICON ONLY
+===================================== */
+
+@media (max-width: 900px) {
+  .theme-switch {
+    gap: 0;
+    padding: 4px;
+  }
+
+  .theme-switch-label {
+    display: none !important;
+  }
+
+  .theme-switch-track {
+    flex-shrink: 0;
+  }
+}

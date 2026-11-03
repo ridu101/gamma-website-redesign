@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Layers3, Sparkles } from "lucide-react";
 
 import { products } from "../data/products";
-import "./Products.css";
+import "./HomeProducts.css";
 
 const Products = () => {
   const previewProducts = products.slice(0, 3);

@@ -1,0 +1,905 @@
+
+/* =====================================
+   COMPANY PROFILE
+===================================== */
+
+.gs-company-profile {
+  background: var(--gs-bg-primary);
+  color: var(--gs-text-primary);
+  min-height: 100vh;
+  overflow: clip;
+}
+
+
+/* =====================================
+   SMOOTH ANIMATION SYSTEM
+===================================== */
+
+:root {
+  --gs-profile-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gs-profile-transition: 0.45s var(--gs-profile-ease);
+}
+
+@keyframes gsProfileFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 35px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gsProfileFadeRight {
+  from {
+    opacity: 0;
+    transform: translate3d(45px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gsProfileFadeLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-35px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gsProfileSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gsProfileLoadingBar {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes gsProfileGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(0.9);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@keyframes gsProfileBackgroundZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+
+/* =====================================
+   TOP HERO - DARK THEME
+===================================== */
+
+.gs-profile-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 45px 20px;
+  margin-top: 100px;
+
+  text-align: center;
+  overflow: hidden;
+
+  background-color: #090f1c;
+
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(5, 10, 20, 0.88),
+      rgba(5, 10, 20, 0.68)
+    ),
+    url("https://webagentur-twopixels.de/assets/images/heroes/hero-seo.webp");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Orange Glow */
+
+.gs-profile-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  width: 380px;
+  height: 380px;
+
+  top: -230px;
+  left: 50%;
+
+  transform: translateX(-50%);
+  border-radius: 50%;
+
+  background: rgba(255, 90, 0, 0.22);
+  filter: blur(90px);
+
+  animation: gsProfileGlow 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Bottom Orange Line */
+
+.gs-profile-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 90, 0, 0.65),
+    transparent
+  );
+}
+
+/* Hero Content */
+
+.gs-profile-hero-overlay {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 850px;
+
+  animation: gsProfileFadeUp 1.1s var(--gs-profile-ease) both;
+}
+
+.gs-profile-hero-label {
+  display: inline-block;
+
+  color: #ff7130;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+
+  margin-bottom: 14px;
+
+  animation: gsProfileFadeUp 0.9s var(--gs-profile-ease) both;
+}
+
+.gs-profile-hero h1 {
+  color: #ffffff;
+
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+
+  margin-bottom: 15px;
+
+  animation: gsProfileFadeUp 1s var(--gs-profile-ease) 0.12s both;
+}
+
+.gs-profile-hero h1 span {
+  color: #ff7130;
+}
+
+.gs-profile-hero p {
+  max-width: 720px;
+  margin: auto;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 400;
+
+  animation: gsProfileFadeUp 1s var(--gs-profile-ease) 0.24s both;
+}
+
+
+/* =====================================
+   LIGHT THEME HERO
+===================================== */
+
+[data-theme="light"] .gs-profile-hero {
+  background-color: #f4f6fa;
+
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(255, 248, 242, 0.88)
+    ),
+    url("https://webagentur-twopixels.de/assets/images/heroes/hero-seo.webp");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+[data-theme="light"] .gs-profile-hero::before {
+  background: rgba(255, 90, 0, 0.13);
+}
+
+[data-theme="light"] .gs-profile-hero-label {
+  color: #e94e00;
+}
+
+[data-theme="light"] .gs-profile-hero h1 {
+  color: #172033;
+}
+
+[data-theme="light"] .gs-profile-hero h1 span {
+  color: #ff5a00;
+}
+
+[data-theme="light"] .gs-profile-hero p {
+  color: #596273;
+}
+
+
+/* =====================================
+   DARK THEME HERO
+===================================== */
+
+[data-theme="dark"] .gs-profile-hero {
+  background-color: #090f1c;
+
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(5, 10, 20, 0.88),
+      rgba(5, 10, 20, 0.68)
+    ),
+    url("https://webagentur-twopixels.de/assets/images/heroes/hero-seo.webp");
+}
+
+[data-theme="dark"] .gs-profile-hero-label {
+  color: #ff7130;
+}
+
+[data-theme="dark"] .gs-profile-hero h1 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .gs-profile-hero h1 span {
+  color: #ff7130;
+}
+
+[data-theme="dark"] .gs-profile-hero p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+
+/* =====================================
+   MAIN LAYOUT
+===================================== */
+
+.gs-profile-main {
+  padding: 75px 20px;
+}
+
+.gs-profile-container {
+  width: 100%;
+  max-width: 1250px;
+  margin: auto;
+}
+
+.gs-profile-main .gs-profile-container {
+  display: grid;
+  grid-template-columns: 0.8fr 1.5fr;
+  gap: 40px;
+  align-items: start;
+}
+
+
+/* =====================================
+   LEFT CONTENT - STICKY
+===================================== */
+
+.gs-profile-info {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  padding-top: 12px;
+
+  animation: gsProfileFadeLeft 1s var(--gs-profile-ease) both;
+}
+
+.gs-profile-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #ff5a00;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.gs-profile-info h2 {
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.2;
+  font-weight: 800;
+  margin: 20px 0;
+}
+
+.gs-profile-info h2 span {
+  color: #ff5a00;
+}
+
+.gs-profile-description {
+  color: var(--gs-text-secondary);
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 25px;
+}
+
+
+/* =====================================
+   INFO CARDS
+===================================== */
+
+.gs-profile-info-card {
+  padding: 22px;
+  margin-bottom: 18px;
+
+  border: 1px solid var(--gs-border);
+  border-radius: 12px;
+  background: var(--gs-bg-card);
+
+  transition:
+    transform var(--gs-profile-transition),
+    border-color var(--gs-profile-transition),
+    box-shadow var(--gs-profile-transition);
+
+  will-change: transform;
+}
+
+.gs-profile-info-card:nth-of-type(1) {
+  animation: gsProfileFadeUp 0.9s var(--gs-profile-ease) 0.2s both;
+}
+
+.gs-profile-info-card:nth-of-type(2) {
+  animation: gsProfileFadeUp 0.9s var(--gs-profile-ease) 0.35s both;
+}
+
+.gs-profile-info-card:hover {
+  transform: translate3d(0, -5px, 0);
+  border-color: rgba(255, 90, 0, 0.4);
+  box-shadow: 0 14px 35px rgba(255, 90, 0, 0.09);
+}
+
+.gs-profile-info-card > svg {
+  color: #ff5a00;
+  margin-bottom: 12px;
+}
+
+.gs-profile-info-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.gs-profile-info-card p,
+.gs-profile-info-card li {
+  color: var(--gs-text-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.gs-profile-info-card ul {
+  padding-left: 18px;
+}
+
+
+/* =====================================
+   DOWNLOAD BUTTON
+===================================== */
+
+.gs-profile-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+  margin-top: 8px;
+
+  border-radius: 8px;
+  background: #ff5a00;
+  color: #fff;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background var(--gs-profile-transition),
+    transform var(--gs-profile-transition),
+    box-shadow var(--gs-profile-transition);
+
+  animation: gsProfileFadeUp 0.9s var(--gs-profile-ease) 0.5s both;
+}
+
+.gs-profile-download-btn:hover {
+  background: #ff7833;
+  color: #fff;
+  transform: translate3d(0, -4px, 0);
+  box-shadow: 0 10px 25px rgba(255, 90, 0, 0.22);
+}
+
+
+/* =====================================
+   RIGHT PDF VIEWER
+===================================== */
+
+.gs-profile-preview {
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid var(--gs-border);
+  border-radius: 13px;
+
+  background: var(--gs-bg-card);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+
+  animation: gsProfileFadeRight 1s var(--gs-profile-ease) 0.15s both;
+}
+
+.gs-profile-viewer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 17px;
+  background: #151d2d;
+  color: #fff;
+}
+
+.gs-profile-file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.gs-profile-pdf-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 8px;
+  background: #ff5a00;
+}
+
+.gs-profile-file-info h3 {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.gs-profile-file-info p {
+  color: #aab2c0;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+
+/* VIEWER ACTIONS */
+
+.gs-profile-viewer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gs-profile-viewer-actions a,
+.gs-profile-viewer-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #596477;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #fff;
+
+  text-decoration: none;
+  font-size: 11px;
+  cursor: pointer;
+
+  transition:
+    background var(--gs-profile-transition),
+    border-color var(--gs-profile-transition),
+    transform var(--gs-profile-transition);
+}
+
+.gs-profile-viewer-actions a:hover,
+.gs-profile-viewer-actions button:hover {
+  background: #ff5a00;
+  color: #fff;
+  border-color: #ff5a00;
+  transform: translateY(-2px);
+}
+
+
+/* =====================================
+   PDF PREVIEW + LOADING
+===================================== */
+
+.gs-profile-viewer {
+  position: relative;
+  width: 100%;
+  height: 750px;
+  background: #e8edf3;
+}
+
+.gs-profile-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* PDF LOADING SCREEN */
+
+.gs-profile-pdf-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 20px;
+  text-align: center;
+
+  background: #e8edf3;
+  color: #172033;
+}
+
+.gs-profile-loader-icon {
+  color: #ff5a00;
+  margin-bottom: 18px;
+  animation: gsProfileSpin 1.2s linear infinite;
+}
+
+.gs-profile-pdf-loading h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.gs-profile-pdf-loading p {
+  font-size: 12px;
+  color: #687386;
+}
+
+.gs-profile-loader-bar {
+  width: 150px;
+  height: 4px;
+  margin-top: 22px;
+
+  overflow: hidden;
+  border-radius: 10px;
+  background: #cbd4df;
+}
+
+.gs-profile-loader-bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+
+  border-radius: inherit;
+  background: #ff5a00;
+
+  animation: gsProfileLoadingBar 1.5s ease-in-out infinite;
+}
+
+
+/* PDF ERROR */
+
+.gs-profile-pdf-error {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 20px;
+  background: #e8edf3;
+  color: #172033;
+  text-align: center;
+}
+
+.gs-profile-pdf-error svg {
+  color: #ff5a00;
+}
+
+.gs-profile-pdf-error h3 {
+  font-size: 16px;
+}
+
+.gs-profile-pdf-error p {
+  font-size: 12px;
+  color: #687386;
+}
+
+.gs-profile-viewer:fullscreen {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+
+/* VIEWER FOOTER */
+
+.gs-profile-viewer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 13px 17px;
+
+  color: var(--gs-text-secondary);
+  font-size: 11px;
+}
+
+.gs-profile-viewer-footer span,
+.gs-profile-viewer-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.gs-profile-viewer-footer a {
+  color: #ff5a00;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.gs-profile-viewer-footer a:hover {
+  color: #ff7833;
+}
+
+
+/* =====================================
+   BOTTOM CTA
+===================================== */
+
+.gs-profile-bottom {
+  padding: 55px 20px;
+  background: var(--gs-bg-secondary);
+}
+
+.gs-profile-bottom .gs-profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.gs-profile-bottom span {
+  color: #ff5a00;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.gs-profile-bottom h2 {
+  font-size: 25px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+
+.gs-profile-bottom h2 strong {
+  color: #ff5a00;
+}
+
+.gs-profile-bottom button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ff5a00;
+  color: #fff;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background var(--gs-profile-transition),
+    transform var(--gs-profile-transition),
+    box-shadow var(--gs-profile-transition);
+}
+
+.gs-profile-bottom button:hover {
+  background: #ff7833;
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 90, 0, 0.22);
+}
+
+
+/* =====================================
+   LIGHT THEME
+===================================== */
+
+[data-theme="light"] .gs-profile-info-card {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .gs-profile-preview {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* back button */
+
+.gs-profile-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: fit-content;
+  margin: 18px auto 26px;
+  padding: 11px 20px;
+
+  background: rgba(255, 90, 0, 0.10);
+  border: 1px solid rgba(255, 90, 0, 0.30);
+  border-radius: 8px;
+
+  color: #ff5a00;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gs-profile-back-btn:hover {
+  background: #ff5a00;
+  border-color: #ff5a00;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(255, 90, 0, 0.22);
+}
+
+.gs-profile-back-btn:active {
+  transform: translateY(-1px);
+}
+
+.gs-profile-back-btn:focus-visible {
+  outline: 2px solid #ff5a00;
+  outline-offset: 4px;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+
+  .gs-profile-main .gs-profile-container {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-profile-info {
+    position: static;
+  }
+
+  .gs-profile-viewer {
+    height: 650px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .gs-profile-hero {
+    min-height: 210px;
+    padding: 40px 18px;
+    margin-top: 85px;
+  }
+
+  .gs-profile-hero h1 {
+    font-size: 32px;
+  }
+
+  .gs-profile-hero p {
+    font-size: 12px;
+  }
+
+  .gs-profile-main {
+    padding: 45px 16px;
+  }
+
+  .gs-profile-viewer-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .gs-profile-viewer {
+    height: 500px;
+  }
+
+  .gs-profile-viewer-actions {
+    flex-wrap: wrap;
+  }
+
+  .gs-profile-bottom .gs-profile-container {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .gs-profile-bottom h2 {
+    font-size: 21px;
+  }
+
+}
+
+
+/* =====================================
+   REDUCED MOTION ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gs-company-profile *,
+  .gs-company-profile *::before,
+  .gs-company-profile *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+}

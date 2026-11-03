@@ -7,16 +7,38 @@ import {
   Workflow,
   Sparkles,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { services } from "../data/services";
 import "../sections/Services.css";
 
 const ServicesPage = () => {
-  const [selectedSlug, setSelectedSlug] = useState(services[0]?.slug);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const requestedServiceSlug = searchParams.get("service");
+
+  const [selectedSlug, setSelectedSlug] = useState(() => {
+    const matchedService = services.find(
+      (item) => item.slug === requestedServiceSlug
+    );
+
+    return matchedService?.slug || services[0]?.slug;
+  });
   const detailsRef = useRef(null);
   const sectionRef = useRef(null);
   const navigate = useNavigate();
+  // Sync selected service with URL query parameter
+  useEffect(() => {
+    if (!requestedServiceSlug) return;
+
+    const matchedService = services.find(
+      (item) => item.slug === requestedServiceSlug
+    );
+
+    if (matchedService) {
+      setSelectedSlug(matchedService.slug);
+    }
+  }, [requestedServiceSlug]);
 
   const selectedService =
     services.find((item) => item.slug === selectedSlug) || services[0];

@@ -1023,3 +1023,235 @@
     transition-duration: 0.01ms !important;
   }
 }
+/* =========================================
+   HOMEPAGE PRODUCTS → PROJECTS GAP FIX
+========================================= */
+
+.gs-home-products + .gs-projects {
+  padding-top: 45px;
+}
+
+@media (max-width: 700px) {
+  .gs-home-products + .gs-projects {
+    padding-top: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gs-home-products + .gs-projects {
+    padding-top: 25px;
+  }
+}
+
+/* =========================================
+   HOMEPAGE PROJECTS → TESTIMONIALS GAP FIX
+========================================= */
+
+.gs-projects {
+  padding-bottom: 45px;
+}
+
+@media (max-width: 650px) {
+  .gs-projects {
+    padding-bottom: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gs-projects {
+    padding-bottom: 25px;
+  }
+}
+/* =========================================
+   GAMMASOFT PROJECTS — LIGHT THEME
+   Theme Toggle Only
+========================================= */
+
+[data-theme="light"] .gs-projects {
+  --gs-border: rgba(20, 20, 25, 0.10);
+
+  background: #f7f8fa;
+  color: #19191e;
+}
+
+/* Background */
+
+[data-theme="light"] .gs-projects::before {
+  background-image:
+    linear-gradient(rgba(20, 20, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 20, 25, 0.045) 1px, transparent 1px);
+}
+
+/* Heading */
+
+[data-theme="light"] .gs-projects-heading h2 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-projects-heading > p {
+  color: #686873;
+}
+
+/* Statistics */
+
+[data-theme="light"] .gs-project-stat p {
+  color: #686873;
+}
+
+/* Category Filters */
+
+[data-theme="light"] .gs-project-filter {
+  background: rgba(20, 20, 25, 0.035);
+  color: #555560;
+}
+
+[data-theme="light"] .gs-project-filter:hover {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-project-filter.active {
+  color: #fff;
+}
+
+/* Project Cards */
+
+[data-theme="light"] .gs-project-card {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #f1f2f5 100%
+  );
+
+  box-shadow: 0 8px 25px rgba(20, 20, 25, 0.035);
+}
+
+[data-theme="light"] .gs-project-card:hover {
+  box-shadow:
+    0 20px 55px rgba(20, 20, 25, 0.10),
+    0 0 35px rgba(255, 107, 26, 0.06);
+}
+
+[data-theme="light"] .gs-project-number {
+  color: #85858e;
+}
+
+[data-theme="light"] .gs-project-arrow {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-project-card:hover .gs-project-arrow {
+  color: #fff;
+}
+
+/* Card Content */
+
+[data-theme="light"] .gs-project-card-content h3 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-project-card-content h4 {
+  color: #555560;
+}
+
+[data-theme="light"] .gs-project-card-content p {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-project-details-btn {
+  color: #292930;
+}
+
+[data-theme="light"] .gs-project-details-btn:hover {
+  color: var(--gs-accent-dark);
+}
+
+/* View All Projects */
+
+[data-theme="light"] .gs-project-view-all a {
+  background: rgba(255, 107, 26, 0.055);
+  color: #292930;
+}
+
+[data-theme="light"] .gs-project-view-all a:hover {
+  color: #fff;
+}
+
+/* Empty State */
+
+[data-theme="light"] .gs-project-empty {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-project-empty h3 {
+  color: #19191e;
+}
+
+/* Project CTA */
+
+[data-theme="light"] .gs-project-cta {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 90, 0, 0.09),
+    rgba(255, 255, 255, 0.85)
+  );
+
+  box-shadow: 0 8px 30px rgba(20, 20, 25, 0.035);
+}
+
+[data-theme="light"] .gs-project-cta h3 {
+  color: #19191e;
+}
+
+/* Modal Overlay */
+
+[data-theme="light"] .gs-project-modal-overlay {
+  background: rgba(20, 20, 25, 0.55);
+}
+
+/* Modal */
+
+[data-theme="light"] .gs-project-modal {
+  background: #ffffff;
+  border-color: rgba(255, 107, 26, 0.25);
+
+  box-shadow: 0 30px 100px rgba(20, 20, 25, 0.20);
+
+  scrollbar-color: var(--gs-accent-dark) #f0f1f4;
+}
+
+[data-theme="light"] .gs-project-modal-close {
+  background: #f0f1f4;
+  color: #292930;
+}
+
+[data-theme="light"] .gs-project-modal-close:hover {
+  color: #fff;
+}
+
+[data-theme="light"] .gs-project-modal h2 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-project-modal h4 {
+  color: #686873;
+}
+
+[data-theme="light"] .gs-project-modal-description {
+  color: #555560;
+}
+
+[data-theme="light"] .gs-project-modal-features h3 {
+  color: #19191e;
+}
+
+[data-theme="light"] .gs-project-feature-list > div {
+  color: #555560;
+}
+
+[data-theme="light"] .gs-project-suitable {
+  background: #f2f3f5;
+}
+
+[data-theme="light"] .gs-project-suitable p {
+  color: #555560;
+}

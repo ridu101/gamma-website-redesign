@@ -1,0 +1,1071 @@
+
+/* =========================================
+   GAMMASOFT - GET A QUOTE
+   FUTURISTIC DARK / ORANGE DESIGN
+========================================= */
+
+.gs-quote-page {
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #101010;
+  color: #f5f5f5;
+}
+
+.gs-quote-container {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.gs-quote-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 520px;
+  padding: 175px 0 90px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 82% 40%, rgba(255, 90, 0, 0.15), transparent 38%),
+    linear-gradient(135deg, #171717, #101010 70%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gs-quote-hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: linear-gradient(90deg, transparent, black 25%, black 80%, transparent);
+}
+
+.gs-quote-hero-glow {
+  position: absolute;
+  z-index: -1;
+  top: 60px;
+  right: -180px;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: rgba(255, 90, 0, 0.10);
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+.gs-quote-hero-content {
+  max-width: 850px;
+  animation: gsQuoteHeroReveal 0.9s cubic-bezier(.22,1,.36,1) both;
+}
+
+.gs-quote-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 9px 15px;
+  border: 1px solid rgba(255, 90, 0, 0.3);
+  border-radius: 30px;
+  background: rgba(255, 90, 0, 0.07);
+  color: #ff8a50;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.gs-quote-eyebrow svg {
+  color: #ff762b;
+}
+
+.gs-quote-hero h1 {
+  max-width: 850px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(43px, 6vw, 76px);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -3.5px;
+}
+
+.gs-quote-hero h1 span {
+  display: block;
+  background: linear-gradient(90deg, #ff5a00, #ff9b62);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gs-quote-hero-content > p {
+  max-width: 590px;
+  margin: 25px 0 0;
+  color: #a5a5a5;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.gs-quote-hero-points {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 23px;
+  margin-top: 32px;
+}
+
+.gs-quote-hero-points span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #c2c2c2;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.gs-quote-hero-points svg {
+  color: #ff762b;
+}
+
+.gs-quote-hero-bottom {
+  position: absolute;
+  right: max(24px, calc((100vw - 1200px) / 2));
+  bottom: 24px;
+  left: max(24px, calc((100vw - 1200px) / 2));
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #777;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+/* =========================================
+   CONTENT SECTION
+========================================= */
+
+.gs-quote-content {
+  padding: 100px 0 110px;
+  background:
+    radial-gradient(ellipse at 0% 10%, rgba(255, 90, 0, 0.035), transparent 35%),
+    #101010;
+}
+
+.gs-quote-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.35fr);
+  align-items: start;
+  gap: 65px;
+}
+
+/* =========================================
+   LEFT INFORMATION - STICKY SIDEBAR
+========================================= */
+
+.gs-quote-info {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  height: fit-content;
+  min-width: 0;
+  padding-top: 15px;
+  animation: gsQuoteLeftReveal 0.8s 0.1s both;
+}
+
+.gs-quote-section-label {
+  display: inline-block;
+  color: #ff8245;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1.8px;
+}
+
+.gs-quote-info > h2 {
+  margin: 19px 0;
+  color: #fff;
+  font-size: clamp(33px, 4vw, 47px);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -1.8px;
+}
+
+.gs-quote-info > h2 span {
+  display: block;
+  color: #ff6b1a;
+}
+
+.gs-quote-info > p {
+  margin: 0;
+  color: #99999f;
+  font-size: 13px;
+  line-height: 1.95;
+}
+
+.gs-quote-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.gs-quote-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.gs-quote-benefit-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgba(255, 90, 0, 0.24);
+  border-radius: 12px;
+  background: rgba(255, 90, 0, 0.09);
+  color: #ff8245;
+  transition: all 0.3s ease;
+}
+
+.gs-quote-benefit:hover .gs-quote-benefit-icon {
+  background: #ff5a00;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.gs-quote-benefit h3 {
+  margin: 2px 0 7px;
+  color: #eee;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.gs-quote-benefit p {
+  margin: 0;
+  color: #92929a;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* WhatsApp card */
+
+.gs-quote-whatsapp-box {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 42px;
+  padding: 17px;
+  border: 1px solid rgba(54, 217, 130, 0.19);
+  border-radius: 13px;
+  background: rgba(54, 217, 130, 0.045);
+}
+
+.gs-quote-whatsapp-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: rgba(54, 217, 130, 0.12);
+  color: #36d982;
+}
+
+.gs-quote-whatsapp-box > div:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.gs-quote-whatsapp-box h3 {
+  margin: 0 0 5px;
+  color: #e8e8e8;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.gs-quote-whatsapp-box p {
+  margin: 0;
+  color: #96969c;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.gs-quote-whatsapp-box > button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(54, 217, 130, 0.3);
+  border-radius: 50%;
+  background: rgba(54, 217, 130, 0.1);
+  color: #36d982;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gs-quote-whatsapp-box > button:hover {
+  background: #20b96b;
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.gs-quote-form-card {
+  position: relative;
+  min-width: 0;
+  padding: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 19px;
+  background: linear-gradient(145deg, #1c1c1e, #151517);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.2);
+  animation: gsQuoteRightReveal 0.85s 0.12s both;
+}
+
+.gs-quote-form-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 33px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.gs-quote-form-heading > div:first-child > span {
+  color: #ff8245;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.7px;
+}
+
+.gs-quote-form-heading h2 {
+  margin: 11px 0 8px;
+  color: #fff;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.gs-quote-form-heading p {
+  margin: 0;
+  color: #99999f;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.gs-quote-form-heading-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 90, 0, 0.25);
+  border-radius: 13px;
+  background: rgba(255, 90, 0, 0.1);
+  color: #ff762b;
+}
+
+/* =========================================
+   FORM GRID & FIELDS
+========================================= */
+
+.gs-quote-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 23px 18px;
+}
+
+.gs-quote-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.gs-quote-field-full {
+  grid-column: 1 / -1;
+}
+
+.gs-quote-field label {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gs-quote-field label span {
+  color: #ff6b1a;
+}
+
+.gs-quote-field input,
+.gs-quote-field select,
+.gs-quote-field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 9px;
+  outline: none;
+  background: #121316;
+  color: #f5f5f5;
+  font-family: inherit;
+  font-size: 12px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.gs-quote-field input,
+.gs-quote-field select {
+  min-height: 48px;
+}
+
+.gs-quote-field textarea {
+  min-height: 145px;
+  resize: vertical;
+  line-height: 1.8;
+}
+
+.gs-quote-field input::placeholder,
+.gs-quote-field textarea::placeholder {
+  color: #686870;
+}
+
+.gs-quote-field select {
+  color: #b9b9c0;
+  cursor: pointer;
+}
+
+.gs-quote-field select:valid {
+  color: #f5f5f5;
+}
+
+.gs-quote-field select option {
+  background: #17191f;
+  color: #fff;
+}
+
+.gs-quote-field input:focus,
+.gs-quote-field select:focus,
+.gs-quote-field textarea:focus {
+  border-color: rgba(255, 90, 0, 0.75);
+  background: #171719;
+  box-shadow: 0 0 0 3px rgba(255, 90, 0, 0.09);
+}
+
+/* Browser autofill */
+
+.gs-quote-field input:-webkit-autofill,
+.gs-quote-field input:-webkit-autofill:hover,
+.gs-quote-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  box-shadow: 0 0 0 1000px #171719 inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.gs-quote-error {
+  margin-top: 20px;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  border-radius: 8px;
+  background: rgba(255, 80, 80, 0.08);
+  color: #ff8d8d;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   SUBMIT AREA
+========================================= */
+
+.gs-quote-submit-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 28px;
+  padding-top: 23px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.gs-quote-submit-area > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 240px;
+  margin: 0;
+  color: #92929a;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.gs-quote-submit-area > p svg {
+  flex-shrink: 0;
+  color: #ff8245;
+}
+
+.gs-quote-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff7936, #ff5a00 65%, #e84c00);
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gs-quote-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff9259, #ff6a1a);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 90, 0, 0.22);
+}
+
+.gs-quote-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.gs-quote-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: gsQuoteSpin 0.7s linear infinite;
+}
+
+/* =========================================
+   BOTTOM CTA
+========================================= */
+
+.gs-quote-bottom {
+  padding: 0 0 100px;
+  background: #101010;
+}
+
+.gs-quote-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 38px 42px;
+  border: 1px solid rgba(255, 90, 0, 0.22);
+  border-radius: 17px;
+  background: linear-gradient(110deg, rgba(255, 90, 0, 0.12), rgba(255, 255, 255, 0.025));
+}
+
+.gs-quote-bottom-inner > div > span {
+  color: #ff8245;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.gs-quote-bottom-inner h2 {
+  margin: 12px 0 0;
+  color: #fff;
+  font-size: clamp(21px, 3vw, 30px);
+  line-height: 1.4;
+}
+
+.gs-quote-bottom-inner h2 strong {
+  color: #ff6b1a;
+}
+
+.gs-quote-bottom-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 14px 19px;
+  border: 1px solid rgba(54, 217, 130, 0.3);
+  border-radius: 9px;
+  background: rgba(54, 217, 130, 0.1);
+  color: #42dc91;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gs-quote-bottom-button:hover {
+  background: #20b96b;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes gsQuoteHeroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes gsQuoteLeftReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gsQuoteRightReveal {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gsQuoteSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+[data-theme="light"] .gs-quote-page {
+  background: #F5F7FA;
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-hero {
+  background:
+    radial-gradient(ellipse at 82% 40%, rgba(255, 90, 0, 0.09), transparent 38%),
+    linear-gradient(135deg, #FFFFFF, #F1F4F8 70%);
+  border-bottom-color: rgba(30, 41, 59, 0.10);
+}
+
+[data-theme="light"] .gs-quote-hero-grid {
+  background-image:
+    linear-gradient(rgba(30, 41, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 59, 0.045) 1px, transparent 1px);
+}
+
+[data-theme="light"] .gs-quote-hero-glow {
+  background: rgba(255, 90, 0, 0.07);
+}
+
+[data-theme="light"] .gs-quote-hero h1 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-hero-content > p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-quote-hero-points span {
+  color: #596579;
+}
+
+[data-theme="light"] .gs-quote-hero-bottom {
+  border-top-color: rgba(30, 41, 59, 0.12);
+  color: #8A93A1;
+}
+
+[data-theme="light"] .gs-quote-content {
+  background:
+    radial-gradient(ellipse at 0% 10%, rgba(255, 90, 0, 0.04), transparent 35%),
+    #F5F7FA;
+}
+
+[data-theme="light"] .gs-quote-info > h2 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-info > p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-quote-benefit h3 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-benefit p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-quote-whatsapp-box {
+  background: rgba(54, 180, 110, 0.045);
+  border-color: rgba(54, 180, 110, 0.2);
+}
+
+[data-theme="light"] .gs-quote-whatsapp-box h3 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-whatsapp-box p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-quote-form-card {
+  background: linear-gradient(145deg, #FFFFFF, #F0F3F7);
+  border-color: rgba(30, 41, 59, 0.10);
+  box-shadow: 0 20px 55px rgba(30, 41, 59, 0.08);
+}
+
+[data-theme="light"] .gs-quote-form-heading {
+  border-bottom-color: rgba(30, 41, 59, 0.1);
+}
+
+[data-theme="light"] .gs-quote-form-heading h2 {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-form-heading p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-quote-field label {
+  color: #343D4B;
+}
+
+[data-theme="light"] .gs-quote-field input,
+[data-theme="light"] .gs-quote-field select,
+[data-theme="light"] .gs-quote-field textarea {
+  background: #FFFFFF;
+  border-color: rgba(30, 41, 59, 0.14);
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-field input::placeholder,
+[data-theme="light"] .gs-quote-field textarea::placeholder {
+  color: #929BA9;
+}
+
+[data-theme="light"] .gs-quote-field select {
+  color: #596579;
+}
+
+[data-theme="light"] .gs-quote-field select:valid {
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-field select option {
+  background: #FFFFFF;
+  color: #20242B;
+}
+
+[data-theme="light"] .gs-quote-field input:focus,
+[data-theme="light"] .gs-quote-field select:focus,
+[data-theme="light"] .gs-quote-field textarea:focus {
+  background: #FFFFFF;
+}
+
+[data-theme="light"] .gs-quote-field input:-webkit-autofill,
+[data-theme="light"] .gs-quote-field input:-webkit-autofill:hover,
+[data-theme="light"] .gs-quote-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #20242B;
+  box-shadow: 0 0 0 1000px #FFFFFF inset;
+}
+
+[data-theme="light"] .gs-quote-submit-area {
+  border-top-color: rgba(30, 41, 59, 0.1);
+}
+
+[data-theme="light"] .gs-quote-submit-area > p {
+  color: #687386;
+}
+
+[data-theme="light"] .gs-quote-bottom {
+  background: #F5F7FA;
+}
+
+[data-theme="light"] .gs-quote-bottom-inner {
+  background: linear-gradient(110deg, rgba(255, 90, 0, 0.08), #FFFFFF);
+  border-color: rgba(255, 90, 0, 0.2);
+}
+
+[data-theme="light"] .gs-quote-bottom-inner h2 {
+  color: #20242B;
+}
+
+/* =========================================
+   SELECTED PRODUCT
+========================================= */
+
+.gs-quote-selected-product {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 19px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 90, 0, 0.25);
+  border-radius: 14px;
+  background: rgba(255, 90, 0, 0.055);
+}
+
+.gs-quote-selected-product-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7133;
+  background: rgba(255, 90, 0, 0.12);
+  border-radius: 12px;
+}
+
+.gs-quote-selected-product-info {
+  min-width: 0;
+}
+
+.gs-quote-selected-product-info > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff7133;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.gs-quote-selected-product-info h3 {
+  margin: 0;
+  color: var(--text-primary, #ffffff);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.gs-quote-selected-product-info p {
+  margin: 5px 0 0;
+  color: var(--text-secondary, #a5a5a5);
+  font-size: 12px;
+}
+
+[data-theme="light"] .gs-quote-selected-product {
+  background: rgba(255, 90, 0, 0.045);
+  border-color: rgba(255, 90, 0, 0.22);
+}
+
+[data-theme="light"] .gs-quote-selected-product-info h3 {
+  color: #171717;
+}
+
+[data-theme="light"] .gs-quote-selected-product-info p {
+  color: #666666;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+  .gs-quote-layout {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: 35px;
+  }
+
+  .gs-quote-form-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 800px) {
+  .gs-quote-hero {
+    min-height: 460px;
+    padding-top: 155px;
+  }
+
+  .gs-quote-layout {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  /* Sticky disabled on mobile/tablet */
+  .gs-quote-info {
+    position: static;
+    top: auto;
+    height: auto;
+    padding-top: 0;
+  }
+
+  .gs-quote-info > p {
+    max-width: 600px;
+  }
+
+  .gs-quote-benefits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .gs-quote-whatsapp-box {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 560px) {
+  .gs-quote-container {
+    width: min(100% - 36px, 1200px);
+  }
+
+  .gs-quote-hero {
+    min-height: 460px;
+    padding: 140px 0 85px;
+  }
+
+  .gs-quote-hero h1 {
+    font-size: clamp(39px, 10vw, 54px);
+    letter-spacing: -2px;
+  }
+
+  .gs-quote-hero-content > p {
+    font-size: 13px;
+  }
+
+  .gs-quote-hero-points {
+    gap: 13px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gs-quote-hero-bottom {
+    right: 18px;
+    left: 18px;
+    font-size: 8px;
+  }
+
+  .gs-quote-content {
+    padding: 70px 0;
+  }
+
+  .gs-quote-info > h2 {
+    font-size: 36px;
+  }
+
+  .gs-quote-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-quote-form-card {
+    padding: 23px 18px;
+    border-radius: 14px;
+  }
+
+  .gs-quote-form-heading h2 {
+    font-size: 23px;
+  }
+
+  .gs-quote-form-heading-icon {
+    width: 41px;
+    height: 41px;
+  }
+
+  .gs-quote-form-grid {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+
+  .gs-quote-field-full {
+    grid-column: auto;
+  }
+
+  .gs-quote-submit-area {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .gs-quote-submit-area > p {
+    max-width: none;
+  }
+
+  .gs-quote-submit {
+    width: 100%;
+  }
+
+  .gs-quote-bottom {
+    padding-bottom: 70px;
+  }
+
+  .gs-quote-bottom-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 27px 22px;
+  }
+
+  .gs-quote-bottom-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .gs-quote-form-card {
+    padding: 20px 15px;
+  }
+
+  .gs-quote-form-heading h2 {
+    font-size: 21px;
+  }
+
+  .gs-quote-hero h1 {
+    font-size: 37px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.gs-quote-submit:focus-visible,
+.gs-quote-bottom-button:focus-visible,
+.gs-quote-whatsapp-box button:focus-visible {
+  outline: 2px solid #ff8143;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-quote-page *,
+  .gs-quote-page *::before,
+  .gs-quote-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .gs-quote-hero-content,
+  .gs-quote-info,
+  .gs-quote-form-card {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

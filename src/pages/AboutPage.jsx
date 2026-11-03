@@ -1,7 +1,7 @@
 
 import {
-  ArrowLeft,
   ArrowUpRight,
+  Download,
   Lightbulb,
   ShieldCheck,
   Target,
@@ -99,6 +99,17 @@ const AboutPage = () => {
             We transform ideas into meaningful digital experiences
             through technology, creativity and innovation.
           </p>
+
+          {/* COMPANY PROFILE BUTTON */}
+          <button
+            type="button"
+            className="gs-about-profile-button"
+            onClick={() => navigate("/company-profile")}
+          >
+            <Download size={18} />
+            Download Company Profile
+           
+          </button>
 
         </div>
       </section>

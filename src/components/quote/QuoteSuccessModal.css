@@ -1,0 +1,244 @@
+
+/* =========================================
+   QUOTE SUCCESS MODAL
+========================================= */
+
+.quote-success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+
+  display: grid;
+  place-items: center;
+  padding: 20px;
+
+  background: rgba(5, 8, 14, 0.78);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+
+  animation: quoteOverlayIn 0.25s ease both;
+}
+
+.quote-success-modal {
+  position: relative;
+  width: min(100%, 470px);
+  padding: 48px 38px 35px;
+
+  overflow: hidden;
+  border: 1px solid rgba(255, 90, 0, 0.22);
+  border-radius: 22px;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 90, 0, 0.12), transparent 45%),
+    #17191f;
+
+  color: #fff;
+  text-align: center;
+
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+
+  animation: quoteModalIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.quote-success-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  display: grid;
+  place-items: center;
+
+  width: 35px;
+  height: 35px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.quote-success-close:hover {
+  background: #ff5a00;
+  color: #fff;
+  border-color: #ff5a00;
+}
+
+.quote-success-icon {
+  display: grid;
+  place-items: center;
+
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 22px;
+
+  border: 1px solid rgba(255, 90, 0, 0.35);
+  border-radius: 50%;
+
+  background: rgba(255, 90, 0, 0.12);
+  color: #ff7936;
+
+  box-shadow: 0 0 35px rgba(255, 90, 0, 0.12);
+
+  animation: quoteCheckPop 0.55s 0.15s both;
+}
+
+.quote-success-label {
+  color: #ff8a50;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.quote-success-modal h2 {
+  margin: 15px 0 13px;
+  color: #fff;
+  font-size: clamp(25px, 5vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+}
+
+.quote-success-modal h2 span {
+  color: #ff762b;
+}
+
+.quote-success-modal > p {
+  max-width: 350px;
+  margin: 0 auto;
+  color: #a6a9b1;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.quote-demo-notice {
+  margin-top: 20px;
+  padding: 12px 14px;
+
+  border: 1px solid rgba(255, 180, 80, 0.2);
+  border-radius: 9px;
+
+  background: rgba(255, 180, 80, 0.07);
+  color: #e6bd85;
+
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.quote-success-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 27px;
+  padding: 13px 21px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #ff5a00;
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quote-success-button:hover {
+  background: #ff7835;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 90, 0, 0.25);
+}
+
+.quote-success-footer {
+  margin-top: 32px;
+  padding-top: 19px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: #777b84;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.quote-success-footer span {
+  padding: 0 5px;
+  color: #ff5a00;
+}
+
+@keyframes quoteOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes quoteModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes quoteCheckPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* Light Theme */
+
+[data-theme="light"] .quote-success-modal {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 90, 0, 0.08), transparent 45%),
+    #fff;
+
+  border-color: rgba(255, 90, 0, 0.2);
+  box-shadow: 0 30px 90px rgba(30, 41, 59, 0.2);
+}
+
+[data-theme="light"] .quote-success-modal h2 {
+  color: #20242b;
+}
+
+[data-theme="light"] .quote-success-modal > p {
+  color: #687386;
+}
+
+[data-theme="light"] .quote-success-close {
+  color: #596579;
+  border-color: rgba(30, 41, 59, 0.12);
+  background: #f5f7fa;
+}
+
+[data-theme="light"] .quote-success-footer {
+  border-top-color: rgba(30, 41, 59, 0.1);
+}
+
+@media (max-width: 480px) {
+  .quote-success-modal {
+    padding: 45px 23px 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-success-overlay,
+  .quote-success-modal,
+  .quote-success-icon {
+    animation: none !important;
+  }
+}
