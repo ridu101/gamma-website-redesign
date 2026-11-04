@@ -39,49 +39,6 @@
   margin: 0 auto;
 }
 
-/* Background effects */
-
-.gs-services-background {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.gs-glow {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.8;
-  animation: gsServicesGlow 12s ease-in-out infinite alternate;
-}
-
-.gs-glow-left {
-  top: 100px;
-  left: -260px;
-  background: rgba(255, 90, 0, 0.15);
-}
-
-.gs-glow-right {
-  top: 1200px;
-  right: -260px;
-  background: rgba(255, 90, 0, 0.1);
-  animation-delay: -5s;
-}
-
-.gs-grid-background {
-  position: absolute;
-  inset: 0;
-  opacity: 0.2;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 55px 55px;
-  mask-image: linear-gradient(to bottom, black, transparent 90%);
-}
 
 /* Scroll reveal */
 

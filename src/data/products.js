@@ -1,4 +1,3 @@
-
 import {
     Monitor,
     ShoppingCart,
@@ -227,7 +226,6 @@ export const products = [
         ],
     },
 
-
     // =============================================
     // DEVICE SOLUTIONS
     // =============================================
@@ -243,8 +241,8 @@ export const products = [
         tag: "Cash Drawer",
         number: "10",
         image:
-            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=85",
-        imageAlt: "Retail point of sale checkout environment",
+            "https://www.partnertechcorp.com/upload/catalog_b/ALL_catalog_23B13_Al3KfIj8sK.webp",
+        imageAlt: "Black metal POS cash drawer",
         features: [
             "POS cash handling accessory",
             "Designed for retail checkout environments",
@@ -263,8 +261,8 @@ export const products = [
         tag: "Touch POS Terminal",
         number: "11",
         image:
-            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=85",
-        imageAlt: "Point of sale checkout terminal",
+            "https://cdn.cloudbf.com/thumb/format/mini_xsize/files/75/img/2023/12/27/202312271146290173100.jpg.webp",
+        imageAlt: "Black touchscreen POS terminal",
         features: [
             "Touchscreen POS terminal",
             "Designed for business checkout",
@@ -283,8 +281,8 @@ export const products = [
         tag: "All-in-One POS",
         number: "12",
         image:
-            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=85",
-        imageAlt: "POS checkout equipment",
+            "https://image.made-in-china.com/2f0j00nCshdGWfZzuH/Compact-All-in-One-POS-with-Printer.jpg",
+        imageAlt: "All-in-one POS terminal with built-in printer",
         features: [
             "Touchscreen POS terminal",
             "Built-in printer",
@@ -303,8 +301,8 @@ export const products = [
         tag: "Integrated POS",
         number: "13",
         image:
-            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=85",
-        imageAlt: "Integrated point of sale system",
+            "https://cdn.cloudbf.com/thumb/format/mini_xsize/files/75/img/2023/12/27/202312271146290173100.jpg.webp",
+        imageAlt: "Integrated touchscreen POS system",
         features: [
             "Integrated POS solution",
             "Supplied with accessories",
@@ -323,8 +321,8 @@ export const products = [
         tag: "Wireless Scanner",
         number: "14",
         image:
-            "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=1000&q=85",
-        imageAlt: "Barcode scanning equipment",
+            "https://i5.walmartimages.com/asr/a6b1546d-fe18-4350-9650-9df1c63c3084.1c1cb9f685eaba1bb1b019d2b591de52.jpeg",
+        imageAlt: "Wireless handheld barcode scanner",
         features: [
             "Wireless barcode scanner",
             "Barcode-based product identification",
@@ -343,8 +341,8 @@ export const products = [
         tag: "Wireless Scanner",
         number: "15",
         image:
-            "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=1000&q=85",
-        imageAlt: "Barcode scanner device",
+            "https://static.inkstation.com.au/pi/683453/0/barcode_scanner_is_1102dw_m4_4.jpg",
+        imageAlt: "Black cordless barcode scanner",
         features: [
             "Wireless barcode scanner",
             "Product barcode scanning",
@@ -363,8 +361,8 @@ export const products = [
         tag: "Thermal Printer",
         number: "16",
         image:
-            "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1000&q=85",
-        imageAlt: "Thermal printing equipment",
+            "https://cdn.prod.website-files.com/5d9a4a1fc33c893b3b802b79/601ad9eb03a61abd296989d8_eacedf5c-cfc4-4369-9341-f0c57a0a3b74.jpeg",
+        imageAlt: "Black thermal receipt printer",
         features: [
             "Thermal receipt printing",
             "Designed for POS environments",
@@ -383,8 +381,8 @@ export const products = [
         tag: "Customer Display",
         number: "17",
         image:
-            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=85",
-        imageAlt: "Customer-facing POS checkout display",
+            "https://ueeshop.ly200-cdn.com/u_file/UPAW/UPAW955/2401/products/12/6b1c716c0a.png?x-oss-process=image%2Fresize%2Cm_lfit%2Ch_800%2Cw_800",
+        imageAlt: "POS pole-mounted customer display",
         features: [
             "POS pole display",
             "Customer-facing checkout accessory",
@@ -403,17 +401,15 @@ export const products = [
         tag: "Label Printer",
         number: "18",
         image:
-            "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1000&q=85",
-        imageAlt: "Label printing equipment",
+            "https://static1.redcart.pl/templates/images/thumb/8272/1500/1500/pl/0/templates/images/products/8272/b92dd3c3a7b1bf8e0fdec1ca0e7abc11.png",
+        imageAlt: "Desktop barcode label printer",
         features: [
             "Barcode label printing",
             "Product identification support",
             "Inventory labeling workflows",
         ],
     },
-
 ];
-
 
 // =============================================
 // PRODUCT CATEGORIES

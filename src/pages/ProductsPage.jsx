@@ -215,9 +215,7 @@ const ProductsPage = () => {
           </div>
 
           <h1>
-            Solutions That
-            <br />
-            <span>Move Business Forward.</span>
+            Solutions That <span>Move Business Forward.</span>
           </h1>
 
           <p>

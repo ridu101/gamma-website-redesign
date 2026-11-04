@@ -158,55 +158,6 @@
   margin: 0 auto;
 }
 
-/* Background */
-
-.gs-about-grid {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-
-  background-size: 75px 75px;
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 15%,
-    black 85%,
-    transparent
-  );
-
-  animation: gs-about-grid-move 25s linear infinite;
-}
-
-.gs-about-glow {
-  position: absolute;
-  z-index: -1;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(110px);
-}
-
-.gs-about-glow-one {
-  width: 450px;
-  height: 450px;
-  top: 8%;
-  left: -250px;
-  background: rgba(255,90,0,0.12);
-}
-
-.gs-about-glow-two {
-  width: 450px;
-  height: 450px;
-  top: 45%;
-  right: -250px;
-  background: rgba(255,90,0,0.09);
-}
-
 /* =========================================================
    SECTION HEADING
 ========================================================= */
@@ -921,22 +872,7 @@
   pointer-events: none;
 }
 
-.gs-about-page-hero-grid {
-  position: absolute;
-  inset: 0;
 
-  opacity: 0.7;
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-
-  background-size: 75px 75px;
-  mask-image: linear-gradient(to bottom, black, transparent);
-
-  animation: gs-about-grid-move 25s linear infinite;
-}
 
 .gs-about-page-container {
   position: relative;

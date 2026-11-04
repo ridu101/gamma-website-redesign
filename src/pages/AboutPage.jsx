@@ -56,6 +56,7 @@ const strengths = [
   },
 ];
 
+
 const AboutPage = () => {
   const navigate = useNavigate();
 

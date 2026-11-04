@@ -1,607 +1,815 @@
+
 /* =========================================
-   GAMMASOFT FUTURISTIC HERO
-   Lightweight Motion Edition
+   GAMMASOFT HERO
+   LIGHT + DARK THEME SUPPORT
+   LIGHT MODE DEFAULT
 ========================================= */
 
 .gs-hero {
+  --hero-bg: #f5f8fc;
+  --hero-text: #151c29;
+  --hero-muted: #5d6b7e;
+
+  --hero-accent: #f36b21;
+  --hero-accent-hover: #df5711;
+
+  --hero-border: rgba(20, 30, 45, 0.13);
+
+  /* LIGHT MODE BACKGROUND IMAGE */
+  --hero-image-opacity: 0.65;
+
+  --hero-overlay:
+    linear-gradient(
+      90deg,
+      rgba(248, 250, 253, 0.82) 0%,
+      rgba(248, 250, 253, 0.72) 40%,
+      rgba(248, 250, 253, 0.48) 72%,
+      rgba(248, 250, 253, 0.62) 100%
+    );
+
+  --hero-bottom-overlay:
+    linear-gradient(
+      0deg,
+      rgba(245, 248, 252, 0.78) 0%,
+      transparent 35%,
+      transparent 75%,
+      rgba(245, 248, 252, 0.18) 100%
+    );
+
+  --hero-cyan: #009fbd;
+  --hero-cyan-bright: #00bde0;
+
+  --hero-glow: rgba(0, 180, 220, 0.15);
+  --hero-glow-secondary: rgba(0, 180, 220, 0.06);
+
+  --hero-label-bg: rgba(0, 180, 220, 0.07);
+  --hero-label-border: rgba(0, 160, 195, 0.22);
+
+  --hero-secondary-bg: rgba(255, 255, 255, 0.7);
+  --hero-secondary-text: #182332;
+
+  --hero-trust-bg: rgba(0, 180, 220, 0.08);
+  --hero-caption: #657486;
+  --hero-scroll: #718096;
+
   position: relative;
-  box-sizing: border-box;
-  width: 100%;
   min-height: 100vh;
   min-height: 100svh;
+
   display: flex;
   align-items: center;
+
   overflow: hidden;
   isolation: isolate;
-  padding: 110px 0 55px;
-  background: #101010;
-  color: #ffffff;
+
+  padding: 125px 0 85px;
+
+  background: var(--hero-bg);
+  color: var(--hero-text);
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
 }
+/* =========================================
+   DARK THEME
+   Supports common theme selectors
+========================================= */
+html[data-theme="dark"] .gs-hero,
+body[data-theme="dark"] .gs-hero,
+html.dark .gs-hero,
+body.dark .gs-hero,
+.dark .gs-hero {
+  --hero-bg: #06131c;
+  --hero-text: #ffffff;
+  --hero-muted: #c0ccd8;
 
-/* BACKGROUND */
+  --hero-accent: #ff762e;
+  --hero-accent-hover: #ed5e16;
 
-.gs-hero-grid {
+  --hero-border: rgba(255, 255, 255, 0.18);
+
+  /* DARK MODE */
+  --hero-image-opacity: 0.55;
+
+  --hero-overlay:
+    linear-gradient(
+      90deg,
+      rgba(3, 12, 20, 0.76) 0%,
+      rgba(3, 14, 23, 0.68) 42%,
+      rgba(3, 14, 23, 0.52) 72%,
+      rgba(3, 12, 20, 0.70) 100%
+    );
+
+  --hero-bottom-overlay:
+    linear-gradient(
+      0deg,
+      rgba(3, 12, 20, 0.65) 0%,
+      transparent 28%,
+      transparent 75%,
+      rgba(3, 12, 20, 0.20) 100%
+    );
+
+  /* বাকি variables আগের মতো রাখবে */
+}
+/* =========================================
+   BACKGROUND IMAGE
+========================================= */
+
+.gs-hero-bg {
   position: absolute;
   inset: 0;
   z-index: -2;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 65px 65px;
-  mask-image: linear-gradient(to bottom, black, transparent 95%);
+
+  background-image: url("/images/gammasoft-tech-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: var(--hero-image-opacity);
+
+  transform: scale(1.04);
+  animation: gs-bg-zoom 22s ease-in-out infinite alternate;
+
+  transition: opacity 0.5s ease;
 }
+
+/* =========================================
+   BACKGROUND OVERLAYS
+========================================= */
+
+.gs-hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: var(--hero-overlay);
+
+  transition: background 0.35s ease;
+}
+
+.gs-hero::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: var(--hero-bottom-overlay);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   BACKGROUND GLOW
+========================================= */
 
 .gs-hero-glow {
   position: absolute;
-  z-index: -1;
-  width: 600px;
-  height: 600px;
-  top: 5%;
-  right: -180px;
-  pointer-events: none;
+  z-index: 0;
+
+  width: 650px;
+  height: 650px;
+
+  top: 0;
+  right: -12%;
+
+  border-radius: 50%;
+
   background: radial-gradient(
     circle,
-    rgba(255, 90, 0, 0.15) 0%,
-    rgba(255, 90, 0, 0.055) 40%,
+    var(--hero-glow),
+    var(--hero-glow-secondary) 45%,
     transparent 70%
   );
+
+  filter: blur(55px);
+
+  pointer-events: none;
 }
 
-/* MAIN CONTAINER */
+/* =========================================
+   SUBTLE TEXTURE
+========================================= */
+
+.gs-hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image:
+    radial-gradient(
+      rgba(100, 130, 150, 0.18) 0.6px,
+      transparent 0.6px
+    );
+
+  background-size: 5px 5px;
+  opacity: 0.12;
+
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .gs-hero-noise,
+body[data-theme="dark"] .gs-hero-noise,
+html.dark .gs-hero-noise,
+body.dark .gs-hero-noise,
+.dark .gs-hero-noise {
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.13) 0.6px,
+      transparent 0.6px
+    );
+
+  opacity: 0.12;
+}
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
 
 .gs-hero-container {
   position: relative;
   z-index: 2;
-  width: min(calc(100% - 100px), 1360px);
+
+  width: min(1240px, calc(100% - 80px));
   margin: 0 auto;
+
   display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
+  grid-template-columns: 1fr 1fr;
+
   align-items: center;
   gap: 35px;
 }
 
 /* =========================================
-   ENTRANCE ANIMATIONS
+   LEFT CONTENT
 ========================================= */
 
-@keyframes gs-hero-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.gs-hero-content > * {
-  opacity: 0;
-  animation: gs-hero-reveal 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-}
-
-.gs-hero-label {
-  animation-delay: 0.1s !important;
-}
-
-.gs-hero-title {
-  animation-delay: 0.2s !important;
-}
-
-.gs-hero-description {
-  animation-delay: 0.32s !important;
-}
-
-.gs-hero-actions {
-  animation-delay: 0.44s !important;
-}
-
-.gs-hero-trust {
-  animation-delay: 0.56s !important;
-}
-
-/* RIGHT VISUAL REVEAL */
-
-.gs-hero-visual {
-  opacity: 0;
-  animation: gs-hero-reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s forwards;
-}
-
-/* LEFT CONTENT */
-
 .gs-hero-content {
-  width: 100%;
-  max-width: 680px;
+  position: relative;
+  z-index: 2;
+
+  animation: gs-content-enter 0.9s ease both;
 }
+
+/* Label */
 
 .gs-hero-label {
   display: inline-flex;
   align-items: center;
   gap: 11px;
-  margin-bottom: 27px;
-  color: #ff8a50;
+
+  margin-bottom: 25px;
+  padding: 9px 15px;
+
+  border: 1px solid rgba(243, 107, 33, 0.30);
+  border-radius: 50px;
+
+  background: rgba(243, 107, 33, 0.10);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: #f36b21;
+
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
+  font-weight: 750;
+  letter-spacing: 2px;
 }
 
 .gs-label-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
+
   flex-shrink: 0;
+
   border-radius: 50%;
-  background: #ff5a00;
-  box-shadow: 0 0 12px rgba(255, 90, 0, 0.55);
+
+  background: #f36b21;
+
+  box-shadow: 0 0 14px rgba(243, 107, 33, 0.65);
+
+  animation: gs-dot-pulse 2s infinite;
 }
 
-/* HEADING */
+/* Heading */
 
 .gs-hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(46px, 5.2vw, 76px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -3px;
-  color: #ffffff;
+  margin: 0;
+
+  color: var(--hero-text);
+
+  font-size: clamp(42px, 5.2vw, 70px);
+  line-height: 1.09;
+
+  letter-spacing: -2.8px;
+  font-weight: 800;
+
+  transition: color 0.35s ease;
 }
 
 .gs-hero-title span {
-  display: inline-block;
-  background: linear-gradient(
-    95deg,
-    #ff5a00 0%,
-    #ff8a45 55%,
-    #ffb27f 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: var(--hero-accent);
 }
 
-/* DESCRIPTION */
+/* Description */
 
 .gs-hero-description {
-  max-width: 520px;
-  margin-top: 25px;
-  color: #a9a9a9;
+  max-width: 540px;
+
+  margin: 25px 0 30px;
+
+  color: var(--hero-muted);
+
   font-size: 15px;
   line-height: 1.9;
 }
 
-/* CTA BUTTONS */
+/* =========================================
+   CTA BUTTONS
+========================================= */
 
 .gs-hero-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
-  margin-top: 32px;
+  flex-wrap: wrap;
+
+  gap: 15px;
 }
 
 .gs-hero-primary,
 .gs-hero-secondary {
   min-height: 52px;
-  padding: 0 24px;
+  padding: 0 23px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 600;
+  gap: 12px;
+
+  border-radius: 8px;
+
   text-decoration: none;
-  transition:
-    transform 0.22s ease,
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    box-shadow 0.22s ease;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: all 0.3s ease;
 }
+
+/* Primary */
 
 .gs-hero-primary {
   color: #ffffff;
-  background: linear-gradient(135deg, #ff7029, #f04b00);
-  box-shadow: 0 5px 20px rgba(255, 90, 0, 0.17);
+
+  background: var(--hero-accent);
+  border: 1px solid var(--hero-accent);
+
+  box-shadow: 0 8px 25px rgba(243, 107, 33, 0.25);
 }
 
 .gs-hero-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 90, 0, 0.3);
+  color: #ffffff;
+
+  background: var(--hero-accent-hover);
+  border-color: var(--hero-accent-hover);
+
+  transform: translateY(-4px);
+
+  box-shadow: 0 12px 30px rgba(243, 107, 33, 0.35);
 }
 
+/* Secondary */
+
 .gs-hero-secondary {
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.035);
+  color: var(--hero-secondary-text);
+
+  border: 1px solid var(--hero-border);
+
+  background: var(--hero-secondary-bg);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .gs-hero-secondary:hover {
-  color: #ff8548;
-  border-color: #ff5a00;
-  background: rgba(255, 90, 0, 0.07);
+  border-color: var(--hero-cyan);
+
+  color: var(--hero-cyan);
+
+  transform: translateY(-4px);
+
+  background: var(--hero-label-bg);
 }
 
-/* TRUST INDICATOR */
+/* =========================================
+   TRUST INDICATOR
+========================================= */
 
 .gs-hero-trust {
-  width: fit-content;
-  max-width: 100%;
   display: flex;
   align-items: center;
-  gap: 13px;
-  margin-top: 32px;
-  padding: 11px 17px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.035);
+
+  gap: 14px;
+
+  margin-top: 48px;
 }
 
 .gs-trust-icon {
-  width: 39px;
-  height: 39px;
-  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  color: #ff813f;
-  background: rgba(255, 90, 0, 0.13);
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  color: var(--hero-cyan);
+
+  background: var(--hero-trust-bg);
+  border: 1px solid var(--hero-label-border);
 }
 
 .gs-trust-content {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+
+  gap: 5px;
 }
 
 .gs-trust-content strong {
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  color: var(--hero-text);
 }
 
 .gs-trust-content span {
-  color: #999999;
-  font-size: 10px;
+  font-size: 11px;
+  color: var(--hero-muted);
 }
 
 /* =========================================
-   RIGHT VISUAL
+   RIGHT SIDE — 3D LOGO
 ========================================= */
 
 .gs-hero-visual {
   position: relative;
-  width: 100%;
-  min-height: 500px;
+  z-index: 2;
+
+  min-height: 560px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  perspective: 1200px;
+
+  animation: gs-visual-enter 1s 0.15s ease both;
+}
+
+/* Glow behind logo */
+
+.gs-logo-glow {
+  position: absolute;
+
+  width: 430px;
+  height: 430px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    var(--hero-glow),
+    var(--hero-glow-secondary) 45%,
+    transparent 72%
+  );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+
+  animation: gs-logo-glow 5s ease-in-out infinite;
+}
+
+/* 3D model stage */
+
+.gs-logo-stage {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 530px);
+  height: 510px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1000px;
 }
 
-/* VISUAL CARD */
+.gs-logo-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
 
-.gs-visual-card {
-  position: relative;
-  width: min(100%, 490px);
-  aspect-ratio: 1 / 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 28px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.065),
-      rgba(255, 255, 255, 0.012) 65%
-    ),
-    #151515;
-
-  box-shadow:
-    0 25px 65px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.045);
-
-  transition:
-    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
+  display: block;
+  outline: none;
 }
 
-/* CARD TOP */
+/* Caption */
 
-.gs-visual-top-line {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #777777;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-
-.gs-visual-top-line span:first-child {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ff7029;
-  box-shadow: 0 0 10px rgba(255, 90, 0, 0.4);
-}
-
-/* LOGO AREA */
-
-.gs-logo-stage {
-  position: absolute;
-  inset: 12%;
-  display: grid;
-  place-items: center;
-}
-
-/* SUBTLE STATIC GLOW */
-
-.gs-logo-back-glow {
-  position: absolute;
-  width: 65%;
-  height: 65%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 90, 0, 0.2),
-    rgba(255, 90, 0, 0.055) 45%,
-    transparent 72%
-  );
-  pointer-events: none;
-  transition: transform 0.45s ease, opacity 0.45s ease;
-}
-
-/* BRAND LOGO */
-
-.gs-floating-logo {
+.gs-logo-caption {
   position: relative;
   z-index: 2;
-  display: block;
-  width: 82%;
-  height: 82%;
-  object-fit: contain;
 
-  transform: translateY(0) rotateX(0deg) rotateY(0deg);
-
-  transition:
-    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
-    filter 0.5s ease;
-}
-
-/* CARD BOTTOM */
-
-.gs-visual-bottom {
-  position: relative;
-  z-index: 3;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: center;
+
+  gap: 13px;
+  margin-top: -15px;
+
+  color: #ff7029;
+
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 4px;
 }
 
-.gs-visual-caption {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #858585;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-
-.gs-caption-line {
-  width: 23px;
+.gs-logo-caption span {
+  width: 28px;
   height: 1px;
-  background: #ff5a00;
-}
 
-.gs-visual-index {
-  color: #666666;
-  font-size: 9px;
-  letter-spacing: 1px;
-}
+  background: linear-gradient(90deg, #ff5a00, #ffb184);
 
-/* DECORATIVE ACCENT */
-
-.gs-visual-accent {
-  position: absolute;
-  top: 13%;
-  right: 2%;
-  width: 55px;
-  height: 55px;
-  border-top: 2px solid rgba(255, 90, 0, 0.65);
-  border-right: 2px solid rgba(255, 90, 0, 0.65);
-  border-radius: 0 14px 0 0;
-  pointer-events: none;
-  transition:
-    transform 0.4s ease,
-    border-color 0.4s ease;
+  opacity: 0.9;
 }
 
 /* =========================================
-   DESKTOP HOVER EFFECT
+   MODEL LOADER
 ========================================= */
 
-@media (hover: hover) and (pointer: fine) {
-  .gs-visual-card:hover {
-    transform: translateY(-9px) rotateX(2deg);
-    border-color: rgba(255, 90, 0, 0.38);
+.gs-model-loader {
+  display: flex;
+  align-items: center;
 
-    box-shadow:
-      0 35px 75px rgba(0, 0, 0, 0.4),
-      0 0 35px rgba(255, 90, 0, 0.09),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  }
-
-  .gs-visual-card:hover .gs-floating-logo {
-    transform: translateY(-5px) rotateX(4deg) rotateY(-5deg);
-  }
-
-  .gs-visual-card:hover .gs-logo-back-glow {
-    transform: scale(1.12);
-    opacity: 1;
-  }
-
-  .gs-visual-card:hover .gs-visual-accent {
-    transform: translate(5px, -5px);
-    border-color: #ff7029;
-  }
+  gap: 6px;
 }
 
-/* SCROLL INDICATOR */
+.gs-model-loader span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--hero-cyan-bright);
+
+  animation: gs-loader-bounce 0.7s ease-in-out infinite alternate;
+}
+
+.gs-model-loader span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.gs-model-loader span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
 
 .gs-scroll-indicator {
   position: absolute;
-  bottom: 28px;
+  z-index: 3;
+
+  bottom: 25px;
   left: 50%;
+
   transform: translateX(-50%);
+
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #777777;
+
+  gap: 11px;
+
+  color: #ff7029;
+
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2px;
+
   text-decoration: none;
-  white-space: nowrap;
 }
 
 .gs-scroll-indicator span {
-  width: 22px;
-  height: 1px;
-  background: #ff5a00;
+  position: relative;
+
+  width: 18px;
+  height: 27px;
+
+  border: 1px solid var(--hero-border);
+
+  border-radius: 20px;
+}
+
+.gs-scroll-indicator span::after {
+  content: "";
+
+  position: absolute;
+
+  top: 5px;
+  left: 50%;
+
+  width: 3px;
+  height: 5px;
+
+  border-radius: 5px;
+
+  background: #FF6600;
+
+  transform: translateX(-50%);
+
+  animation: gs-scroll 1.5s infinite;
 }
 
 /* =========================================
-   TABLET
+   ANIMATIONS
 ========================================= */
 
-@media (max-width: 1000px) {
+@keyframes gs-bg-zoom {
+  from {
+    transform: scale(1.04);
+  }
+
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes gs-content-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gs-visual-enter {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gs-logo-glow {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes gs-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes gs-scroll {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+}
+
+@keyframes gs-loader-bounce {
+  from {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(-7px);
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 1100px) {
   .gs-hero-container {
-    width: calc(100% - 60px);
+    width: min(100% - 55px, 1000px);
     gap: 20px;
   }
 
   .gs-hero-title {
-    font-size: clamp(42px, 5.3vw, 58px);
-    letter-spacing: -2px;
+    font-size: clamp(40px, 5.5vw, 58px);
   }
 
   .gs-hero-visual {
-    min-height: 400px;
+    min-height: 480px;
   }
 
-  .gs-visual-card {
-    padding: 17px;
+  .gs-logo-stage {
+    height: 450px;
   }
 
-  .gs-hero-description {
-    font-size: 14px;
+  .gs-logo-glow {
+    width: 370px;
+    height: 370px;
   }
 }
 
 /* =========================================
-   MOBILE
+   RESPONSIVE — SMALL TABLET
 ========================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .gs-hero {
-    box-sizing: border-box;
-    min-height: auto;
-    padding: 105px 0 35px;
+    padding-top: 115px;
+    padding-bottom: 75px;
+  }
+
+  .gs-hero::before {
+    background: var(--hero-overlay);
   }
 
   .gs-hero-container {
-    width: calc(100% - 40px);
     grid-template-columns: 1fr;
-    gap: 25px;
-    justify-items: center;
+    gap: 5px;
   }
 
   .gs-hero-content {
-    width: 100%;
-    max-width: 600px;
     text-align: center;
   }
 
-  .gs-hero-label {
+  .gs-hero-label,
+  .gs-hero-actions {
     justify-content: center;
-    font-size: 10px;
-    margin-bottom: 20px;
-  }
-
-  .gs-hero-title {
-    width: 100%;
-    font-size: clamp(38px, 9vw, 54px);
-    line-height: 1.13;
-    letter-spacing: -2px;
-    text-align: center;
-  }
-
-  .gs-hero-title span {
-    display: inline;
   }
 
   .gs-hero-description {
-    max-width: 500px;
-    margin: 19px auto 0;
-    font-size: 14px;
-    line-height: 1.8;
-    text-align: center;
-  }
-
-  .gs-hero-actions {
-    justify-content: center;
-    gap: 10px;
-    margin-top: 25px;
-  }
-
-  .gs-hero-primary,
-  .gs-hero-secondary {
-    min-height: 47px;
-    padding: 0 18px;
-    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .gs-hero-trust {
-    margin: 23px auto 0;
-    text-align: left;
+    justify-content: center;
+  }
+
+  .gs-hero-title {
+    font-size: clamp(43px, 8vw, 65px);
   }
 
   .gs-hero-visual {
-    width: 100%;
-    min-height: auto;
-    padding: 5px 0;
+    min-height: 470px;
   }
 
-  .gs-visual-card {
-    width: min(100%, 380px);
-    border-radius: 22px;
-  }
-
-  .gs-visual-accent {
-    right: 1%;
-  }
-
-  .gs-scroll-indicator {
-    display: none;
+  .gs-logo-stage {
+    height: 440px;
   }
 }
 
-/* SMALL MOBILE */
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 550px) {
   .gs-hero {
-    padding-top: 95px;
-    padding-bottom: 30px;
+    padding-top: 105px;
+    padding-bottom: 75px;
   }
 
   .gs-hero-container {
@@ -609,18 +817,57 @@
   }
 
   .gs-hero-title {
-    font-size: 36px;
-    letter-spacing: -1.5px;
+    font-size: clamp(36px, 10vw, 48px);
+    letter-spacing: -1.8px;
   }
 
   .gs-hero-description {
     font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .gs-hero-trust {
+    margin-top: 32px;
+  }
+
+  .gs-hero-visual {
+    min-height: 360px;
+    margin-top: 5px;
+  }
+
+  .gs-logo-stage {
+    width: 100%;
+    height: 360px;
+  }
+
+  .gs-logo-glow {
+    width: 280px;
+    height: 280px;
+  }
+
+  .gs-logo-caption {
+    margin-top: -10px;
+    font-size: 9px;
+  }
+
+  .gs-scroll-indicator {
+    bottom: 15px;
+    font-size: 8px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE — SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .gs-hero-title {
+    font-size: 34px;
   }
 
   .gs-hero-actions {
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
   }
 
   .gs-hero-primary,
@@ -628,174 +875,25 @@
     width: 100%;
   }
 
-  .gs-visual-card {
-    border-radius: 18px;
-  }
-}
-
-/* REDUCED MOTION */
-
-@media (prefers-reduced-motion: reduce) {
-  .gs-hero-content > *,
   .gs-hero-visual {
-    opacity: 1;
-    animation: none !important;
+    min-height: 320px;
   }
 
-  .gs-hero *,
-  .gs-hero *::before,
-  .gs-hero *::after {
-    transition: none !important;
+  .gs-logo-stage {
+    height: 320px;
   }
 }
 
 /* =========================================
-   GAMMASOFT HERO — LIGHT THEME
-   Only theme colors change
+   REDUCED MOTION
 ========================================= */
 
-[data-theme="light"] .gs-hero {
-  background: #f7f8fa;
-  color: #171717;
-}
-
-/* BACKGROUND GRID */
-
-[data-theme="light"] .gs-hero-grid {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
-}
-
-/* BACKGROUND GLOW */
-
-[data-theme="light"] .gs-hero-glow {
-  background: radial-gradient(
-    circle,
-    rgba(255, 90, 0, 0.12) 0%,
-    rgba(255, 90, 0, 0.045) 40%,
-    transparent 70%
-  );
-}
-
-/* LABEL */
-
-[data-theme="light"] .gs-hero-label {
-  color: #e85a13;
-}
-
-/* HEADING */
-
-[data-theme="light"] .gs-hero-title {
-  color: #171717;
-}
-
-/* DESCRIPTION */
-
-[data-theme="light"] .gs-hero-description {
-  color: #626873;
-}
-
-/* SECONDARY BUTTON */
-
-[data-theme="light"] .gs-hero-secondary {
-  color: #252525;
-  border-color: rgba(0, 0, 0, 0.16);
-  background: rgba(0, 0, 0, 0.035);
-}
-
-[data-theme="light"] .gs-hero-secondary:hover {
-  color: #e85a13;
-  border-color: #ff5a00;
-  background: rgba(255, 90, 0, 0.06);
-}
-
-/* TRUST INDICATOR */
-
-[data-theme="light"] .gs-hero-trust {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.7);
-}
-
-[data-theme="light"] .gs-trust-content strong {
-  color: #202020;
-}
-
-[data-theme="light"] .gs-trust-content span {
-  color: #737982;
-}
-
-/* VISUAL CARD */
-
-[data-theme="light"] .gs-visual-card {
-  border-color: rgba(0, 0, 0, 0.09);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.95),
-      rgba(245, 246, 248, 0.85) 65%
-    ),
-    #ffffff;
-
-  box-shadow:
-    0 25px 65px rgba(0, 0, 0, 0.09),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-
-/* CARD TOP */
-
-[data-theme="light"] .gs-visual-top-line {
-  color: #777d85;
-}
-
-/* LOGO GLOW */
-
-[data-theme="light"] .gs-logo-back-glow {
-  background: radial-gradient(
-    circle,
-    rgba(255, 90, 0, 0.15),
-    rgba(255, 90, 0, 0.045) 45%,
-    transparent 72%
-  );
-}
-
-/* LOGO */
-
-
-
-/* CARD BOTTOM */
-
-[data-theme="light"] .gs-visual-caption {
-  color: #737982;
-}
-
-[data-theme="light"] .gs-visual-index {
-  color: #858b93;
-}
-
-/* VISUAL ACCENT */
-
-[data-theme="light"] .gs-visual-accent {
-  border-color: rgba(255, 90, 0, 0.55);
-}
-
-/* DESKTOP HOVER */
-
-@media (hover: hover) and (pointer: fine) {
-  [data-theme="light"] .gs-visual-card:hover {
-    border-color: rgba(255, 90, 0, 0.38);
+@media (prefers-reduced-motion: reduce) {
+  .gs-hero *,
+  .gs-hero *::before,
+  .gs-hero *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-
-  
-
-  [data-theme="light"] .gs-visual-card:hover .gs-visual-accent {
-    border-color: #ff7029;
-  }
-}
-
-/* SCROLL INDICATOR */
-
-[data-theme="light"] .gs-scroll-indicator {
-  color: #777d85;
 }

@@ -1,0 +1,125 @@
+/* =========================================
+   GAMMASOFT — GLOBAL FLOATING BACK TO TOP
+========================================= */
+
+.gs-floating-back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 9998;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255, 107, 26, 0.45);
+  border-radius: 14px;
+
+  background: rgba(20, 20, 22, 0.55);
+  color: #ff7830;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.12),
+    inset 0 0 12px rgba(255, 107, 26, 0.04);
+
+  cursor: ;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(15px) scale(0.9);
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.35s ease,
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Visible after scrolling */
+
+.gs-floating-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover */
+
+.gs-floating-back-to-top:hover {
+  background: linear-gradient(135deg, #ff7830, #e6530a);
+  color: #ffffff;
+  border-color: #ff7830;
+
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 10px 28px rgba(255, 90, 0, 0.25),
+    0 0 18px rgba(255, 107, 26, 0.12);
+}
+
+/* Icon animation */
+
+.gs-floating-back-to-top svg {
+  transition: transform 0.35s ease;
+}
+
+.gs-floating-back-to-top:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Light Theme */
+
+[data-theme="light"] .gs-floating-back-to-top {
+  background: rgba(255, 255, 255, 0.72);
+  color: #e6530a;
+  border-color: rgba(230, 83, 10, 0.35);
+
+  box-shadow:
+    0 5px 20px rgba(20, 20, 25, 0.09),
+    inset 0 0 12px rgba(255, 107, 26, 0.04);
+}
+
+[data-theme="light"] .gs-floating-back-to-top:hover {
+  background: linear-gradient(135deg, #ff7830, #e6530a);
+  color: #ffffff;
+  border-color: #e6530a;
+
+  box-shadow: 0 10px 28px rgba(230, 83, 10, 0.22);
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .gs-floating-back-to-top {
+    right: 17px;
+    bottom: 20px;
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+  }
+
+  .gs-floating-back-to-top svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-floating-back-to-top,
+  .gs-floating-back-to-top svg {
+    transition: none;
+  }
+}

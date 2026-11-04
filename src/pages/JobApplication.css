@@ -1,0 +1,1282 @@
+
+/* ==========================================
+   GAMMASOFT JOB APPLICATION
+   Premium Light / Dark Theme
+   Sticky Details + Sticky Form
+   Smooth Animations + Responsive
+========================================== */
+
+/* ==========================================
+   01. THEME VARIABLES
+========================================== */
+
+.gs-application-page {
+  --app-accent: #ff6b1a;
+  --app-accent-dark: #e6530a;
+  --app-accent-soft: rgba(255, 107, 26, 0.09);
+
+  --app-bg: #ffffff;
+  --app-bg-soft: #fff9f5;
+  --app-header-bg: #fff8f3;
+
+  --app-text: #202027;
+  --app-muted: #71717a;
+  --app-border: rgba(20, 20, 25, 0.10);
+
+  --app-card: #ffffff;
+  --app-input: #fafafa;
+  --app-input-focus: #ffffff;
+
+  --app-shadow: 0 15px 50px rgba(20, 20, 25, 0.055);
+
+  min-height: 100vh;
+  padding-bottom: 80px;
+
+  /* IMPORTANT: Do not use overflow:hidden here.
+     It prevents sticky elements from working. */
+  overflow-x: clip;
+  overflow-y: visible;
+
+  background: var(--app-bg);
+  color: var(--app-text);
+
+  isolation: isolate;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.gs-application-page *,
+.gs-application-page *::before,
+.gs-application-page *::after {
+  box-sizing: border-box;
+}
+
+.gs-application-page button,
+.gs-application-page input,
+.gs-application-page textarea {
+  font: inherit;
+}
+
+.gs-application-page button,
+.gs-application-page a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================
+   02. DARK THEME
+========================================== */
+
+[data-theme="dark"] .gs-application-page,
+.gs-application-page[data-theme="dark"] {
+  --app-bg: #101012;
+  --app-bg-soft: #18181b;
+  --app-header-bg: #171719;
+
+  --app-text: #f4f4f5;
+  --app-muted: #a1a1aa;
+  --app-border: rgba(255, 255, 255, 0.10);
+
+  --app-card: #19191c;
+  --app-input: #222226;
+  --app-input-focus: #29292e;
+
+  --app-shadow: 0 15px 50px rgba(0, 0, 0, 0.22);
+
+}
+
+/* ==========================================
+   03. ANIMATION KEYFRAMES
+========================================== */
+
+@keyframes gs-app-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gs-app-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes gs-app-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gs-app-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gs-app-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes gs-app-pulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes gs-app-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gs-app-shimmer {
+  0% { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+@keyframes gs-app-progress {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(250%); }
+}
+
+@keyframes gs-app-modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gs-app-success-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-20deg);
+  }
+  70% { transform: scale(1.12) rotate(5deg); }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* ==========================================
+   04. PAGE ENTRANCE ANIMATIONS
+========================================== */
+
+.gs-application-page {
+  animation: gs-app-fade-in 0.65s ease both;
+}
+
+.gs-application-header-content {
+  animation: gs-app-fade-up 0.8s 0.1s ease both;
+}
+
+/* Animate inner content, not sticky container */
+.gs-application-details > * {
+  animation: gs-app-fade-up 0.7s ease both;
+}
+
+.gs-application-details > *:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.gs-application-details > *:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.gs-application-details > *:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+.gs-application-details > *:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.gs-application-details > *:nth-child(5) {
+  animation-delay: 0.55s;
+}
+
+.gs-application-form-wrapper {
+  animation: gs-app-slide-left 0.8s 0.3s ease both;
+}
+
+/* ==========================================
+   05. HEADER
+========================================== */
+
+.gs-application-header {
+  min-height: 370px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 125px 6% 65px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: linear-gradient(
+    135deg,
+    #fff8f3,
+    #ffffff 55%,
+    #fff3eb
+  );
+
+  border-bottom: 1px solid var(--app-border);
+}
+
+[data-theme="dark"] .gs-application-header,
+.gs-application-page[data-theme="dark"] .gs-application-header {
+  background: linear-gradient(
+    135deg,
+    #201711,
+    #151517 55%,
+    #211812
+  );
+}
+.gs-application-header-content {
+  width: 100%;
+  max-width: 1250px;
+  position: relative;
+}
+
+/* Back Button */
+
+.gs-application-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 10px 14px;
+  margin-bottom: 35px;
+
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+
+  background: var(--app-card);
+  color: var(--app-text);
+
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.gs-application-back:hover {
+  color: var(--app-accent);
+  border-color: var(--app-accent);
+  transform: translateX(-4px);
+}
+
+.gs-application-back:active {
+  transform: translateX(-1px);
+}
+
+/* Header Typography */
+
+.gs-application-eyebrow,
+.gs-application-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--app-accent);
+
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1.8px;
+}
+
+.gs-application-header h1 {
+  margin: 15px 0;
+
+  font-size: clamp(45px, 6vw, 70px);
+  line-height: 1.08;
+  letter-spacing: -3px;
+  font-weight: 850;
+}
+
+.gs-application-header h1 span,
+.gs-application-form-heading h2 span {
+  color: var(--app-accent);
+}
+
+.gs-application-header-content > p {
+  color: var(--app-muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ==========================================
+   06. MAIN LAYOUT
+========================================== */
+
+.gs-application-layout {
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+  padding: 75px 35px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(360px, 440px);
+
+  /* Critical for sticky grid items */
+  align-items: start;
+
+  gap: 45px;
+
+  overflow: visible;
+}
+
+/* ==========================================
+   07. STICKY JOB DETAILS
+========================================== */
+
+.gs-application-details {
+  min-width: 0;
+  width: 100%;
+
+  position: sticky;
+  position: -webkit-sticky;
+
+  top: 110px;
+  align-self: start;
+
+  height: fit-content;
+  max-height: calc(100vh - 130px);
+
+  /* Allow scrolling inside details if content
+     becomes taller than the viewport */
+  overflow-y: auto;
+  overflow-x: visible;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 26, 0.35) transparent;
+
+  z-index: 5;
+}
+
+.gs-application-details::-webkit-scrollbar {
+  width: 4px;
+}
+
+.gs-application-details::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 26, 0.35);
+  border-radius: 10px;
+}
+
+/* ==========================================
+   08. JOB DETAILS
+========================================== */
+
+.gs-application-job-heading {
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.gs-application-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  margin-left: 12px;
+
+  border-radius: 5px;
+
+  color: var(--app-accent);
+  background: var(--app-accent-soft);
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.gs-application-job-heading h2 {
+  margin: 18px 0;
+
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+}
+
+.gs-application-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.gs-application-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: var(--app-muted);
+  font-size: 11px;
+}
+
+.gs-application-meta svg {
+  color: var(--app-accent);
+}
+
+/* Info Cards */
+
+.gs-application-info-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+
+  margin: 28px 0;
+}
+
+.gs-application-info-card > div {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  border: 1px solid var(--app-border);
+  border-radius: 11px;
+
+  background: var(--app-bg-soft);
+
+  transition: all 0.3s ease;
+}
+
+.gs-application-info-card > div:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 107, 26, 0.35);
+  box-shadow: 0 10px 25px rgba(255, 107, 26, 0.06);
+}
+
+.gs-application-info-card span {
+  color: var(--app-muted);
+  font-size: 10px;
+}
+
+.gs-application-info-card strong {
+  color: var(--app-text);
+  font-size: 13px;
+}
+
+/* Description & Requirements */
+
+.gs-application-description,
+.gs-application-requirements {
+  margin-top: 35px;
+}
+
+.gs-application-description h3,
+.gs-application-requirements h3 {
+  margin: 0 0 15px;
+
+  font-size: 19px;
+  letter-spacing: -0.4px;
+}
+
+.gs-application-description p {
+  color: var(--app-muted);
+  font-size: 13px;
+  line-height: 2;
+  margin: 0;
+}
+
+/* Skills */
+
+.gs-application-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.gs-application-skills span {
+  padding: 9px 13px;
+
+  border: 1px solid rgba(255, 107, 26, 0.20);
+  border-radius: 6px;
+
+  background: rgba(255, 107, 26, 0.055);
+  color: var(--app-accent-dark);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  transition: all 0.25s ease;
+}
+
+[data-theme="dark"] .gs-application-skills span,
+.gs-application-page[data-theme="dark"] .gs-application-skills span {
+  color: #ff9865;
+  background: rgba(255, 107, 26, 0.10);
+}
+
+.gs-application-skills span:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 107, 26, 0.12);
+  border-color: rgba(255, 107, 26, 0.4);
+}
+
+/* Note */
+
+.gs-application-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  padding: 20px;
+  margin-top: 40px;
+
+  border: 1px solid rgba(255, 107, 26, 0.18);
+  border-radius: 10px;
+
+  background: var(--app-bg-soft);
+}
+
+.gs-application-note > svg {
+  flex-shrink: 0;
+  color: var(--app-accent);
+}
+
+.gs-application-note strong {
+  font-size: 12px;
+}
+
+.gs-application-note p {
+  margin: 7px 0 0;
+
+  color: var(--app-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   09. APPLICATION FORM - STICKY
+========================================== */
+
+.gs-application-form-wrapper {
+  position: sticky;
+  position: -webkit-sticky;
+
+  top: 110px;
+  align-self: start;
+
+  width: 100%;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+
+  padding: 30px;
+
+  border: 1px solid var(--app-border);
+  border-radius: 15px;
+
+  background: var(--app-card);
+  box-shadow: var(--app-shadow);
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 26, 0.3) transparent;
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.gs-application-form-wrapper:hover {
+  border-color: rgba(255, 107, 26, 0.22);
+}
+
+.gs-application-form-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.gs-application-form-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 26, 0.3);
+  border-radius: 10px;
+}
+
+/* Form Heading */
+
+.gs-application-form-heading {
+  padding-bottom: 22px;
+  margin-bottom: 23px;
+
+  border-bottom: 1px solid var(--app-border);
+}
+
+.gs-application-form-heading h2 {
+  margin: 13px 0 9px;
+
+  font-size: 25px;
+  letter-spacing: -0.8px;
+}
+
+.gs-application-form-heading p {
+  margin: 0;
+
+  color: var(--app-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* Form Structure */
+
+.gs-application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.gs-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gs-form-field > label:first-child {
+  color: var(--app-text);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+/* Inputs */
+
+.gs-form-field input,
+.gs-form-field textarea {
+  width: 100%;
+  min-width: 0;
+
+  padding: 13px 14px;
+
+  border: 1px solid var(--app-border);
+  border-radius: 7px;
+
+  outline: none;
+
+  background: var(--app-input);
+  color: var(--app-text);
+
+  font-size: 11px;
+
+  transition: all 0.25s ease;
+}
+
+.gs-form-field input {
+  height: 45px;
+}
+
+.gs-form-field textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.7;
+}
+
+.gs-form-field input:focus,
+.gs-form-field textarea:focus {
+  border-color: var(--app-accent);
+  background: var(--app-input-focus);
+  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.09);
+}
+
+.gs-form-field input::placeholder,
+.gs-form-field textarea::placeholder {
+  color: var(--app-muted);
+  opacity: 0.75;
+}
+
+.gs-form-field input:disabled,
+.gs-form-field textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Autofill */
+
+.gs-application-page input:-webkit-autofill,
+.gs-application-page input:-webkit-autofill:hover,
+.gs-application-page input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--app-text);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ==========================================
+   10. RESUME UPLOAD
+========================================== */
+
+.gs-resume-upload {
+  min-height: 65px;
+
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border: 1px dashed rgba(255, 107, 26, 0.45);
+  border-radius: 8px;
+
+  background: var(--app-bg-soft);
+  color: var(--app-accent);
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.gs-resume-upload:hover {
+  background: rgba(255, 107, 26, 0.09);
+  border-color: var(--app-accent);
+  transform: translateY(-2px);
+}
+
+.gs-resume-upload:active {
+  transform: scale(0.99);
+}
+
+.gs-resume-upload span {
+  color: var(--app-muted);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.gs-resume-upload input {
+  display: none;
+}
+
+.gs-form-field small {
+  color: var(--app-muted);
+  font-size: 9px;
+}
+
+/* ==========================================
+   11. SUBMIT BUTTON
+========================================== */
+
+.gs-application-submit {
+  width: 100%;
+  min-height: 49px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 5px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #ff7830, #e6530a);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 22px rgba(255, 107, 26, 0.18);
+
+  transition: all 0.3s ease;
+}
+
+.gs-application-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(255, 107, 26, 0.28);
+}
+
+.gs-application-submit:active {
+  transform: scale(0.98);
+}
+
+.gs-application-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+  box-shadow: none;
+}
+
+.gs-application-submit .gs-submit-spinner {
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation: gs-app-spin 0.7s linear infinite;
+}
+
+/* Privacy */
+
+.gs-application-privacy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+  margin: 0;
+
+  color: var(--app-muted);
+  font-size: 9px;
+}
+
+/* ==========================================
+   12. SUCCESS MODAL
+========================================== */
+
+.gs-application-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+
+  background: rgba(15, 15, 18, 0.65);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  animation: gs-app-fade-in 0.25s ease both;
+}
+
+.gs-application-modal {
+  width: 100%;
+  max-width: 430px;
+
+  position: relative;
+
+  padding: 42px 32px 35px;
+
+  border: 1px solid rgba(255, 107, 26, 0.18);
+  border-radius: 17px;
+
+  background: var(--app-card);
+  color: var(--app-text);
+
+  text-align: center;
+
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.2);
+
+  animation: gs-app-modal-pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.gs-application-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--app-border);
+  border-radius: 50%;
+
+  background: var(--app-bg-soft);
+  color: var(--app-muted);
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.gs-application-modal-close:hover {
+  color: var(--app-accent);
+  border-color: var(--app-accent);
+  transform: rotate(90deg);
+}
+
+.gs-application-success-icon {
+  width: 75px;
+  height: 75px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 22px;
+
+  border-radius: 50%;
+
+  color: #159b61;
+  background: rgba(21, 155, 97, 0.10);
+
+  animation: gs-app-success-pop 0.55s 0.1s ease both;
+}
+
+.gs-application-modal h2 {
+  margin: 14px 0;
+
+  font-size: 29px;
+  letter-spacing: -0.8px;
+}
+
+.gs-application-modal > p {
+  color: var(--app-muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.gs-application-modal > p strong {
+  color: var(--app-text);
+}
+
+.gs-application-modal-btn {
+  min-height: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 0 20px;
+  margin-top: 15px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: var(--app-accent);
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.gs-application-modal-btn:hover {
+  background: var(--app-accent-dark);
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   13. NOT FOUND
+========================================== */
+
+.gs-application-not-found {
+  min-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+  text-align: center;
+
+  animation: gs-app-fade-up 0.6s ease both;
+}
+
+.gs-application-not-found p {
+  color: var(--app-muted);
+}
+
+.gs-application-not-found button {
+  padding: 12px 20px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: var(--app-accent);
+  color: #ffffff;
+
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: transform 0.25s ease;
+}
+
+.gs-application-not-found button:hover {
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   14. OPTIONAL PAGE LOADER
+========================================== */
+
+.gs-application-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  background: #ffffff;
+  color: #202027;
+
+  animation: gs-app-fade-in 0.3s ease both;
+}
+
+[data-theme="dark"] .gs-application-loading {
+  background: #101012;
+  color: #f4f4f5;
+}
+
+.gs-application-loading-logo {
+  width: 70px;
+  height: 70px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, #ff7830, #e6530a);
+  color: #ffffff;
+
+  font-size: 34px;
+  font-weight: 900;
+
+  box-shadow: 0 10px 35px rgba(255, 107, 26, 0.25);
+
+  animation: gs-app-pulse 1.8s ease-in-out infinite;
+}
+
+.gs-application-loading p {
+  margin: 0;
+
+  color: var(--app-accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.gs-application-loading-bar {
+  width: 135px;
+  height: 3px;
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  background: rgba(255, 107, 26, 0.13);
+}
+
+.gs-application-loading-bar::after {
+  content: "";
+  display: block;
+
+  width: 45%;
+  height: 100%;
+
+  border-radius: inherit;
+  background: var(--app-accent);
+
+  animation: gs-app-progress 1.3s ease-in-out infinite;
+}
+
+/* ==========================================
+   15. OPTIONAL SKELETON LOADING
+========================================== */
+
+.gs-application-skeleton {
+  overflow: hidden;
+  border-radius: 6px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(120, 120, 120, 0.08) 25%,
+    rgba(120, 120, 120, 0.16) 50%,
+    rgba(120, 120, 120, 0.08) 75%
+  );
+
+  background-size: 600px 100%;
+
+  animation: gs-app-shimmer 1.7s linear infinite;
+}
+
+[data-theme="dark"] .gs-application-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.10) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+
+  background-size: 600px 100%;
+}
+
+.gs-application-skeleton-title {
+  width: 65%;
+  height: 20px;
+  margin-bottom: 15px;
+}
+
+.gs-application-skeleton-text {
+  width: 90%;
+  height: 11px;
+  margin-bottom: 10px;
+}
+
+.gs-application-skeleton-short {
+  width: 45%;
+}
+
+.gs-application-skeleton-box {
+  width: 100%;
+  height: 65px;
+  margin-bottom: 12px;
+  border-radius: 9px;
+}
+
+/* ==========================================
+   16. TABLET
+========================================== */
+
+@media (max-width: 950px) {
+  .gs-application-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Disable both sticky elements on tablet */
+  .gs-application-details,
+  .gs-application-form-wrapper {
+    position: static;
+    top: auto;
+
+    max-height: none;
+    overflow: visible;
+  }
+
+  .gs-application-form-wrapper {
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* ==========================================
+   17. MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+  .gs-application-header {
+    min-height: 320px;
+    padding: 110px 6% 50px;
+  }
+
+  .gs-application-header h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+
+  .gs-application-header-content > p {
+    font-size: 12px;
+  }
+
+  .gs-application-layout {
+    padding: 45px 5% 0;
+    gap: 35px;
+  }
+
+  .gs-application-job-heading h2 {
+    font-size: 27px;
+  }
+
+  .gs-application-meta {
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .gs-application-info-card {
+    gap: 9px;
+  }
+
+  .gs-application-info-card > div {
+    padding: 14px;
+  }
+
+  .gs-application-form-wrapper {
+    padding: 22px 17px;
+  }
+
+  .gs-application-form-heading h2 {
+    font-size: 22px;
+  }
+
+  .gs-application-modal {
+    padding: 40px 22px 28px;
+  }
+}
+
+/* ==========================================
+   18. SMALL MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+  .gs-application-header h1 {
+    font-size: 40px;
+  }
+
+  .gs-application-info-card {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-application-form-wrapper {
+    padding: 19px 14px;
+  }
+
+  .gs-application-modal h2 {
+    font-size: 25px;
+  }
+}
+
+/* ==========================================
+   19. ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-application-page *,
+  .gs-application-page *::before,
+  .gs-application-page *::after,
+  .gs-application-loading,
+  .gs-application-loading *,
+  .gs-application-skeleton {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

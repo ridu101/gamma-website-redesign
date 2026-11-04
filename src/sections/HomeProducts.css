@@ -34,39 +34,7 @@
   margin: 0 auto;
 }
 
-/* BACKGROUND */
 
-.gs-home-products .products-grid-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 65px 65px;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 15%,
-    black 85%,
-    transparent
-  );
-}
-
-.gs-home-products .products-glow-one {
-  position: absolute;
-  z-index: -1;
-  width: 450px;
-  height: 450px;
-  top: 5%;
-  right: -200px;
-  border-radius: 50%;
-  background: rgba(255,90,0,0.15);
-  filter: blur(110px);
-  pointer-events: none;
-  animation: home-products-glow 10s ease-in-out infinite alternate;
-}
 
 @keyframes home-products-glow {
   from {

@@ -40,23 +40,6 @@
 
 /* BACKGROUND */
 
-.products-grid-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 65px 65px;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 15%,
-    black 85%,
-    transparent
-  );
-}
 
 .products-glow {
   position: absolute;
@@ -1006,12 +989,6 @@
   --product-text: #20242b;
   --product-muted: #687386;
   background: #f5f7fa;
-}
-
-[data-theme="light"] .products-grid-bg {
-  background-image:
-    linear-gradient(rgba(20,30,45,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,30,45,0.045) 1px, transparent 1px);
 }
 
 [data-theme="light"] .products-heading h1 {

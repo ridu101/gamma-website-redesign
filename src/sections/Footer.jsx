@@ -1,3 +1,4 @@
+
 import {
   ArrowUpRight,
   MapPin,
@@ -5,52 +6,42 @@ import {
   Mail,
   Clock,
   MoveUpRight,
-  ChevronDown,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
+import { newsData } from "../data/newsData";
 import "./Footer.css";
 
-const recentNews = [
-  {
-    title: "Why Local SEO Services in Bangladesh Get",
-    date: "May 10, 2025",
-  },
-  {
-    title: "Awesome Image",
-    date: "May 5, 2025",
-  },
-  {
-    title: "IT Consultancy",
-    date: "May 5, 2025",
-  },
-];
-
-const socialLinks = [
-  {
-    name: "Facebook",
-    label: "f",
-    url: "https://www.facebook.com/",
-  },
-  {
-    name: "LinkedIn",
-    label: "in",
-    url: "https://www.linkedin.com/",
-  },
-  {
-    name: "Instagram",
-    label: "◎",
-    url: "https://www.instagram.com/",
-  },
-  {
-    name: "YouTube",
-    label: "▶",
-    url: "https://www.youtube.com/",
-  },
-];
-
 const Footer = () => {
+  // Automatically get the latest 3 news articles
+  const recentNews = [...newsData]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      label: "f",
+      url: "https://www.facebook.com/",
+    },
+    {
+      name: "LinkedIn",
+      label: "in",
+      url: "https://www.linkedin.com/",
+    },
+    {
+      name: "Instagram",
+      label: "◎",
+      url: "https://www.instagram.com/",
+    },
+    {
+      name: "YouTube",
+      label: "▶",
+      url: "https://www.youtube.com/",
+    },
+  ];
+
   return (
     <footer className="gs-footer">
       {/* Large Background Visual */}
@@ -85,6 +76,7 @@ const Footer = () => {
       {/* Footer Main Content */}
       <div className="gs-footer-main">
         <div className="gs-footer-top">
+
           {/* Brand */}
           <div className="gs-footer-brand">
             <Link to="/" className="gs-footer-logo">
@@ -121,7 +113,10 @@ const Footer = () => {
             </div>
 
             {/* Company Profile Button */}
-            <Link to="/company-profile" className="gs-footer-company-profile">
+            <Link
+              to="/company-profile"
+              className="gs-footer-company-profile"
+            >
               Company Profile
               <ArrowUpRight size={17} />
             </Link>
@@ -135,7 +130,9 @@ const Footer = () => {
               {services.map((service) => (
                 <li key={service.slug}>
                   <Link
-                    to={`/services?service=${encodeURIComponent(service.slug)}`}
+                    to={`/services?service=${encodeURIComponent(
+                      service.slug
+                    )}`}
                   >
                     <MoveUpRight size={12} />
                     {service.shortTitle || service.title}
@@ -145,16 +142,16 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Recent News */}
+          {/* Dynamic Recent News */}
           <div className="gs-footer-column gs-footer-news">
             <h3>Recent News</h3>
 
             <div className="gs-footer-news-list">
               {recentNews.map((news) => (
                 <Link
-                  to="/news"
+                  to={`/news/${news.slug}`}
                   className="gs-footer-news-item"
-                  key={news.title}
+                  key={news.id}
                 >
                   <span className="gs-footer-news-date">
                     {news.date}
@@ -240,20 +237,6 @@ const Footer = () => {
           <p className="gs-footer-bottom-address">
             Motahar Lodge (7A), 04 Purana Paltan, Dhaka-1000
           </p>
-
-          <button
-  type="button"
-  className="gs-footer-back-to-top"
-  onClick={() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }}
->
-  Back to top
-  <MoveUpRight size={15} />
-</button>
         </div>
       </div>
     </footer>

@@ -21,6 +21,7 @@ const navLinks = [
   { name: "Products", href: "#products", path: "/products" },
   { name: "Projects", href: "#projects", path: "/projects" },
   { name: "News", href: "#news", path: "/news" },
+  { name: "Career", href: "#career", path: "/career" },
 ];
 
 const Navbar = () => {

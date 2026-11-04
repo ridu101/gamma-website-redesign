@@ -94,7 +94,7 @@ const Projects = () => {
                   <button
                     type="button"
                     className="gs-project-details-btn"
-                    onClick={() => setSelectedProject(project)}
+                   
                   >
                     Explore Solution
                     <ArrowRight size={17} />
