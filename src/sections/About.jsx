@@ -1,7 +1,7 @@
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./About.css";
-
+import { useEffect, useRef, useState } from "react";
 const About = () => {
   const navigate = useNavigate();
 
@@ -9,6 +9,63 @@ const About = () => {
     window.scrollTo(0, 0);
     navigate("/about");
   };
+  const AnimatedNumber = ({ target, suffix = "", duration = 1800, pad = false }) => {
+  const [count, setCount] = useState(0);
+  const numberRef = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const element = numberRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    let animationFrame;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      // Smooth ease-out animation
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
+
+      setCount(Math.floor(easedProgress * target));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [started, target, duration]);
+
+  return (
+    <span ref={numberRef} className="gs-highlight-number">
+      {pad ? String(count).padStart(2, "0") : count}
+      {suffix}
+    </span>
+  );
+};
 
   return (
     <section className="gs-about gs-about-preview" id="about">
@@ -109,29 +166,29 @@ const About = () => {
           </div>
         </div>
 
-        <div className="gs-about-highlights">
-          <div className="gs-about-highlight">
-            <span className="gs-highlight-number">2022</span>
-            <span className="gs-highlight-label">Year Established</span>
-          </div>
+      <div className="gs-about-highlights">
+  <div className="gs-about-highlight">
+    <AnimatedNumber target={2022} />
+    <span className="gs-highlight-label">Year Established</span>
+  </div>
 
-          <div className="gs-about-highlight">
-            <span className="gs-highlight-number">04</span>
-            <span className="gs-highlight-label">Core Service Areas</span>
-          </div>
+  <div className="gs-about-highlight">
+    <AnimatedNumber target={4} pad />
+    <span className="gs-highlight-label">Core Service Areas</span>
+  </div>
 
-          <div className="gs-about-highlight">
-            <span className="gs-highlight-number">360°</span>
-            <span className="gs-highlight-label">Digital Solutions</span>
-          </div>
+  <div className="gs-about-highlight">
+    <AnimatedNumber target={360} suffix="°" />
+    <span className="gs-highlight-label">Digital Solutions</span>
+  </div>
 
-          <div className="gs-about-highlight">
-            <span className="gs-highlight-number">∞</span>
-            <span className="gs-highlight-label">
-              Possibilities to Innovate
-            </span>
-          </div>
-        </div>
+  <div className="gs-about-highlight">
+    <span className="gs-highlight-number gs-infinity-number">∞</span>
+    <span className="gs-highlight-label">
+      Possibilities to Innovate
+    </span>
+  </div>
+</div>
 
         <div className="gs-about-preview-action">
           <button

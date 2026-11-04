@@ -744,3 +744,95 @@ a.gs-footer-contact-item:hover {
 [data-theme="light"] .gs-footer-back-to-top:hover {
   color: #ff5a00;
 }
+/* =========================================
+   MOBILE FOOTER — QUICK LINKS + RECENT NEWS
+========================================= */
+
+@media (max-width: 650px) {
+  .gs-footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 38px 22px;
+  }
+
+  /* Brand takes full width */
+  .gs-footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  /* Quick Links */
+  .gs-footer-top > .gs-footer-column:not(.gs-footer-news):not(.gs-footer-contact) {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  /* Recent News */
+  .gs-footer-news {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  /* Contact Us takes full width */
+  .gs-footer-contact {
+    grid-column: 1 / -1;
+  }
+
+  /* Compact headings */
+  .gs-footer-column h3 {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* Quick Links spacing */
+  .gs-footer-links {
+    gap: 14px;
+  }
+
+  .gs-footer-links a {
+    font-size: 11px;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  /* Recent News spacing */
+  .gs-footer-news-item {
+    gap: 7px;
+    padding-right: 12px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .gs-footer-news-item strong {
+    font-size: 11px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .gs-footer-news-date {
+    font-size: 9px;
+  }
+
+  .gs-footer-news-item > svg {
+    display: none;
+  }
+
+  /* Contact section */
+  .gs-footer-contact-item {
+    font-size: 12px;
+  }
+}
+
+/* Very small mobile screens */
+@media (max-width: 380px) {
+  .gs-footer-top {
+    column-gap: 14px;
+  }
+
+  .gs-footer-column h3 {
+    font-size: 13px;
+  }
+
+  .gs-footer-links a,
+  .gs-footer-news-item strong {
+    font-size: 10px;
+  }
+}

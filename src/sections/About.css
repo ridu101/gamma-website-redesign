@@ -1851,4 +1851,87 @@
 .gs-about-profile-button:hover {
   background: #ff7833;
   transform: translateY(-3px);
+}/* =========================================================
+   ABOUT HIGHLIGHTS — COUNT UP ANIMATION
+========================================================= */
+
+.gs-about-highlight {
+  position: relative;
+  overflow: hidden;
+  padding: 12px 10px;
+  transition: transform 0.35s ease;
+}
+
+.gs-about-highlight:hover {
+  transform: translateY(-5px);
+}
+
+.gs-highlight-number {
+  display: inline-block;
+  color: #ff7029;
+  font-size: 36px;
+  font-weight: 850;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 0 transparent;
+  transition:
+    color 0.35s ease,
+    text-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.gs-about-highlight:hover .gs-highlight-number {
+  color: #ff8548;
+  text-shadow: 0 0 22px rgba(255, 90, 0, 0.4);
+  transform: scale(1.08);
+}
+
+/* Infinity symbol */
+
+.gs-infinity-number {
+  animation: gs-infinity-appear 1.2s ease both;
+}
+
+@keyframes gs-infinity-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-35deg);
+    filter: blur(8px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.15) rotate(5deg);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* Light Theme */
+
+[data-theme="light"] .gs-highlight-number {
+  color: #ed570d;
+}
+
+[data-theme="light"] .gs-about-highlight:hover .gs-highlight-number {
+  color: #ff7029;
+  text-shadow: 0 0 20px rgba(255, 90, 0, 0.2);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .gs-highlight-number {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 420px) {
+  .gs-highlight-number {
+    font-size: 26px;
+  }
 }

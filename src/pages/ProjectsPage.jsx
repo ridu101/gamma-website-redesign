@@ -1,5 +1,6 @@
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -12,6 +13,63 @@ import { HashLink } from "react-router-hash-link";
 
 import { projects, projectCategories } from "../data/projects";
 import "../sections/Projects.css";
+const AnimatedNumber = ({ target, suffix = "", duration = 1800, pad = false }) => {
+  const [count, setCount] = useState(0);
+  const numberRef = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const element = numberRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    let animationFrame;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      // Smooth ease-out animation
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
+
+      setCount(Math.floor(easedProgress * target));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [started, target, duration]);
+
+  return (
+    <span ref={numberRef} className="gs-highlight-number">
+      {pad ? String(count).padStart(2, "0") : count}
+      {suffix}
+    </span>
+  );
+};
 
 const ProjectsPage = () => {
   const [activeCategory, setActiveCategory] = useState("All Projects");
@@ -69,23 +127,34 @@ const ProjectsPage = () => {
           </p>
         </div>
 
-        <div className="gs-projects-stats">
-          <div className="gs-project-stat">
-            <span>{String(projects.length).padStart(2, "0")}</span>
-            <p>Solutions & Services</p>
-          </div>
+     <div className="gs-projects-stats">
+  <div className="gs-project-stat">
+    <AnimatedNumber
+      target={projects.length}
+      pad
+      duration={1800}
+    />
+    <p>Solutions & Services</p>
+  </div>
 
-          <div className="gs-project-stat">
-            <span>06+</span>
-            <p>Technology Areas</p>
-          </div>
+  <div className="gs-project-stat">
+    <AnimatedNumber
+      target={6}
+      suffix="+"
+      duration={1800}
+    />
+    <p>Technology Areas</p>
+  </div>
 
-          <div className="gs-project-stat">
-            <span>360°</span>
-            <p>Digital Solutions</p>
-          </div>
-        </div>
-
+  <div className="gs-project-stat">
+    <AnimatedNumber
+      target={360}
+      suffix="°"
+      duration={2000}
+    />
+    <p>Digital Solutions</p>
+  </div>
+</div>
         <div className="gs-project-filters">
           {projectCategories.map((category) => (
             <button
@@ -239,7 +308,7 @@ const ProjectsPage = () => {
 
             <HashLink
               smooth
-              to="/#contact"
+              to="/get-quote"
               className="gs-project-modal-cta"
               onClick={() => setSelectedProject(null)}
             >

@@ -1255,3 +1255,153 @@
 [data-theme="light"] .gs-project-suitable p {
   color: #555560;
 }
+/* =========================================
+   PROJECT FILTERS — LIGHT THEME FIX
+========================================= */
+
+[data-theme="light"] .gs-project-filters {
+  gap: 11px;
+}
+
+/* Default filter button */
+[data-theme="light"] .gs-project-filter {
+  color: #4b5563;
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  box-shadow: 0 2px 8px rgba(20, 30, 45, 0.035);
+}
+
+/* Hover state */
+[data-theme="light"] .gs-project-filter:hover {
+  color: #e6530a;
+  background: #fff4ed;
+  border-color: rgba(255, 90, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Active / Selected category */
+[data-theme="light"] .gs-project-filter.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff6b1a, #e6530a);
+  border-color: #e6530a;
+  box-shadow: 0 5px 18px rgba(230, 83, 10, 0.20);
+}
+
+/* Active button hover */
+[data-theme="light"] .gs-project-filter.active:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff7830, #e6530a);
+  border-color: #e6530a;
+}
+
+/* Keyboard accessibility */
+[data-theme="light"] .gs-project-filter:focus-visible {
+  outline: 2px solid #ff6b1a;
+  outline-offset: 3px;
+}
+
+/* Mobile filter spacing */
+@media (max-width: 650px) {
+  [data-theme="light"] .gs-project-filters {
+    gap: 8px;
+  }
+
+  [data-theme="light"] .gs-project-filter {
+    padding: 9px 13px;
+    font-size: 11px;
+  }
+}
+/* =========================================
+   PROJECTS — ANIMATED STATISTICS
+========================================= */
+
+.gs-project-stat {
+  position: relative;
+  min-width: 120px;
+  transition: transform 0.35s ease;
+}
+
+.gs-project-stat:hover {
+  transform: translateY(-5px);
+}
+
+.gs-project-stat span {
+  display: inline-block;
+  color: var(--gs-accent);
+  font-size: 32px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 25px rgba(255, 107, 26, 0.2);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.gs-project-stat:hover span {
+  color: #ff8548;
+  text-shadow: 0 0 25px rgba(255, 107, 26, 0.4);
+}
+
+/* Light Theme */
+
+[data-theme="light"] .gs-project-stat span {
+  color: #ed570d;
+  text-shadow: 0 0 20px rgba(255, 107, 26, 0.12);
+}
+
+[data-theme="light"] .gs-project-stat:hover span {
+  color: #ff7029;
+  text-shadow: 0 0 22px rgba(255, 107, 26, 0.25);
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .gs-project-stat {
+    min-width: 90px;
+  }
+
+  .gs-project-stat span {
+    font-size: 24px;
+  }
+}
+/* =========================================
+   VIEW ALL PROJECTS — LIGHT THEME FIX
+========================================= */
+
+[data-theme="light"] .gs-project-view-all a {
+  background: linear-gradient(135deg, #ffffff, #fff5ef);
+  color: #d94b08;
+  border: 1px solid rgba(230, 83, 10, 0.35);
+  box-shadow: 0 4px 14px rgba(20, 20, 25, 0.06);
+}
+
+[data-theme="light"] .gs-project-view-all a svg {
+  color: #e6530a;
+}
+
+/* Hover */
+[data-theme="light"] .gs-project-view-all a:hover {
+  background: linear-gradient(135deg, #ff7830, #e6530a);
+  color: #ffffff;
+  border-color: #e6530a;
+  box-shadow: 0 10px 25px rgba(230, 83, 10, 0.22);
+  transform: translateY(-4px);
+}
+
+[data-theme="light"] .gs-project-view-all a:hover svg {
+  color: #ffffff;
+  transform: translate(3px, -3px);
+}
+
+/* Keyboard Focus */
+[data-theme="light"] .gs-project-view-all a:focus-visible {
+  outline: 2px solid #ff6b1a;
+  outline-offset: 4px;
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  [data-theme="light"] .gs-project-view-all a {
+    padding: 13px 21px;
+    font-size: 12px;
+  }
+}
