@@ -1,0 +1,214 @@
+
+.admin-job-form-page {
+  width: 100%;
+  color: #e8edf5;
+}
+
+.admin-job-form-header {
+  margin-bottom: 25px;
+}
+
+.admin-job-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #aeb9c9;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-job-back:hover {
+  color: #f36b21;
+}
+
+.admin-job-form-header h1 {
+  margin: 0 0 8px;
+  font-size: 27px;
+}
+
+.admin-job-form-header p {
+  margin: 0;
+  color: #8995a8;
+  font-size: 13px;
+}
+
+.admin-job-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 20px;
+}
+
+.admin-job-form-main,
+.admin-job-form-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-job-form-card {
+  padding: 23px;
+  border: 1px solid #263244;
+  border-radius: 12px;
+  background: #111a27;
+}
+
+.admin-job-form-section-title {
+  margin-bottom: 22px;
+}
+
+.admin-job-form-section-title h2 {
+  margin: 0 0 7px;
+  font-size: 16px;
+}
+
+.admin-job-form-section-title p {
+  margin: 0;
+  color: #8995a8;
+  font-size: 11px;
+}
+
+.admin-job-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+
+.admin-job-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 20px;
+}
+
+.admin-job-field:last-child {
+  margin-bottom: 0;
+}
+
+.admin-job-field.full {
+  grid-column: 1 / -1;
+}
+
+.admin-job-field label {
+  color: #c5cedb;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.admin-job-field label span {
+  color: #f36b21;
+}
+
+.admin-job-field input,
+.admin-job-field textarea,
+.admin-job-field select {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #344154;
+  border-radius: 8px;
+  outline: none;
+  background: #0c1420;
+  color: #e8edf5;
+  font-family: inherit;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.admin-job-field textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.admin-job-field input:focus,
+.admin-job-field textarea:focus,
+.admin-job-field select:focus {
+  border-color: #f36b21;
+}
+
+.admin-job-field input::placeholder,
+.admin-job-field textarea::placeholder {
+  color: #667387;
+}
+
+.admin-job-field input[type="date"] {
+  color-scheme: dark;
+}
+
+.admin-job-save,
+.admin-job-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-job-save {
+  background: #f36b21;
+  color: #fff;
+}
+
+.admin-job-save:hover {
+  background: #dc5714;
+}
+
+.admin-job-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-job-cancel {
+  border: 1px solid #344154;
+  background: transparent;
+  color: #c5cedb;
+}
+
+.admin-job-cancel:hover {
+  border-color: #f36b21;
+  color: #f36b21;
+}
+
+.admin-job-form-loading {
+  padding: 60px;
+  color: #8995a8;
+  text-align: center;
+}
+
+@media (max-width: 950px) {
+  .admin-job-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-job-form-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-job-form-sidebar > .admin-job-form-card {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-job-form-sidebar {
+    display: flex;
+  }
+
+  .admin-job-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-job-form-card {
+    padding: 17px;
+  }
+}

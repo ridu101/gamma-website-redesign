@@ -8,6 +8,7 @@ import Projects from "../sections/Projects";
 import Testimonials from "../sections/Testimonials";
 import Contact from "../sections/Contact";
 import Footer from "../sections/Footer";
+import TechnologyTree from "../sections/TechnologyTree";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <main>
         <Hero />
         <TrustedBy />
+        <TechnologyTree />
         <About />
         <Services />
         <Products />

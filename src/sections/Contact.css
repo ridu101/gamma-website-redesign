@@ -778,3 +778,18 @@
     margin-bottom: 30px !important;
   }
 }
+.gs-contact-error {
+  padding: 12px 15px;
+  margin-top: 14px;
+  border: 1px solid #f3b4b4;
+  border-radius: 10px;
+  background: #fff1f1;
+  color: #c62828;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.gs-contact-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

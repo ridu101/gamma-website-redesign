@@ -1,0 +1,376 @@
+
+.project-form-page {
+  width: 100%;
+}
+
+.project-form-heading {
+  margin-bottom: 25px;
+}
+
+.project-form-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #9ba9bb;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.project-form-back:hover {
+  color: #ff965c;
+}
+
+.project-form-heading h1 {
+  margin: 0 0 8px;
+  color: #f1f5f9;
+  font-size: 27px;
+  font-weight: 750;
+}
+
+.project-form-heading p {
+  margin: 0;
+  color: #8995a6;
+  font-size: 13px;
+}
+
+.project-form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  align-items: start;
+  gap: 20px;
+}
+
+.project-form-main,
+.project-form-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-form-card {
+  padding: 23px;
+  border: 1px solid #263243;
+  border-radius: 13px;
+  background: #111a27;
+}
+
+.project-form-card-heading {
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #263243;
+}
+
+.project-form-card-heading h2 {
+  margin: 0 0 6px;
+  color: #e9eef6;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.project-form-card-heading p {
+  margin: 0;
+  color: #8290a3;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.project-form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px 16px;
+}
+
+.project-form-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.project-form-field.full {
+  grid-column: 1 / -1;
+}
+
+.project-form-field label {
+  color: #d4deea;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.project-form-field input,
+.project-form-field textarea,
+.project-form-field select {
+  width: 100%;
+  min-height: 43px;
+  padding: 11px 12px;
+  border: 1px solid #303c4e;
+  border-radius: 8px;
+  outline: none;
+  background: #0d1420;
+  color: #e8edf5;
+  font-family: inherit;
+  font-size: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.project-form-field textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.project-form-field input:focus,
+.project-form-field textarea:focus,
+.project-form-field select:focus {
+  border-color: #f36b21;
+}
+
+.project-form-field input::placeholder,
+.project-form-field textarea::placeholder {
+  color: #65748a;
+}
+
+.project-form-field select option {
+  background: #111a27;
+}
+
+.project-form-field small {
+  color: #7f8da1;
+  font-size: 10px;
+}
+
+.project-image-upload {
+  width: 100%;
+}
+
+.project-image-dropzone {
+  min-height: 185px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  border: 1px dashed #455267;
+  border-radius: 10px;
+  background: #0d1420;
+  color: #8795a8;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.project-image-dropzone:hover {
+  border-color: #f36b21;
+  color: #ff965c;
+}
+
+.project-image-dropzone strong {
+  color: #dce5f0;
+  font-size: 12px;
+}
+
+.project-image-dropzone span {
+  color: #78869a;
+  font-size: 10px;
+}
+
+.project-image-dropzone input,
+.project-image-change input {
+  display: none;
+}
+
+.project-image-preview {
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #303c4e;
+  border-radius: 10px;
+  background: #0d1420;
+}
+
+.project-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-image-preview button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  cursor: pointer;
+}
+
+.project-image-change {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  border: 1px solid #303c4e;
+  border-radius: 8px;
+  color: #d3deeb;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.project-image-change:hover {
+  border-color: #f36b21;
+  color: #ff965c;
+}
+
+.project-order-field {
+  margin-top: 18px;
+}
+
+.project-featured-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 20px;
+  padding: 14px;
+  border: 1px solid #303c4e;
+  border-radius: 9px;
+  background: #0d1420;
+  cursor: pointer;
+}
+
+.project-featured-toggle input {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: #f36b21;
+  cursor: pointer;
+}
+
+.project-featured-toggle span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-featured-toggle strong {
+  color: #dce5f0;
+  font-size: 11px;
+}
+
+.project-featured-toggle small {
+  color: #8290a3;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.project-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.project-form-actions button {
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.project-cancel-button {
+  border: 1px solid #303c4e;
+  background: #151e2b;
+  color: #cbd5e1;
+}
+
+.project-cancel-button:hover {
+  border-color: #64748b;
+}
+
+.project-save-button {
+  border: 0;
+  background: #f36b21;
+  color: white;
+}
+
+.project-save-button:hover {
+  background: #df5711;
+}
+
+.project-save-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.project-form-error {
+  margin-bottom: 20px;
+  padding: 13px 15px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 9px;
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.project-form-loading {
+  padding: 40px;
+  color: #aab7c8;
+  text-align: center;
+  font-size: 13px;
+}
+
+@media (max-width: 1050px) {
+  .project-form-layout {
+    grid-template-columns: minmax(0, 1fr) 290px;
+  }
+}
+
+@media (max-width: 800px) {
+  .project-form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .project-form-side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .project-form-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 550px) {
+  .project-form-card {
+    padding: 17px;
+  }
+
+  .project-form-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .project-form-field.full {
+    grid-column: auto;
+  }
+
+  .project-form-side {
+    display: flex;
+  }
+}

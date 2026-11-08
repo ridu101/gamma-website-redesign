@@ -1,5 +1,11 @@
+import {
+  Suspense,
+  useMemo,
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 
-import { Suspense, useMemo, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -17,7 +23,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { Box3, Vector3 } from "three";
 
-import { jobs, categories, benefits } from "../data/careerData";
+import { benefits } from "../data/careerData";
+import api from "../services/api";
 
 import "./Career.css";
 
@@ -29,6 +36,47 @@ const MODEL_PATH = "/models/image-3d.glb";
 const MODEL_TARGET_SIZE = 2.5;
 
 // ========================================
+// JOB DATA HELPERS
+// ========================================
+
+// Convert requirements into an array of skills.
+const getJobSkills = (requirements) => {
+  if (!requirements) return [];
+
+  if (Array.isArray(requirements)) {
+    return requirements;
+  }
+
+  if (typeof requirements === "string") {
+    try {
+      const parsed = JSON.parse(requirements);
+
+      if (Array.isArray(parsed)) {
+        return parsed;
+      }
+    } catch {
+      // Continue with normal string handling.
+    }
+
+    return requirements
+      .split(/[,;\n]/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+};
+
+// Format employment type for display.
+const formatEmploymentType = (type) => {
+  if (!type) return "Not specified";
+
+  return type
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+// ========================================
 // GAMMASOFT 3D LOGO MODEL
 // ========================================
 
@@ -37,7 +85,6 @@ const CareerLogoModel = () => {
 
   const { scene } = useGLTF(MODEL_PATH);
 
-  // Clone and automatically normalize the GLB model
   const normalizedModel = useMemo(() => {
     const clonedScene = scene.clone(true);
 
@@ -67,14 +114,11 @@ const CareerLogoModel = () => {
   useFrame((state, delta) => {
     if (!modelRef.current) return;
 
-    // Smooth continuous rotation
     modelRef.current.rotation.y += delta * 0.45;
 
-    // Subtle floating movement
     modelRef.current.position.y =
       Math.sin(state.clock.elapsedTime * 0.8) * 0.08;
 
-    // Slight tilt
     modelRef.current.rotation.x = -0.1;
   });
 
@@ -161,10 +205,70 @@ useGLTF.preload(MODEL_PATH);
 const Career = () => {
   const navigate = useNavigate();
 
+  const [jobs, setJobs] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const [activeCategory, setActiveCategory] =
     useState("All Positions");
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  // ========================================
+  // FETCH JOBS FROM BACKEND
+  // ========================================
+
+  const fetchJobs = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await api.get("/jobs");
+
+      const result = response.data?.data;
+
+      const jobList = Array.isArray(result)
+        ? result
+        : Array.isArray(result?.data)
+          ? result.data
+          : [];
+
+      setJobs(jobList);
+    } catch (err) {
+      console.error("Career jobs loading error:", err);
+
+      setError(
+        err.response?.data?.message ||
+        "Unable to load available positions. Please try again."
+      );
+
+      setJobs([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  // ========================================
+  // DYNAMIC DEPARTMENT CATEGORIES
+  // ========================================
+
+  const categories = useMemo(() => {
+    const departments = jobs
+      .map((job) => job.department)
+      .filter(Boolean);
+
+    const uniqueDepartments = [...new Set(departments)];
+
+    return [
+      "All Positions",
+      ...uniqueDepartments,
+    ];
+  }, [jobs]);
 
   // ========================================
   // FILTER JOBS
@@ -178,25 +282,26 @@ const Career = () => {
 
       const search = searchTerm.toLowerCase().trim();
 
+      const skills = getJobSkills(job.requirements);
+
       const matchesSearch =
-        job.title.toLowerCase().includes(search) ||
-        job.department.toLowerCase().includes(search) ||
-        job.skills.some((skill) =>
-          skill.toLowerCase().includes(search)
+        (job.title || "").toLowerCase().includes(search) ||
+        (job.department || "").toLowerCase().includes(search) ||
+        skills.some((skill) =>
+          String(skill).toLowerCase().includes(search)
         );
 
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchTerm]);
+  }, [jobs, activeCategory, searchTerm]);
 
   // ========================================
-  // APPLY FUNCTION
+  // APPLY NAVIGATION
   // ========================================
 
-  const handleApply = (job) => {
-    navigate(`/career/apply/${job.id}`);
-  };
-
+const handleApply = (job) => {
+  navigate(`/career/apply/${job.slug}`);
+};
   // ========================================
   // RENDER
   // ========================================
@@ -296,6 +401,7 @@ const Career = () => {
             <strong>
               {filteredJobs.length.toString().padStart(2, "0")}
             </strong>
+
             <span>Positions Found</span>
           </div>
         </div>
@@ -333,9 +439,35 @@ const Career = () => {
         {/* JOB CARDS */}
 
         <div className="gs-career-job-list">
-          {filteredJobs.length > 0 ? (
+
+          {loading ? (
+            <div className="gs-career-empty">
+              <BriefcaseBusiness size={30} />
+
+              <h3>Loading Opportunities...</h3>
+
+              <p>
+                Please wait while we load available positions.
+              </p>
+            </div>
+          ) : error ? (
+            <div className="gs-career-empty">
+              <ShieldCheck size={30} />
+
+              <h3>Unable to Load Jobs</h3>
+
+              <p>{error}</p>
+
+              <button
+                type="button"
+                onClick={fetchJobs}
+              >
+                Try Again
+              </button>
+            </div>
+          ) : filteredJobs.length > 0 ? (
             filteredJobs.map((job) => {
-              const JobIcon = job.icon;
+              const skills = getJobSkills(job.requirements);
 
               return (
                 <article
@@ -344,20 +476,13 @@ const Career = () => {
                 >
                   <div className="gs-career-job-main">
                     <div className="gs-career-job-icon">
-                      <JobIcon size={26} />
+                      <BriefcaseBusiness size={26} />
                     </div>
 
                     <div className="gs-career-job-info">
                       <div className="gs-career-job-badges">
-                        {job.featured && (
-                          <span className="featured-badge">
-                            <Sparkles size={12} />
-                            Featured
-                          </span>
-                        )}
-
                         <span className="job-type-badge">
-                          {job.type}
+                          {formatEmploymentType(job.employment_type)}
                         </span>
                       </div>
 
@@ -366,35 +491,39 @@ const Career = () => {
                       <div className="gs-career-job-meta">
                         <span>
                           <BriefcaseBusiness size={14} />
-                          {job.department}
+                          {job.department || "General"}
                         </span>
 
                         <span>
                           <MapPin size={14} />
-                          {job.location}
+                          {job.location || "Not specified"}
                         </span>
 
                         <span>
                           <Clock3 size={14} />
-                          {job.experience}
+                          {job.experience || "Not specified"}
                         </span>
                       </div>
 
-                      <p>{job.description}</p>
+                      <p>
+                        {job.short_description || job.description || ""}
+                      </p>
 
-                      <div className="gs-career-skills">
-                        {job.skills.map((skill) => (
-                          <span key={skill}>
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                      {skills.length > 0 && (
+                        <div className="gs-career-skills">
+                          {skills.map((skill, index) => (
+                            <span key={`${job.id}-skill-${index}`}>
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="gs-career-job-action">
                     <span className="gs-career-salary">
-                      {job.salary}
+                      {job.salary || "Negotiable"}
                     </span>
 
                     <button
@@ -419,13 +548,15 @@ const Career = () => {
               </p>
             </div>
           )}
+
         </div>
 
-        <p className="gs-career-demo-note">
-          <ShieldCheck size={15} />
-          These are sample job listings for demonstration purposes.
-          Actual vacancies and application details will be published here.
-        </p>
+        {!loading && !error && jobs.length > 0 && (
+          <p className="gs-career-demo-note">
+            <ShieldCheck size={15} />
+            Job opportunities are updated directly from GammaSoft.
+          </p>
+        )}
       </section>
 
       {/* WHY GAMMASOFT */}

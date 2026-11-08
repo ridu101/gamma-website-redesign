@@ -1,0 +1,366 @@
+.admin-product-form-page {
+  width: 100%;
+  color: #e8edf5;
+}
+
+.admin-product-form-header {
+  margin-bottom: 25px;
+}
+
+.admin-product-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #aeb9c9;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-product-back:hover {
+  color: #f36b21;
+}
+
+.admin-product-form-header h1 {
+  margin: 0 0 8px;
+  font-size: 27px;
+}
+
+.admin-product-form-header p {
+  margin: 0;
+  color: #8995a8;
+  font-size: 13px;
+}
+
+.admin-product-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 20px;
+}
+
+.admin-product-form-main,
+.admin-product-form-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-product-form-card {
+  padding: 23px;
+  border: 1px solid #263244;
+  border-radius: 12px;
+  background: #111a27;
+}
+
+.admin-product-form-section-title {
+  margin-bottom: 22px;
+}
+
+.admin-product-form-section-title h2 {
+  margin: 0 0 7px;
+  font-size: 16px;
+}
+
+.admin-product-form-section-title p {
+  margin: 0;
+  color: #8995a8;
+  font-size: 11px;
+}
+
+.admin-product-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 20px;
+}
+
+.admin-product-field:last-child {
+  margin-bottom: 0;
+}
+
+.admin-product-field label {
+  color: #c5cedb;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.admin-product-field label span {
+  color: #f36b21;
+}
+
+.admin-product-field input,
+.admin-product-field textarea,
+.admin-product-field select {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #344154;
+  border-radius: 8px;
+  outline: none;
+  background: #0c1420;
+  color: #e8edf5;
+  font-family: inherit;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.admin-product-field textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.admin-product-field input:focus,
+.admin-product-field textarea:focus,
+.admin-product-field select:focus {
+  border-color: #f36b21;
+}
+
+.admin-product-field input::placeholder,
+.admin-product-field textarea::placeholder {
+  color: #667387;
+}
+
+.admin-product-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 190px;
+  padding: 20px;
+  border: 1px dashed #46556a;
+  border-radius: 10px;
+  background: #0c1420;
+  color: #8995a8;
+  text-align: center;
+  cursor: pointer;
+}
+
+.admin-product-upload:hover {
+  border-color: #f36b21;
+  color: #f36b21;
+}
+
+.admin-product-upload strong {
+  color: #e8edf5;
+  font-size: 13px;
+}
+
+.admin-product-upload span {
+  font-size: 11px;
+}
+
+.admin-product-upload input,
+.admin-product-change-image input {
+  display: none;
+}
+
+.admin-product-image-preview {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  overflow: hidden;
+  border: 1px solid #344154;
+  border-radius: 10px;
+  background: #0c1420;
+}
+
+.admin-product-image-preview img {
+  display: block;
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+}
+
+.admin-product-image-preview button {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border: none;
+  border-radius: 7px;
+  background: #ef4444;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-product-change-image {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 13px;
+  color: #f36b21;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-product-featured-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px;
+  border: 1px solid #344154;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.admin-product-featured-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: #f36b21;
+}
+
+.admin-product-featured-toggle strong,
+.admin-product-featured-toggle small {
+  display: block;
+}
+
+.admin-product-featured-toggle strong {
+  font-size: 12px;
+}
+
+.admin-product-featured-toggle small {
+  margin-top: 5px;
+  color: #8995a8;
+  font-size: 10px;
+}
+
+.admin-product-save,
+.admin-product-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-product-save {
+  background: #f36b21;
+  color: #fff;
+}
+
+.admin-product-save:hover {
+  background: #dc5714;
+}
+
+.admin-product-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-product-cancel {
+  border: 1px solid #344154;
+  background: transparent;
+  color: #c5cedb;
+}
+
+.admin-product-cancel:hover {
+  border-color: #f36b21;
+  color: #f36b21;
+}
+
+.admin-product-form-loading {
+  padding: 60px;
+  color: #8995a8;
+  text-align: center;
+}
+
+@media (max-width: 950px) {
+  .admin-product-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-product-form-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-product-form-sidebar > .admin-product-form-card {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-product-form-sidebar {
+    display: flex;
+  }
+
+  .admin-product-form-card {
+    padding: 17px;
+  }
+}
+
+/* =========================================
+   PRODUCT TYPE SELECT
+========================================= */
+
+.admin-product-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid #dce3eb;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #202a37;
+  font-size: 14px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.admin-product-field select:focus {
+  border-color: #f36b21;
+  box-shadow: 0 0 0 3px rgba(243, 107, 33, 0.10);
+}
+
+.admin-product-field small {
+  display: block;
+  margin-top: 7px;
+  color: #788497;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   PRODUCT TYPE PREVIEW
+========================================= */
+
+.admin-product-type-preview {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e5eaf0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #f36b21;
+}
+
+.admin-product-type-preview div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-product-type-preview strong {
+  color: #202a37;
+  font-size: 13px;
+}
+
+.admin-product-type-preview small {
+  color: #778397;
+  font-size: 11px;
+}

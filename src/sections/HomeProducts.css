@@ -515,3 +515,75 @@
     transition: none !important;
   }
 }
+
+/* Home Products API States */
+
+.home-products-status {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 35px 20px;
+  text-align: center;
+  color: #8490a2;
+}
+
+.home-products-status > svg {
+  color: #f36b21;
+}
+
+.home-products-status h3 {
+  margin: 5px 0 0;
+  color: #20242b;
+  font-size: 18px;
+}
+
+.home-products-status p {
+  margin: 0;
+  max-width: 450px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.home-products-loading-icon {
+  animation: home-products-spin 1s linear infinite;
+}
+
+@keyframes home-products-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.home-products-retry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 1px solid #f36b21;
+  border-radius: 8px;
+  background: transparent;
+  color: #f36b21;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.home-products-retry:hover {
+  background: #f36b21;
+  color: #ffffff;
+}
+
+.home-product-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #eaf0f5;
+  color: #f36b21;
+}

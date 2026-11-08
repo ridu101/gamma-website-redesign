@@ -1,18 +1,18 @@
-
 import {
   BrowserRouter,
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 
 import { useEffect } from "react";
 
-// Components
+// Public Components
 import BackToTop from "../components/BackToTop";
 import Navbar from "../components/common/Navbar";
 
-// Pages
+// Public Pages
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import ServicesPage from "../pages/ServicesPage";
@@ -26,6 +26,34 @@ import NewsCardDetail from "../pages/NewsCardDetail";
 import QuotePage from "../pages/QuotePage";
 import Career from "../pages/Career";
 import JobApplication from "../pages/JobApplication";
+
+// Admin Pages
+import AdminLogin from "../admin/pages/Login";
+import Dashboard from "../admin/pages/Dashboard";
+
+import Projects from "../admin/pages/Projects";
+import ProjectForm from "../admin/pages/ProjectForm";
+
+import Products from "../admin/pages/Products";
+import ProductForm from "../admin/pages/ProductForm";
+
+import News from "../admin/pages/News";
+import NewsForm from "../admin/pages/NewsForm";
+
+import Jobs from "../admin/pages/Jobs";
+import JobForm from "../admin/pages/JobForm";
+
+import Applications from "../admin/pages/Applications";
+import ApplicationDetails from "../admin/pages/ApplicationDetails";
+
+import Inquiries from "../admin/pages/Inquiries";
+
+import Testimonials from "../admin/pages/Testimonials";
+import TestimonialForm from "../admin/pages/TestimonialForm";
+
+// Admin Components
+import AdminLayout from "../admin/AdminLayout";
+import ProtectedRoute from "../admin/components/ProtectedRoute";
 
 // ========================================
 // SCROLL TO TOP
@@ -50,35 +78,30 @@ const ScrollToTop = () => {
 // ========================================
 
 const AppRoutes = () => {
+  const location = useLocation();
+
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   return (
     <>
       <ScrollToTop />
 
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
 
       <Routes>
-        {/* Home */}
+        {/* PUBLIC WEBSITE */}
+
         <Route path="/" element={<HomePage />} />
-
-        {/* About */}
         <Route path="/about" element={<AboutPage />} />
-
-        {/* Services */}
         <Route path="/services" element={<ServicesPage />} />
-
-        {/* Products */}
         <Route path="/products" element={<ProductsPage />} />
-
-        {/* Projects */}
         <Route path="/projects" element={<ProjectsPage />} />
 
-        {/* Testimonials */}
         <Route
           path="/testimonials"
           element={<TestimonialsPage />}
         />
 
-        {/* Career */}
         <Route path="/career" element={<Career />} />
 
         <Route
@@ -86,7 +109,6 @@ const AppRoutes = () => {
           element={<JobApplication />}
         />
 
-        {/* News */}
         <Route path="/news" element={<NewsPage />} />
 
         <Route
@@ -94,20 +116,149 @@ const AppRoutes = () => {
           element={<NewsCardDetail />}
         />
 
-        {/* Company Profile */}
         <Route
           path="/company-profile"
           element={<CompanyProfile />}
         />
 
-        {/* Get Quote */}
         <Route path="/get-quote" element={<QuotePage />} />
 
+        {/* ADMIN LOGIN */}
+
+        <Route
+          path="/admin/login"
+          element={<AdminLogin />}
+        />
+
+        {/* PROTECTED ADMIN PANEL */}
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route
+              index
+              element={<Navigate to="dashboard" replace />}
+            />
+
+            {/* DASHBOARD */}
+
+            <Route
+              path="dashboard"
+              element={<Dashboard />}
+            />
+
+            {/* PROJECTS */}
+
+            <Route
+              path="projects"
+              element={<Projects />}
+            />
+
+            <Route
+              path="projects/create"
+              element={<ProjectForm />}
+            />
+
+            <Route
+              path="projects/:id/edit"
+              element={<ProjectForm />}
+            />
+
+            {/* PRODUCTS */}
+
+            <Route
+              path="products"
+              element={<Products />}
+            />
+
+            <Route
+              path="products/create"
+              element={<ProductForm />}
+            />
+
+            <Route
+              path="products/:id/edit"
+              element={<ProductForm />}
+            />
+
+            {/* NEWS */}
+
+            <Route
+              path="news"
+              element={<News />}
+            />
+
+            <Route
+              path="news/create"
+              element={<NewsForm />}
+            />
+
+            <Route
+              path="news/:id/edit"
+              element={<NewsForm />}
+            />
+
+            {/* JOBS */}
+
+            <Route
+              path="jobs"
+              element={<Jobs />}
+            />
+
+            <Route
+              path="jobs/create"
+              element={<JobForm />}
+            />
+
+            <Route
+              path="jobs/:id/edit"
+              element={<JobForm />}
+            />
+
+            {/* JOB APPLICATIONS */}
+
+            <Route
+              path="applications"
+              element={<Applications />}
+            />
+
+            <Route
+              path="applications/:id"
+              element={<ApplicationDetails />}
+            />
+
+            {/* INQUIRY MANAGEMENT */}
+
+            <Route
+              path="inquiries"
+              element={<Inquiries />}
+            />
+
+            {/* TESTIMONIAL MANAGEMENT */}
+
+            <Route
+              path="testimonials"
+              element={<Testimonials />}
+            />
+
+            <Route
+              path="testimonials/create"
+              element={<TestimonialForm />}
+            />
+
+            <Route
+              path="testimonials/:id/edit"
+              element={<TestimonialForm />}
+            />
+
+          </Route>
+        </Route>
+
         {/* 404 */}
+
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <BackToTop />
+      {!isAdminRoute && <BackToTop />}
     </>
   );
 };

@@ -1399,3 +1399,53 @@
 [data-theme="light"] .modal-quote-btn:hover {
   box-shadow: 0 8px 25px rgba(255, 90, 0, 0.25);
 }
+
+/* =========================================
+   API LOADING & IMAGE PLACEHOLDER
+========================================= */
+
+.products-loading-icon {
+  animation: products-loading-spin 1.2s linear infinite;
+}
+
+@keyframes products-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.product-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ff7733;
+  background: linear-gradient(135deg, #fff1e9, #f0f3f7);
+}
+
+[data-theme="light"] .product-image-placeholder {
+  color: #ed641e;
+  background: linear-gradient(135deg, #fff1e9, #f0f3f7);
+}
+
+/* =========================================
+   CLICKABLE PRODUCT CARD
+========================================= */
+
+.product-card {
+  cursor: pointer;
+  outline: none;
+}
+
+.product-card:focus-visible {
+  outline: 2px solid #f36b21;
+  outline-offset: 5px;
+}
+
+.product-card .product-explore-btn {
+  cursor: pointer;
+}
+
+.product-card .product-explore-btn:hover {
+  transform: translateY(-3px);
+}

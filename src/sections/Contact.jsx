@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import {
   ArrowUpRight,
@@ -12,6 +13,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+import api from "../services/api";
 import "./Contact.css";
 
 const contactInfo = [
@@ -52,17 +54,22 @@ const services = [
   "Other",
 ];
 
+const initialForm = {
+  name: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+};
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(initialForm);
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -70,22 +77,66 @@ const Contact = () => {
       ...prev,
       [name]: value,
     }));
+
+    if (error) {
+      setError("");
+    }
   };
 
-  const handleSubmit = (e) => {
+  // Submit contact message to Laravel API
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Frontend demo submission.
-    // Connect an API or backend to receive real messages.
-    setSubmitted(true);
+    if (isSubmitting) return;
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: "",
-    });
+    setError("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await api.post("/inquiries/contact", {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || null,
+        service: formData.service,
+        message: formData.message.trim(),
+      });
+
+      if (response.data?.success) {
+        setSubmitted(true);
+        setFormData({ ...initialForm });
+      } else {
+        setError(
+          response.data?.message ||
+            "Unable to send your message. Please try again."
+        );
+      }
+    } catch (submissionError) {
+      const validationErrors =
+        submissionError.response?.data?.errors;
+
+      if (validationErrors) {
+        const firstError = Object.values(validationErrors)[0]?.[0];
+
+        setError(
+          firstError ||
+            "Please check your submitted information."
+        );
+      } else {
+        setError(
+          submissionError.response?.data?.message ||
+            "Unable to send your message. Please try again."
+        );
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Reset success screen and allow another submission
+  const handleSendAnother = () => {
+    setSubmitted(false);
+    setError("");
+    setFormData({ ...initialForm });
   };
 
   return (
@@ -254,13 +305,13 @@ const Contact = () => {
                 <h3>Thank you!</h3>
 
                 <p>
-                  Your form was submitted in this demo interface.
-                  Connect a backend to deliver your message to GammaSoft.
+                  Your message has been sent successfully.
+                  Our team will review your inquiry and get back to you soon.
                 </p>
 
                 <button
                   type="button"
-                  onClick={() => setSubmitted(false)}
+                  onClick={handleSendAnother}
                 >
                   Send Another Message
                   <ArrowUpRight size={16} />
@@ -271,6 +322,7 @@ const Contact = () => {
                 className="gs-contact-form"
                 onSubmit={handleSubmit}
               >
+                {/* Name and Email */}
                 <div className="gs-contact-input-row">
                   <div className="gs-contact-field">
                     <label htmlFor="contact-name">
@@ -284,7 +336,9 @@ const Contact = () => {
                       placeholder="Enter your name"
                       value={formData.name}
                       onChange={handleChange}
+                      autoComplete="name"
                       required
+                      maxLength={100}
                     />
                   </div>
 
@@ -300,11 +354,14 @@ const Contact = () => {
                       placeholder="you@example.com"
                       value={formData.email}
                       onChange={handleChange}
+                      autoComplete="email"
                       required
+                      maxLength={150}
                     />
                   </div>
                 </div>
 
+                {/* Phone and Service */}
                 <div className="gs-contact-input-row">
                   <div className="gs-contact-field">
                     <label htmlFor="contact-phone">
@@ -318,6 +375,8 @@ const Contact = () => {
                       placeholder="+880 1XXXXXXXXX"
                       value={formData.phone}
                       onChange={handleChange}
+                      autoComplete="tel"
+                      maxLength={30}
                     />
                   </div>
 
@@ -346,6 +405,7 @@ const Contact = () => {
                   </div>
                 </div>
 
+                {/* Message */}
                 <div className="gs-contact-field">
                   <label htmlFor="contact-message">
                     Project Details <span>*</span>
@@ -359,14 +419,31 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    minLength={10}
+                    maxLength={5000}
                   />
                 </div>
 
+                {/* API Error */}
+                {error && (
+                  <div
+                    className="gs-contact-error"
+                    role="alert"
+                  >
+                    {error}
+                  </div>
+                )}
+
+                {/* Submit Button */}
                 <button
                   type="submit"
                   className="gs-contact-submit"
+                  disabled={isSubmitting}
                 >
-                  <span>Send Message</span>
+                  <span>
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </span>
+
                   <Send size={17} />
                 </button>
 

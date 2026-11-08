@@ -9,8 +9,9 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import api from "../services/api";
+
 import {
-  testimonials,
   testimonialSection,
 } from "../data/testimonials";
 
@@ -19,7 +20,37 @@ import "./Testimonials.css";
 const AUTOPLAY_INTERVAL = 5000;
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch published testimonials from backend
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        setLoading(true);
+
+        const response = await api.get("/testimonials");
+
+        const payload = response.data?.data;
+
+        const testimonialData = Array.isArray(payload)
+          ? payload
+          : Array.isArray(payload?.data)
+          ? payload.data
+          : [];
+
+        setTestimonials(testimonialData);
+      } catch (error) {
+        console.error("Testimonials loading error:", error);
+        setTestimonials([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   const totalTestimonials = testimonials.length;
 
@@ -32,26 +63,50 @@ const Testimonials = () => {
     }, AUTOPLAY_INTERVAL);
 
     return () => clearInterval(autoplay);
-  }, [totalTestimonials, activeIndex]);
+  }, [totalTestimonials]);
 
   const nextSlide = () => {
+    if (totalTestimonials <= 1) return;
+
     setActiveIndex((prev) => (prev + 1) % totalTestimonials);
   };
 
   const previousSlide = () => {
+    if (totalTestimonials <= 1) return;
+
     setActiveIndex(
       (prev) => (prev - 1 + totalTestimonials) % totalTestimonials
     );
   };
 
   const getVisibleTestimonials = () => {
-    return [0, 1, 2]
-      .map((offset) => {
+    return Array.from(
+      { length: Math.min(3, totalTestimonials) },
+      (_, offset) => {
         const index = (activeIndex + offset) % totalTestimonials;
         return testimonials[index];
-      })
-      .filter(Boolean);
+      }
+    ).filter(Boolean);
   };
+
+  const getInitials = (name) => {
+    return (name || "GS")
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((word) => word.charAt(0).toUpperCase())
+      .join("");
+  };
+
+  if (loading) {
+    return (
+      <section className="gs-testimonials" id="testimonials">
+        <div className="gs-testimonials-container">
+          <p>Loading testimonials...</p>
+        </div>
+      </section>
+    );
+  }
 
   if (!totalTestimonials) {
     return null;
@@ -111,10 +166,10 @@ const Testimonials = () => {
         <div className="gs-testimonials-grid">
           {getVisibleTestimonials().map((testimonial, index) => (
             <article
-              className={`gs-testimonial-card ${testimonial.color || ""} ${
-                index === 1 ? "featured" : ""
-              }`}
-              key={`${testimonial.id}-${activeIndex}`}
+              className={`gs-testimonial-card ${
+                testimonial.color || ""
+              } ${index === 1 ? "featured" : ""}`}
+              key={testimonial.id}
             >
               <div className="gs-testimonial-card-top">
                 <div className="gs-testimonial-quote-icon">
@@ -123,7 +178,12 @@ const Testimonials = () => {
 
                 <div className="gs-testimonial-stars">
                   {Array.from(
-                    { length: testimonial.rating },
+                    {
+                      length: Math.min(
+                        5,
+                        Math.max(0, Number(testimonial.rating) || 0)
+                      ),
+                    },
                     (_, starIndex) => (
                       <Star
                         key={starIndex}
@@ -135,9 +195,11 @@ const Testimonials = () => {
                 </div>
               </div>
 
-              <span className="gs-testimonial-category">
-                {testimonial.category}
-              </span>
+              {testimonial.category && (
+                <span className="gs-testimonial-category">
+                  {testimonial.category}
+                </span>
+              )}
 
               <p className="gs-testimonial-message">
                 "{testimonial.message}"
@@ -147,21 +209,21 @@ const Testimonials = () => {
 
               <div className="gs-testimonial-author">
                 <div className="gs-testimonial-avatar">
-                  {testimonial.initials}
+                  {getInitials(testimonial.name)}
                 </div>
 
                 <div className="gs-testimonial-author-info">
                   <h3>{testimonial.name}</h3>
-                  <p>{testimonial.designation}</p>
-                  <span>{testimonial.company}</span>
+
+                  {testimonial.designation && (
+                    <p>{testimonial.designation}</p>
+                  )}
+
+                  {testimonial.company && (
+                    <span>{testimonial.company}</span>
+                  )}
                 </div>
               </div>
-
-              {testimonial.isDemo && (
-                <span className="gs-testimonial-demo">
-                  DEMO CONTENT
-                </span>
-              )}
             </article>
           ))}
         </div>

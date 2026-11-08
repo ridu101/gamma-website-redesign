@@ -1,0 +1,1132 @@
+/* =========================================
+   GAMMASOFT TECHNOLOGY ECOSYSTEM
+   FUTURISTIC LIGHT / DARK THEME
+========================================= */
+
+.gs-tech-section {
+  --tech-accent: #ff642f;
+  --tech-accent-bright: #ff8050;
+  --tech-accent-soft: rgba(255, 100, 47, 0.1);
+
+  --tech-bg: #ffffff;
+  --tech-surface: #f7f8fa;
+  --tech-card: rgba(255, 255, 255, 0.9);
+  --tech-card-hover: #ffffff;
+
+  --tech-heading: #17191d;
+  --tech-text: #626873;
+  --tech-muted: #9299a3;
+
+  --tech-border: rgba(25, 30, 40, 0.1);
+  --tech-line: rgba(255, 100, 47, 0.2);
+  --tech-grid: rgba(30, 35, 45, 0.045);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 110px 24px 100px;
+  background: var(--tech-bg);
+  color: var(--tech-heading);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+html[data-theme="dark"] .gs-tech-section {
+  --tech-bg: #101113;
+  --tech-surface: #17191c;
+  --tech-card: rgba(27, 29, 33, 0.94);
+  --tech-card-hover: #22252a;
+
+  --tech-heading: #f5f5f6;
+  --tech-text: #a4a8b0;
+  --tech-muted: #777e89;
+
+  --tech-border: rgba(255, 255, 255, 0.1);
+  --tech-line: rgba(255, 115, 62, 0.23);
+  --tech-grid: rgba(255, 255, 255, 0.035);
+}
+
+html[data-theme="light"] .gs-tech-section {
+  --tech-bg: #ffffff;
+  --tech-surface: #f7f8fa;
+  --tech-card: rgba(255, 255, 255, 0.9);
+  --tech-card-hover: #ffffff;
+
+  --tech-heading: #17191d;
+  --tech-text: #626873;
+  --tech-muted: #9299a3;
+
+  --tech-border: rgba(25, 30, 40, 0.1);
+  --tech-line: rgba(255, 100, 47, 0.2);
+  --tech-grid: rgba(30, 35, 45, 0.045);
+}
+
+.gs-tech-section *,
+.gs-tech-section *::before,
+.gs-tech-section *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.gs-tech-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.gs-tech-heading {
+  max-width: 760px;
+  margin: 0 auto 68px;
+  text-align: center;
+}
+
+.gs-tech-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 23px;
+  color: var(--tech-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.3px;
+}
+
+.gs-tech-eyebrow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border: 1px solid rgba(255, 100, 47, 0.28);
+  border-radius: 8px;
+  background: var(--tech-accent-soft);
+}
+
+.gs-tech-eyebrow-line {
+  width: 34px;
+  height: 1px;
+  background: var(--tech-accent);
+  opacity: 0.65;
+}
+
+.gs-tech-heading h2 {
+  margin: 0;
+  color: var(--tech-heading);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800;
+  line-height: 1.13;
+  letter-spacing: -2.2px;
+}
+
+.gs-tech-heading h2 span {
+  color: var(--tech-accent);
+}
+
+.gs-tech-heading p {
+  max-width: 640px;
+  margin: 22px auto 0;
+  color: var(--tech-text);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* =========================================
+   NETWORK PANEL
+========================================= */
+
+.gs-tech-network {
+  position: relative;
+  width: 100%;
+  height: 690px;
+  overflow: hidden;
+  border: 1px solid var(--tech-border);
+  border-radius: 25px;
+  background:
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(255, 100, 47, 0.065),
+      transparent 37%
+    ),
+    var(--tech-surface);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+html[data-theme="dark"] .gs-tech-network {
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.gs-tech-network-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: rgba(255, 100, 47, 0.08);
+  filter: blur(100px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.gs-tech-network-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--tech-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tech-grid) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* =========================================
+   ORBIT ANIMATION
+========================================= */
+
+.gs-tech-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 100, 47, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.gs-tech-orbit-one {
+  width: 350px;
+  height: 350px;
+  animation: gs-tech-orbit-rotate 35s linear infinite;
+}
+
+.gs-tech-orbit-two {
+  width: 500px;
+  height: 500px;
+  border-style: dashed;
+  animation: gs-tech-orbit-rotate 55s linear infinite reverse;
+}
+
+.gs-tech-orbit-three {
+  width: 650px;
+  height: 650px;
+  border-color: rgba(255, 100, 47, 0.045);
+  animation: gs-tech-orbit-rotate 75s linear infinite;
+}
+
+@keyframes gs-tech-orbit-rotate {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* =========================================
+   NETWORK LABELS
+========================================= */
+
+.gs-tech-network-label {
+  position: absolute;
+  z-index: 4;
+  top: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tech-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.gs-tech-label-left {
+  left: 27px;
+}
+
+.gs-tech-label-right {
+  right: 27px;
+}
+
+.gs-tech-label-right svg {
+  color: var(--tech-accent);
+}
+
+.gs-tech-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #27c77a;
+  box-shadow: 0 0 12px rgba(39, 199, 122, 0.8);
+  animation: gs-tech-live-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes gs-tech-live-pulse {
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 3px rgba(39, 199, 122, 0.4);
+  }
+}
+
+/* =========================================
+   CONNECTION LINES
+========================================= */
+
+.gs-tech-connections {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.gs-tech-connection {
+  fill: none;
+  stroke: var(--tech-line);
+  stroke-width: 1.1;
+  stroke-dasharray: 4 7;
+  opacity: 0.8;
+}
+
+.gs-tech-connection-active {
+  fill: none;
+  stroke: url(#gsTechGradient);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 7 18;
+  filter: url(#gsTechGlow);
+  animation: gs-tech-line-flow 4s linear infinite;
+}
+
+@keyframes gs-tech-line-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.gs-tech-connection-dot {
+  fill: var(--tech-accent);
+  filter: url(#gsTechGlow);
+}
+
+.gs-tech-connection-pulse {
+  fill: none;
+  stroke: var(--tech-accent);
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: gs-tech-node-pulse 3s ease-out infinite;
+}
+
+@keyframes gs-tech-node-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.4);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
+/* =========================================
+   TECHNOLOGY NODES
+========================================= */
+
+.gs-tech-node {
+  position: absolute;
+  z-index: 3;
+  width: 170px;
+  transform: translate(-50%, -50%);
+  animation: gs-tech-node-float 5s ease-in-out infinite;
+}
+
+@keyframes gs-tech-node-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+.gs-tech-node-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 64px;
+  padding: 10px 11px;
+  overflow: hidden;
+  border: 1px solid var(--tech-border);
+  border-radius: 13px;
+  background: var(--tech-card);
+  box-shadow: 0 9px 25px rgba(0, 0, 0, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+html[data-theme="dark"] .gs-tech-node-card {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.gs-tech-node-card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--tech-accent);
+  content: "";
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gs-tech-node-card:hover {
+  z-index: 5;
+  border-color: rgba(255, 100, 47, 0.5);
+  background: var(--tech-card-hover);
+  box-shadow: 0 13px 35px rgba(255, 100, 47, 0.1);
+  transform: translateY(-5px);
+}
+
+.gs-tech-node-card:hover::before {
+  opacity: 1;
+}
+
+.gs-tech-node-icon {
+  position: relative;
+  display: flex;
+  flex: 0 0 39px;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  border: 1px solid var(--tech-border);
+  border-radius: 10px;
+  background: var(--tech-surface);
+}
+
+.gs-tech-node-icon img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.gs-tech-icon-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--tech-accent);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.gs-tech-node-info {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gs-tech-node-name {
+  overflow: hidden;
+  color: var(--tech-heading);
+  font-size: 12px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gs-tech-node-category {
+  color: var(--tech-muted);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.gs-tech-node-arrow {
+  flex: 0 0 auto;
+  color: var(--tech-muted);
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition: all 0.25s ease;
+}
+
+.gs-tech-node-card:hover .gs-tech-node-arrow {
+  color: var(--tech-accent);
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* =========================================
+   CENTER HUB + 3D LOGO
+========================================= */
+
+.gs-tech-center {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+}
+
+.gs-tech-center-ring {
+  position: absolute;
+  border: 1px solid rgba(255, 100, 47, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.gs-tech-center-ring-one {
+  inset: 0;
+  border-style: dashed;
+  animation: gs-tech-orbit-rotate 30s linear infinite;
+}
+
+.gs-tech-center-ring-two {
+  inset: 15px;
+  border-color: rgba(255, 100, 47, 0.14);
+  animation: gs-tech-orbit-rotate 25s linear infinite reverse;
+}
+
+.gs-tech-center-ring-three {
+  inset: 31px;
+  border-color: rgba(255, 100, 47, 0.12);
+}
+
+.gs-tech-center-core {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 165px;
+  height: 165px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 100, 47, 0.35);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(255, 100, 47, 0.17),
+      transparent 70%
+    ),
+    var(--tech-bg);
+  box-shadow:
+    0 0 30px rgba(255, 100, 47, 0.12),
+    0 0 80px rgba(255, 100, 47, 0.07),
+    inset 0 0 25px rgba(255, 100, 47, 0.05);
+  animation: gs-tech-center-glow 4s ease-in-out infinite;
+}
+
+@keyframes gs-tech-center-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 30px rgba(255, 100, 47, 0.12),
+      0 0 80px rgba(255, 100, 47, 0.07),
+      inset 0 0 25px rgba(255, 100, 47, 0.05);
+  }
+
+  50% {
+    box-shadow:
+      0 0 40px rgba(255, 100, 47, 0.22),
+      0 0 100px rgba(255, 100, 47, 0.12),
+      inset 0 0 35px rgba(255, 100, 47, 0.1);
+  }
+}
+
+.gs-tech-model-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 94px;
+  margin-top: -4px;
+}
+
+.gs-tech-model {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  --poster-color: transparent;
+  --progress-bar-color: var(--tech-accent);
+  --progress-mask: transparent;
+}
+
+.gs-tech-center-name {
+  color: var(--tech-heading);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+  line-height: 1.1;
+}
+
+.gs-tech-center-caption {
+  margin-top: 4px;
+  color: var(--tech-muted);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.gs-tech-center-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  color: var(--tech-muted);
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+.gs-tech-center-status span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #27c77a;
+  box-shadow: 0 0 8px rgba(39, 199, 122, 0.7);
+}
+
+/* =========================================
+   CORNER DETAILS
+========================================= */
+
+.gs-tech-corner {
+  position: absolute;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  opacity: 0.5;
+}
+
+.gs-tech-corner-tl {
+  top: 14px;
+  left: 14px;
+  border-top: 1px solid var(--tech-accent);
+  border-left: 1px solid var(--tech-accent);
+}
+
+.gs-tech-corner-tr {
+  top: 14px;
+  right: 14px;
+  border-top: 1px solid var(--tech-accent);
+  border-right: 1px solid var(--tech-accent);
+}
+
+.gs-tech-corner-bl {
+  bottom: 14px;
+  left: 14px;
+  border-bottom: 1px solid var(--tech-accent);
+  border-left: 1px solid var(--tech-accent);
+}
+
+.gs-tech-corner-br {
+  right: 14px;
+  bottom: 14px;
+  border-right: 1px solid var(--tech-accent);
+  border-bottom: 1px solid var(--tech-accent);
+}
+
+/* =========================================
+   NETWORK BOTTOM LABEL
+========================================= */
+
+.gs-tech-network-bottom {
+  position: absolute;
+  right: 0;
+  bottom: 22px;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: var(--tech-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+}
+
+.gs-tech-network-bottom span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.gs-tech-network-bottom svg {
+  color: var(--tech-accent);
+}
+
+.gs-tech-bottom-divider {
+  width: 1px;
+  height: 13px;
+  background: var(--tech-border);
+}
+
+/* =========================================
+   TECHNOLOGY CATEGORIES
+========================================= */
+
+.gs-tech-categories {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.gs-tech-category-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 22px;
+  color: var(--tech-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.gs-tech-category-line {
+  width: 45px;
+  height: 1px;
+  background: var(--tech-border);
+}
+
+.gs-tech-category-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gs-tech-category-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 15px;
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+  background: var(--tech-surface);
+  color: var(--tech-text);
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.gs-tech-category-item:hover {
+  border-color: rgba(255, 100, 47, 0.4);
+  color: var(--tech-accent);
+  transform: translateY(-3px);
+}
+
+.gs-tech-category-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tech-accent);
+  box-shadow: 0 0 8px rgba(255, 100, 47, 0.35);
+}
+
+/* =========================================
+   BOTTOM STATEMENT
+========================================= */
+
+.gs-tech-bottom-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 45px;
+}
+
+.gs-tech-bottom-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 100, 47, 0.25);
+  border-radius: 9px;
+  background: var(--tech-accent-soft);
+  color: var(--tech-accent);
+}
+
+.gs-tech-bottom-text p {
+  margin: 0;
+  color: var(--tech-text);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.gs-tech-bottom-text strong {
+  color: var(--tech-heading);
+  font-weight: 800;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+  .gs-tech-section {
+    padding: 90px 20px;
+  }
+
+  .gs-tech-network {
+    height: 620px;
+  }
+
+  .gs-tech-node {
+    width: 145px;
+  }
+
+  .gs-tech-node-card {
+    min-height: 59px;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .gs-tech-node-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .gs-tech-node-icon img {
+    width: 21px;
+    height: 21px;
+  }
+
+  .gs-tech-node-name {
+    font-size: 11px;
+  }
+
+  .gs-tech-node-category {
+    font-size: 8px;
+  }
+
+  .gs-tech-center {
+    width: 210px;
+    height: 210px;
+  }
+
+  .gs-tech-center-core {
+    width: 150px;
+    height: 150px;
+  }
+
+  .gs-tech-model-wrap {
+    width: 90px;
+    height: 82px;
+  }
+
+  .gs-tech-center-name {
+    font-size: 14px;
+  }
+
+  .gs-tech-orbit-one {
+    width: 300px;
+    height: 300px;
+  }
+
+  .gs-tech-orbit-two {
+    width: 420px;
+    height: 420px;
+  }
+
+  .gs-tech-orbit-three {
+    width: 540px;
+    height: 540px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .gs-tech-section {
+    padding: 75px 16px;
+  }
+
+  .gs-tech-heading {
+    margin-bottom: 38px;
+  }
+
+  .gs-tech-heading h2 {
+    font-size: clamp(32px, 8vw, 43px);
+    letter-spacing: -1.5px;
+  }
+
+  .gs-tech-heading p {
+    max-width: 480px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .gs-tech-eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Mobile network grid */
+
+  .gs-tech-network {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    height: auto;
+    min-height: 0;
+    padding: 25px 13px 22px;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .gs-tech-network::before {
+    grid-column: 1 / -1;
+    margin: 0 auto 12px;
+    color: var(--tech-muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-align: center;
+    content: "EXPLORE OUR TECHNOLOGIES";
+  }
+
+  .gs-tech-network-glow {
+    top: 115px;
+    width: 260px;
+    height: 260px;
+    filter: blur(80px);
+  }
+
+  .gs-tech-network-grid {
+    background-size: 28px 28px;
+  }
+
+  .gs-tech-orbit,
+  .gs-tech-connections,
+  .gs-tech-corner,
+  .gs-tech-network-label {
+    display: none;
+  }
+
+  .gs-tech-center {
+    position: relative;
+    top: auto;
+    left: auto;
+    grid-column: 1 / -1;
+    width: 165px;
+    height: 165px;
+    margin: 10px auto 25px;
+    transform: none;
+  }
+
+  .gs-tech-center-core {
+    width: 120px;
+    height: 120px;
+  }
+
+  .gs-tech-model-wrap {
+    width: 72px;
+    height: 66px;
+    margin-top: -2px;
+  }
+
+  .gs-tech-center-name {
+    font-size: 13px;
+  }
+
+  .gs-tech-center-caption {
+    font-size: 6px;
+  }
+
+  .gs-tech-center-status {
+    margin-top: 6px;
+    font-size: 5px;
+  }
+
+  .gs-tech-node {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    width: auto;
+    min-width: 0;
+    margin: 0 3px 10px;
+    animation: none;
+    transform: none;
+  }
+
+  .gs-tech-node-card {
+    min-height: 59px;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 11px;
+  }
+
+  .gs-tech-node-icon {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .gs-tech-node-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .gs-tech-node-name {
+    font-size: 10px;
+  }
+
+  .gs-tech-node-category {
+    font-size: 8px;
+  }
+
+  .gs-tech-node-arrow {
+    display: none;
+  }
+
+  .gs-tech-network-bottom {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    grid-column: 1 / -1;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    font-size: 7px;
+  }
+
+  .gs-tech-categories {
+    margin-top: 35px;
+  }
+
+  .gs-tech-category-list {
+    gap: 8px;
+  }
+
+  .gs-tech-category-item {
+    padding: 9px 11px;
+    font-size: 10px;
+  }
+
+  .gs-tech-bottom-text {
+    margin-top: 32px;
+  }
+
+  .gs-tech-bottom-text p {
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .gs-tech-section {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .gs-tech-network {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .gs-tech-node {
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+
+  .gs-tech-node-card {
+    gap: 6px;
+    padding: 7px 6px;
+  }
+
+  .gs-tech-node-icon {
+    flex-basis: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .gs-tech-node-icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .gs-tech-node-name {
+    font-size: 9px;
+  }
+
+  .gs-tech-node-category {
+    font-size: 7px;
+  }
+
+  .gs-tech-network-bottom {
+    gap: 8px;
+    font-size: 6px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-tech-section *,
+  .gs-tech-section *::before,
+  .gs-tech-section *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

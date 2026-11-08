@@ -1,106 +1,108 @@
 
-// import { useEffect, useState } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  ArrowRight,
   ArrowUpRight,
   X,
   CheckCircle2,
   Sparkles,
   Layers3,
+  Code2,
+  Globe2,
+  BriefcaseBusiness,
+  RefreshCw,
 } from "lucide-react";
+
 import { HashLink } from "react-router-hash-link";
-
-import { projects, projectCategories } from "../data/projects";
+import api from "../services/api";
 import "../sections/Projects.css";
-const AnimatedNumber = ({ target, suffix = "", duration = 1800, pad = false }) => {
-  const [count, setCount] = useState(0);
-  const numberRef = useRef(null);
-  const [started, setStarted] = useState(false);
 
-  useEffect(() => {
-    const element = numberRef.current;
-    if (!element) return;
+// Category অনুযায়ী icon
+const getIcon = (category = "") => {
+  const value = category.toLowerCase();
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
+  if (/web|software|development/.test(value)) return Code2;
+  if (/network|communication|telecom/.test(value)) return Globe2;
+  if (/business|management|solution/.test(value)) return BriefcaseBusiness;
 
-    observer.observe(element);
+  return Layers3;
+};
 
-    return () => observer.disconnect();
-  }, [started]);
+// Technologies array তৈরি
+const getTechnologies = (value) => {
+  if (Array.isArray(value)) return value;
 
-  useEffect(() => {
-    if (!started) return;
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return value.split("\n").filter(Boolean);
+    }
+  }
 
-    let animationFrame;
-    const startTime = performance.now();
-
-    const animate = (currentTime) => {
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-
-      // Smooth ease-out animation
-      const easedProgress = 1 - Math.pow(1 - progress, 4);
-
-      setCount(Math.floor(easedProgress * target));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      } else {
-        setCount(target);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrame);
-  }, [started, target, duration]);
-
-  return (
-    <span ref={numberRef} className="gs-highlight-number">
-      {pad ? String(count).padStart(2, "0") : count}
-      {suffix}
-    </span>
-  );
+  return [];
 };
 
 const ProjectsPage = () => {
-  const [activeCategory, setActiveCategory] = useState("All Projects");
+  const [projects, setProjects] = useState([]);
+  const [category, setCategory] = useState("All Projects");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const filteredProjects =
-    activeCategory === "All Projects"
-      ? projects
-      : projects.filter(
-          (project) => project.category === activeCategory
-        );
+  // Projects API
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await api.get("/projects");
+      const result = response.data?.data;
+
+      setProjects(
+        Array.isArray(result) ? result : result?.data || []
+      );
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Unable to load projects."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    fetchProjects();
   }, []);
 
+  // Category list
+  const categories = useMemo(
+    () => [
+      "All Projects",
+      ...new Set(projects.map((item) => item.category).filter(Boolean)),
+    ],
+    [projects]
+  );
+
+  // Filter projects
+  const filteredProjects = projects.filter(
+    (item) => category === "All Projects" || item.category === category
+  );
+
+  // Modal close
   useEffect(() => {
     if (!selectedProject) return;
 
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setSelectedProject(null);
-      }
+    const closeModal = (e) => {
+      if (e.key === "Escape") setSelectedProject(null);
     };
 
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", closeModal);
 
     return () => {
       document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", closeModal);
     };
   }, [selectedProject]);
 
@@ -109,6 +111,8 @@ const ProjectsPage = () => {
       <div className="gs-projects-glow" />
 
       <div className="gs-projects-container">
+
+        {/* Heading */}
         <div className="gs-projects-heading">
           <div className="gs-section-label">
             <Sparkles size={15} />
@@ -121,111 +125,149 @@ const ProjectsPage = () => {
           </h2>
 
           <p>
-            Discover our complete range of software, communication,
-            networking and technology solutions built to help
-            businesses move forward.
+            Discover our software, communication, networking and
+            technology solutions built to help businesses move forward.
           </p>
         </div>
 
-     <div className="gs-projects-stats">
-  <div className="gs-project-stat">
-    <AnimatedNumber
-      target={projects.length}
-      pad
-      duration={1800}
-    />
-    <p>Solutions & Services</p>
-  </div>
+        {/* Statistics */}
+        <div className="gs-projects-stats">
+          <div className="gs-project-stat">
+            <span className="gs-highlight-number">
+              {String(projects.length).padStart(2, "0")}
+            </span>
+            <p>Solutions & Services</p>
+          </div>
 
-  <div className="gs-project-stat">
-    <AnimatedNumber
-      target={6}
-      suffix="+"
-      duration={1800}
-    />
-    <p>Technology Areas</p>
-  </div>
+          <div className="gs-project-stat">
+            <span className="gs-highlight-number">6+</span>
+            <p>Technology Areas</p>
+          </div>
 
-  <div className="gs-project-stat">
-    <AnimatedNumber
-      target={360}
-      suffix="°"
-      duration={2000}
-    />
-    <p>Digital Solutions</p>
-  </div>
-</div>
-        <div className="gs-project-filters">
-          {projectCategories.map((category) => (
-            <button
-              type="button"
-              key={category}
-              className={`gs-project-filter ${
-                activeCategory === category ? "active" : ""
-              }`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
+          <div className="gs-project-stat">
+            <span className="gs-highlight-number">360°</span>
+            <p>Digital Solutions</p>
+          </div>
         </div>
 
-        <div className="gs-project-grid">
-          {filteredProjects.map((project) => {
-            const Icon = project.icon;
-
-            return (
-              <article
-                className={`gs-project-card ${project.color || ""}`}
-                key={project.id}
-              >
-                <div className="gs-project-card-top">
-                  <span className="gs-project-number">
-                    {project.number}
-                  </span>
-
-                  <div className="gs-project-icon">
-                    <Icon size={25} strokeWidth={1.7} />
-                  </div>
-
-                  <span className="gs-project-arrow">
-                    <ArrowUpRight size={20} />
-                  </span>
-                </div>
-
-                <div className="gs-project-card-content">
-                  <span className="gs-project-tag">
-                    {project.tag}
-                  </span>
-
-                  <h3>{project.name}</h3>
-                  <h4>{project.subtitle}</h4>
-                  <p>{project.description}</p>
-                </div>
-
-                <div className="gs-project-card-bottom">
-                  <button
-                    type="button"
-                    className="gs-project-details-btn"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    Explore Solution
-                    <ArrowRight size={17} />
-                  </button>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        {filteredProjects.length === 0 && (
+        {/* Loading */}
+        {loading && (
           <div className="gs-project-empty">
-            <Layers3 size={35} />
-            <h3>No projects found</h3>
-            <p>Try selecting another category.</p>
+            <RefreshCw size={30} />
+            <h3>Loading Projects...</h3>
+            <p>Please wait while we fetch our projects.</p>
           </div>
         )}
 
+        {/* Error */}
+        {!loading && error && (
+          <div className="gs-project-empty">
+            <Layers3 size={35} />
+            <h3>Unable to Load Projects</h3>
+            <p>{error}</p>
+
+            <button
+              className="gs-project-details-btn"
+              onClick={fetchProjects}
+            >
+              Try Again <RefreshCw size={16} />
+            </button>
+          </div>
+        )}
+
+        {/* Project Content */}
+        {!loading && !error && (
+          <>
+            {/* Categories */}
+            <div className="gs-project-filters">
+              {categories.map((item) => (
+                <button
+                  key={item}
+                  className={`gs-project-filter ${
+                    category === item ? "active" : ""
+                  }`}
+                  onClick={() => setCategory(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+
+            {/* Project Cards */}
+            <div className="gs-project-grid">
+              {filteredProjects.map((project, index) => {
+                const Icon = getIcon(project.category);
+
+                return (
+                  <article
+                    key={project.id}
+                    className="gs-project-card"
+                    onClick={() => setSelectedProject(project)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSelectedProject(project);
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="gs-project-card-top">
+                      <span className="gs-project-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <div className="gs-project-icon">
+                        <Icon size={25} strokeWidth={1.7} />
+                      </div>
+
+                      <span className="gs-project-arrow">
+                        <ArrowUpRight size={20} />
+                      </span>
+                    </div>
+
+                    <div className="gs-project-card-content">
+                      <span className="gs-project-tag">
+                        {project.category || "Project"}
+                      </span>
+
+                      <h3>{project.title}</h3>
+
+                      <h4>
+                        {project.client_name || project.category}
+                      </h4>
+
+                      <p>
+                        {project.short_description ||
+                          project.description ||
+                          "Explore this project to learn more."}
+                      </p>
+                    </div>
+
+                    <div className="gs-project-card-bottom">
+                      <span className="gs-project-details-btn">
+                        View Project Details
+                        <ArrowUpRight size={17} />
+                      </span>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {/* Empty */}
+            {filteredProjects.length === 0 && (
+              <div className="gs-project-empty">
+                <Layers3 size={35} />
+                <h3>No Projects Found</h3>
+                <p>No projects are available in this category.</p>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* CTA */}
         <div className="gs-project-cta">
           <div>
             <span>HAVE A PROJECT IN MIND?</span>
@@ -242,6 +284,7 @@ const ProjectsPage = () => {
         </div>
       </div>
 
+      {/* Project Details Modal */}
       {selectedProject && (
         <div
           className="gs-project-modal-overlay"
@@ -249,62 +292,82 @@ const ProjectsPage = () => {
         >
           <div
             className="gs-project-modal"
-            onClick={(event) => event.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            aria-labelledby="gs-project-modal-title"
           >
             <button
-              type="button"
               className="gs-project-modal-close"
               onClick={() => setSelectedProject(null)}
-              aria-label="Close project details"
+              aria-label="Close"
             >
               <X size={22} />
             </button>
 
             <div className="gs-project-modal-label">
-              PROJECT DETAILS / {selectedProject.number}
+              PROJECT DETAILS / {selectedProject.id}
             </div>
 
             <div className="gs-project-modal-icon">
               {(() => {
-                const Icon = selectedProject.icon;
+                const Icon = getIcon(selectedProject.category);
                 return <Icon size={30} />;
               })()}
             </div>
 
             <span className="gs-project-tag">
-              {selectedProject.tag}
+              {selectedProject.category || "Project"}
             </span>
 
-            <h2 id="gs-project-modal-title">
-              {selectedProject.name}
-            </h2>
+            <h2>{selectedProject.title}</h2>
 
-            <h4>{selectedProject.subtitle}</h4>
+            <h4>
+              {selectedProject.client_name || selectedProject.category}
+            </h4>
 
             <p className="gs-project-modal-description">
-              {selectedProject.details}
+              {selectedProject.description ||
+                selectedProject.short_description ||
+                "No additional description available."}
             </p>
 
-            <div className="gs-project-modal-features">
-              <h3>Key Features</h3>
+            {/* Technologies */}
+            {getTechnologies(selectedProject.technologies).length > 0 && (
+              <div className="gs-project-modal-features">
+                <h3>Technologies Used</h3>
 
-              <div className="gs-project-feature-list">
-                {selectedProject.features.map((feature, index) => (
-                  <div key={`${selectedProject.id}-${index}`}>
-                    <CheckCircle2 size={18} />
-                    <span>{feature}</span>
-                  </div>
-                ))}
+                <div className="gs-project-feature-list">
+                  {getTechnologies(selectedProject.technologies).map(
+                    (item, index) => (
+                      <div key={index}>
+                        <CheckCircle2 size={18} />
+                        <span>
+                          {typeof item === "string"
+                            ? item
+                            : item.name || item.title}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
-            <div className="gs-project-suitable">
-              <span>IDEAL FOR</span>
-              <p>{selectedProject.suitableFor}</p>
-            </div>
+            {/* Project Website */}
+            {selectedProject.project_url && (
+              <div className="gs-project-suitable">
+                <span>PROJECT WEBSITE</span>
+                <p>
+                  <a
+                    href={selectedProject.project_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Project Website <ArrowUpRight size={14} />
+                  </a>
+                </p>
+              </div>
+            )}
 
             <HashLink
               smooth

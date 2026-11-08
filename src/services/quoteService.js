@@ -1,35 +1,38 @@
-
-import { CONTACT_CONFIG } from "../config/contactConfig";
+import api from "./api";
 
 export const submitQuoteRequest = async (formData) => {
-  const apiUrl = CONTACT_CONFIG.quoteApiUrl;
+    try {
+        const response = await api.post("/inquiries/quote", {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company || null,
+            service: formData.service,
+            budget: formData.budget || null,
+            timeline: formData.timeline || null,
+            message: formData.message,
+            productName: formData.productName || null,
+            productType: formData.productType || null,
+        });
 
-  // Demo mode: backend API is not connected yet.
-  if (!apiUrl) {
-    console.info("Quote request demo data:", formData);
+        return {
+            ...response.data,
+            demo: false,
+        };
+    } catch (error) {
+        const validationErrors = error.response?.data?.errors;
 
-    return {
-      success: true,
-      demo: true,
-      message: "Demo submission completed.",
-    };
-  }
+        if (validationErrors) {
+            const firstError = Object.values(validationErrors)[0]?.[0];
 
-  const response = await fetch(apiUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
+            throw new Error(
+                firstError || "Please check your submitted information."
+            );
+        }
 
-  if (!response.ok) {
-    throw new Error("Unable to submit your request. Please try again.");
-  }
-
-  return {
-    success: true,
-    demo: false,
-    data: await response.json().catch(() => null),
-  };
+        throw new Error(
+            error.response?.data?.message ||
+            "Unable to submit your quote request. Please try again."
+        );
+    }
 };
